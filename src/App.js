@@ -24,7 +24,7 @@ import showImage from './showImage';
 import addInquiry from './addInquiry';
 import showInquiry from './showInquiry';
 import addPackageDetail from './addPackageDetail';
-import showPackageDetail from './showPackageDetail';
+
 import addVendor from './addVendor';
 import showVendor from './showVendor';
 import addVendorCategory from './addVendorCategory';
