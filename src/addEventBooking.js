@@ -18,20 +18,56 @@ function AddEventBooking() {
                     </div>
                     <div class="card-body">
                       <div class="form-group">
-                        <label>Your Name</label>
+                        <label>bookingID</label>
                         <input type="text" class="form-control" required=""/>
                       </div>
                       <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" class="form-control" required=""/>
+                        <label>bookingType</label>
+                        <input type="text" class="form-control" required=""/>
                       </div>
                       <div class="form-group">
-                        <label>Subject</label>
-                        <input type="email" class="form-control"/>
+                        <label>eventID</label>
+                        <input type="text" class="form-control"/>
                       </div>
                       <div class="form-group mb-0">
-                        <label>Message</label>
-                        <textarea class="form-control" required=""></textarea>
+                        <label>customerID</label>
+                        <input type="text" class="form-control" required=""/>
+                      </div>
+                      <div class="form-group">
+                        <label>bookingDate</label>
+                        <input type="date" class="form-control" required=""/>
+                      </div>
+                      <div class="form-group">
+                        <label>bookingStartDate</label>
+                        <input type="date" class="form-control" required=""/>
+                      </div>
+                      <div class="form-group">
+                        <label>bookingEndDate</label>
+                        <input type="date" class="form-control" required=""/>
+                      </div>
+                      <div class="form-group">
+                        <label>bookingStatus</label>
+                        <input type="text" class="form-control" required=""/>
+                      </div>
+                      <div class="form-group">
+                        <label>venue</label>
+                        <input type="text" class="form-control" required=""/>
+                      </div>
+                      <div class="form-group">
+                        <label>noOfGuest</label>
+                        <input type="text" class="form-control" required=""/>
+                      </div>
+                      <div class="form-group">
+                        <label>subTotal</label>
+                        <input type="text" class="form-control" required=""/>
+                      </div>
+                      <div class="form-group">
+                        <label>totalCost</label>
+                        <input type="text" class="form-control" required=""/>
+                      </div>
+                      <div class="form-group">
+                        <label>packageID</label>
+                        <input type="text" class="form-control" required=""/>
                       </div>
                     </div>
                     <div class="card-footer text-right">

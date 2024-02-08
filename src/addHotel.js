@@ -18,21 +18,45 @@ function AddHotel() {
                     </div>
                     <div class="card-body">
                       <div class="form-group">
-                        <label>Your Name</label>
+                        <label>hotelID</label>
                         <input type="text" class="form-control" required=""/>
                       </div>
                       <div class="form-group">
-                        <label>Email</label>
+                        <label>packageID</label>
+                        <input type="text" class="form-control" required=""/>
+                      </div>
+                      <div class="form-group">
+                        <label>hotelName</label>
+                        <input type="text" class="form-control"/>
+                      </div>
+                      <div class="form-group mb-0">
+                        <label>rating</label>
+                        <input type="text" class="form-control"/>
+                      </div>
+                      <div class="form-group">
+                        <label>email</label>
                         <input type="email" class="form-control" required=""/>
                       </div>
                       <div class="form-group">
-                        <label>Subject</label>
-                        <input type="email" class="form-control"/>
+                        <label>mobileNo</label>
+                        <input type="text" class="form-control" required=""/>
                       </div>
-                      <div class="form-group mb-0">
-                        <label>Message</label>
-                        <textarea class="form-control" required=""></textarea>
+                      <div class="form-group">
+                        <label>address</label>
+                        <input type="text" class="form-control" required=""/>
                       </div>
+                      <div class="form-group">
+                        <label>city</label>
+                        <input type="text" class="form-control" required=""/>
+                      </div>
+                      <div class="form-group">
+                        <label>area</label>
+                        <input type="t/*ext" class="form-control" required=""/>
+                      </div>
+                      <div class="form-group">
+                          <label for="imageUpload">Image</label>
+                          <input type="file" id="imageUpload" name="imageUpload" accept="image/*"/>
+                       </div>
                     </div>
                     <div class="card-footer text-right">
                       <button class="btn btn-primary">Submit</button>

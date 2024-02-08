@@ -18,21 +18,49 @@ function AddVendor() {
                     </div>
                     <div class="card-body">
                       <div class="form-group">
-                        <label>Your Name</label>
+                        <label>vendorID</label>
                         <input type="text" class="form-control" required=""/>
                       </div>
                       <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" class="form-control" required=""/>
+                        <label>bname</label>
+                        <input type="text" class="form-control" required=""/>
                       </div>
                       <div class="form-group">
-                        <label>Subject</label>
+                        <label>vendorName</label>
+                        <input type="text" class="form-control"/>
+                      </div>
+                      <div class="form-group">
+                        <label>contactPerson</label>
+                        <input type="text" class="form-control"/>
+                      </div>
+                      <div class="form-group">
+                        <label>email</label>
                         <input type="email" class="form-control"/>
                       </div>
-                      <div class="form-group mb-0">
-                        <label>Message</label>
-                        <textarea class="form-control" required=""></textarea>
+                      <div class="form-group">
+                        <label>contactNo</label>
+                        <input type="text" class="form-control"/>
                       </div>
+                      <div class="form-group">
+                        <label>address</label>
+                        <input type="text" class="form-control"/>
+                      </div>
+                      <div class="form-group">
+                        <label>category</label>
+                        <input type="text" class="form-control"/>
+                      </div>
+                      <div class="form-group">
+                        <label>packageID</label>
+                        <input type="text" class="form-control"/>
+                      </div>
+                      <div class="form-group">
+                        <label>price</label>
+                        <input type="text" class="form-control"/>
+                      </div>
+                      <div class="form-group">
+                          <label for="imageUpload">Image</label>
+                          <input type="file" id="imageUpload" name="imageUpload" accept="image/*"/>
+                       </div>
                     </div>
                     <div class="card-footer text-right">
                       <button class="btn btn-primary">Submit</button>
