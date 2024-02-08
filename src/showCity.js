@@ -2,7 +2,7 @@ import Header from "./includes/header";
 import Footer from "./includes/footer";
 import useScript from "./utils/useScript";
 
-function showCity() {
+function ShowCity() {
   useScript('/assets/bundles/echart/echarts.js');
     return (<>
         <Header></Header>
@@ -265,4 +265,4 @@ function showCity() {
     </>);
 }
 
-export default showCity;
+export default ShowCity;
