@@ -54,7 +54,7 @@ function AddHotel() {
                         <input type="t/*ext" class="form-control" required=""/>
                       </div>
                       <div class="form-group">
-                          <label for="imageUpload">Image</label>
+                          <label for="imageUpload"></label>
                           <input type="file" id="imageUpload" name="imageUpload" accept="image/*"/>
                        </div>
                     </div>
