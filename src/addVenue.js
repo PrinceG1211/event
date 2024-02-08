@@ -46,12 +46,12 @@ function AddVenue() {
                         <textarea class="form-control" required=""></textarea>
                       </div>
                       <div class="form-group">
-                          <label for="image">Image</label><br></br>
+                          <label for="image"></label><br></br>
                           <input type="file" id="imageUpload" name="imageUpload" accept="image/*"/>
                        </div>
-                    </div>
+                    
                     <div class="form-group">
-                        <label>Price</label>
+                        <label>price</label>
                         <input type="text" class="form-control" required=""/>
                       </div>
                       <div class="form-group">
@@ -62,6 +62,7 @@ function AddVenue() {
                         <label>Area</label>
                         <input type="text" class="form-control" required=""/>
                       </div>
+                    </div>
                     <div class="card-footer text-right">
                       <button class="btn btn-primary">Submit</button>
                     </div>
