@@ -17,8 +17,20 @@ function AddVenue() {
                       <h4>Default Validation</h4>
                     </div>
                     <div class="card-body">
+                    <div class="form-group">
+                        <label>Venue ID</label>
+                        <input type="text" class="form-control" required=""/>
+                      </div>
                       <div class="form-group">
-                        <label>Your Name</label>
+                        <label>VenueName</label>
+                        <input type="text" class="form-control" required=""/>
+                      </div>
+                      <div class="form-group">
+                        <label>Capacity</label>
+                        <input type="text" class="form-control" required=""/>
+                      </div>
+                      <div class="form-group">
+                        <label>ContactPerson</label>
                         <input type="text" class="form-control" required=""/>
                       </div>
                       <div class="form-group">
@@ -26,14 +38,30 @@ function AddVenue() {
                         <input type="email" class="form-control" required=""/>
                       </div>
                       <div class="form-group">
-                        <label>Subject</label>
-                        <input type="email" class="form-control"/>
+                        <label>MobileNo</label>
+                        <input type="text" class="form-control" required=""/>
                       </div>
                       <div class="form-group mb-0">
-                        <label>Message</label>
+                        <label>Address</label>
                         <textarea class="form-control" required=""></textarea>
                       </div>
+                      <div class="form-group">
+                          <label for="image">Image</label><br></br>
+                          <input type="file" id="imageUpload" name="imageUpload" accept="image/*"/>
+                       </div>
                     </div>
+                    <div class="form-group">
+                        <label>Price</label>
+                        <input type="text" class="form-control" required=""/>
+                      </div>
+                      <div class="form-group">
+                        <label>City</label>
+                        <input type="text" class="form-control" required=""/>
+                      </div>
+                      <div class="form-group">
+                        <label>Area</label>
+                        <input type="text" class="form-control" required=""/>
+                      </div>
                     <div class="card-footer text-right">
                       <button class="btn btn-primary">Submit</button>
                     </div>

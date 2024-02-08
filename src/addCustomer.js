@@ -18,7 +18,11 @@ function AddCustomer() {
                     </div>
                     <div class="card-body">
                       <div class="form-group">
-                        <label>Your Name</label>
+                        <label>Customer Id</label>
+                        <input type="text" class="form-control" required=""/>
+                      </div>
+                      <div class="form-group">
+                        <label>Name</label>
                         <input type="text" class="form-control" required=""/>
                       </div>
                       <div class="form-group">
@@ -26,12 +30,8 @@ function AddCustomer() {
                         <input type="email" class="form-control" required=""/>
                       </div>
                       <div class="form-group">
-                        <label>Subject</label>
-                        <input type="email" class="form-control"/>
-                      </div>
-                      <div class="form-group mb-0">
-                        <label>Message</label>
-                        <textarea class="form-control" required=""></textarea>
+                        <label>MobileNo</label>
+                        <input type="text" class="form-control" required=""/>
                       </div>
                     </div>
                     <div class="card-footer text-right">

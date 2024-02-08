@@ -17,21 +17,21 @@ function AddPackageDetail() {
                       <h4>Default Validation</h4>
                     </div>
                     <div class="card-body">
-                      <div class="form-group">
-                        <label>Your Name</label>
+                    <div class="form-group">
+                        <label>Package ID</label>
                         <input type="text" class="form-control" required=""/>
                       </div>
                       <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" class="form-control" required=""/>
-                      </div>
-                      <div class="form-group">
-                        <label>Subject</label>
-                        <input type="email" class="form-control"/>
+                        <label>PackageName</label>
+                        <input type="text" class="form-control" required=""/>
                       </div>
                       <div class="form-group mb-0">
-                        <label>Message</label>
+                        <label>PackageDiscription</label>
                         <textarea class="form-control" required=""></textarea>
+                      </div>
+                      <div class="form-group">
+                        <label>Price</label>
+                        <input type="text" class="form-control"/>
                       </div>
                     </div>
                     <div class="card-footer text-right">

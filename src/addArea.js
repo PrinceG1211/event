@@ -18,20 +18,20 @@ function AddArea() {
                     </div>
                     <div class="card-body">
                       <div class="form-group">
-                        <label>Your Name</label>
+                        <label>Area ID</label>
                         <input type="text" class="form-control" required=""/>
                       </div>
                       <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" class="form-control" required=""/>
+                        <label>City ID</label>
+                        <input type="text" class="form-control" required=""/>
                       </div>
                       <div class="form-group">
-                        <label>Subject</label>
-                        <input type="email" class="form-control"/>
+                        <label>AreaNAme</label>
+                        <input type="text" class="form-control"/>
                       </div>
                       <div class="form-group mb-0">
-                        <label>Message</label>
-                        <textarea class="form-control" required=""></textarea>
+                        <label>Pincode</label>
+                        <input type="text" class="form-control"/>
                       </div>
                     </div>
                     <div class="card-footer text-right">

@@ -18,20 +18,12 @@ function AddCity() {
                     </div>
                     <div class="card-body">
                       <div class="form-group">
-                        <label>Your Name</label>
+                        <label>City ID</label>
                         <input type="text" class="form-control" required=""/>
                       </div>
                       <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" class="form-control" required=""/>
-                      </div>
-                      <div class="form-group">
-                        <label>Subject</label>
-                        <input type="email" class="form-control"/>
-                      </div>
-                      <div class="form-group mb-0">
-                        <label>Message</label>
-                        <textarea class="form-control" required=""></textarea>
+                        <label>CityName</label>
+                        <input type="text" class="form-control" required=""/>
                       </div>
                     </div>
                     <div class="card-footer text-right">

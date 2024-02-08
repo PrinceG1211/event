@@ -17,8 +17,12 @@ function AddInquiry() {
                       <h4>Default Validation</h4>
                     </div>
                     <div class="card-body">
+                    <div class="form-group">
+                        <label>Inquiry ID</label>
+                        <input type="text" class="form-control" required=""/>
+                      </div>
                       <div class="form-group">
-                        <label>Your Name</label>
+                        <label>Name</label>
                         <input type="text" class="form-control" required=""/>
                       </div>
                       <div class="form-group">
@@ -26,11 +30,19 @@ function AddInquiry() {
                         <input type="email" class="form-control" required=""/>
                       </div>
                       <div class="form-group">
+                        <label>MobileNo</label>
+                        <input type="text" class="form-control" required=""/>
+                      </div>
+                      <div class="form-group">
                         <label>Subject</label>
                         <input type="email" class="form-control"/>
                       </div>
+                      <div class="form-group">
+                        <label>Status</label>
+                        <input type="text" class="form-control" required=""/>
+                      </div>
                       <div class="form-group mb-0">
-                        <label>Message</label>
+                        <label>Discription</label>
                         <textarea class="form-control" required=""></textarea>
                       </div>
                     </div>
