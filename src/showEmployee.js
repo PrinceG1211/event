@@ -13,7 +13,7 @@ function ShowEmployee() {
               <div class="col-12">
                 <div class="card">
                   <div class="card-header">
-                    <h4>Sortable Table</h4>
+                    <h4>Employee Table</h4>
                     <div class="card-header-action">
                       <form>
                         <div class="input-group">
@@ -27,18 +27,21 @@ function ShowEmployee() {
                   </div>
                   <div class="card-body p-0">
                     <div class="table-responsive">
-                      <table class="table table-striped" id="sortable-table">
+                      <table class="table table-striped" id="employee-table">
                         <thead>
                           <tr>
                             <th class="text-center">
                               <i class="fas fa-th"></i>
                             </th>
-                            <th>Task Name</th>
-                            <th>Progress</th>
-                            <th>Members</th>
-                            <th>Due Date</th>
-                            <th>Status</th>
-                            <th>Action</th>
+                            <th>EmployeeID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>MobileNo</th>
+                            <th>Dob</th>
+                            <th>Doj</th>
+                            <th>Type</th>
+                            <th>AddedOn</th>
+                            <th>UpdatedOn</th>
                           </tr>
                         </thead>
                         <tbody>

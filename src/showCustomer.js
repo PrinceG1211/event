@@ -13,7 +13,7 @@ function ShowCustomer() {
               <div class="col-12">
                 <div class="card">
                   <div class="card-header">
-                    <h4>Sortable Table</h4>
+                    <h4>Customer Table</h4>
                     <div class="card-header-action">
                       <form>
                         <div class="input-group">
@@ -27,18 +27,18 @@ function ShowCustomer() {
                   </div>
                   <div class="card-body p-0">
                     <div class="table-responsive">
-                      <table class="table table-striped" id="sortable-table">
+                      <table class="table table-striped" id="Customer-table">
                         <thead>
                           <tr>
                             <th class="text-center">
                               <i class="fas fa-th"></i>
                             </th>
-                            <th>Task Name</th>
-                            <th>Progress</th>
-                            <th>Members</th>
-                            <th>Due Date</th>
-                            <th>Status</th>
-                            <th>Action</th>
+                            <th>CustomerID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>MobileNo</th>
+                            <th>AddedOn</th>
+                            <th>UpdatedOn</th>
                           </tr>
                         </thead>
                         <tbody>

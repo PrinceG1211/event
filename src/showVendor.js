@@ -13,7 +13,7 @@ function ShowVendor() {
               <div class="col-12">
                 <div class="card">
                   <div class="card-header">
-                    <h4>Sortable Table</h4>
+                    <h4>Vendor Table</h4>
                     <div class="card-header-action">
                       <form>
                         <div class="input-group">
@@ -27,18 +27,26 @@ function ShowVendor() {
                   </div>
                   <div class="card-body p-0">
                     <div class="table-responsive">
-                      <table class="table table-striped" id="sortable-table">
+                      <table class="table table-striped" id="Vendor-table">
                         <thead>
                           <tr>
                             <th class="text-center">
                               <i class="fas fa-th"></i>
                             </th>
-                            <th>Task Name</th>
-                            <th>Progress</th>
-                            <th>Members</th>
-                            <th>Due Date</th>
-                            <th>Status</th>
-                            <th>Action</th>
+                            <th>VendorID</th>
+                            <th>Bname</th>
+                            <th>VendorName</th>
+                            <th>ContactPerson</th>
+                            <th>Email</th>
+                            <th>ContactNo</th>
+                            <th>Address</th>
+                            <th>PackageID</th>
+                            <th>Price</th>
+                            <th>Image</th>
+                            <th>Price</th>
+                            <th>Image</th>
+                            <th>AddedOn</th>
+                            <th>UpdatedOn</th>
                           </tr>
                         </thead>
                         <tbody>
