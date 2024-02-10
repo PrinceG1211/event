@@ -4,6 +4,34 @@ import useScript from "./utils/useScript";
 
 function AddAuth() {
   useScript('/assets/bundles/echart/echarts.js');
+  
+  const [UserID, setUserID] = useState([]);
+  const [Username, setUsername] = useState([]);
+  const [Password, setPassword] = useState('');
+  const [Type,setType]=useState("");
+  const [Email,setEmail]=useState("");
+  const [MobileNo,setMobileNo]=useState("");
+  useEffect(() => {
+    fetchCities();
+  }, []);
+
+  const fetchCities = async () => {
+    try {
+      const request = await fetch(variables.baseUrl + "City");
+      if (!request.ok) {
+        throw new Error('Failed to fetch options');
+      }
+      const response = await request.json();
+      console.log(response);
+      setCity(response.data);
+    } catch (error) {
+      console.error('Error fetching options:', error);
+    }
+  };
+
+  const handleChange = (e) => {
+    setSelectedCity(e.target.value);
+  };
     return (<>
         <Header></Header>
         <div class="main-content">
