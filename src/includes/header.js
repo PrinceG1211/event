@@ -85,7 +85,7 @@ function Header() {
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
             <a href="index.html"> <img alt="image" src="assets/img/logo.png" class="header-logo" /> <span
-                class="logo-name"></span>
+                class="logo-name">DAY-MAKER</span>
             </a>
           </div>
           <div class="sidebar-user">
