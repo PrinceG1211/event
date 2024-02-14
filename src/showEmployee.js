@@ -13,8 +13,8 @@ function ShowEmployee() {
             <div class="col-12">
               <div class="card">
                 <div class="card-header">
-                  <h4>Area Data</h4>
-                  <Link to="/addArea" className="btn btn-outline-primary">Add</Link>
+                  <h4>Employee Data</h4>
+                  <Link to="/addEmployee" className="btn btn-outline-primary">Add</Link>
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
@@ -22,23 +22,29 @@ function ShowEmployee() {
                       <thead>
                         <tr>
                           <th>No</th>
-                          <th>Area</th>
-                          <th>City</th>
-                          <th>Pincode</th>
+                          <th>Name</th>
+                          <th>Email</th>
+                          <th>MobileNo</th>
+                          <th>dob</th>
+                          <th>doj</th>
+                          <th>type</th>
                           <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
                         {
-                          areaList.map((area, index) => (
+                          EmployeeList.map((Employee, index) => (
                             <tr>
                               <td>{index + 1}</td>
-                              <td>{area.areaName}</td>
-                              <td>{area.cityName}</td>
-                              <td>{area.pincode}</td>
+                              <td>{Employee.EmployeeName}</td>
+                              <td>{Employee.EmployeeEmail}</td>
+                              <td>{Employee.EmployeeMobileNO}</td>
+                              <td>{Employee.Employeedob}</td>
+                              <td>{Employee.Employeedoj}</td>
+                              <td>{Employee.Employeetype}</td>
                               <td>
-                                <Link className="btn btn-icon icon-left btn-outline-info" to={`/editArea/${area.areaID}`}><i className="far fa-edit"></i>Edit</Link><br/><br/>
-                                <button className="btn btn-icon icon-left btn-outline-danger" onClick={() => handleDelete(area.areaID)}><i className="fas fa-times"></i>Delete</button>
+                                <Link className="btn btn-icon icon-left btn-outline-info" to={`/editEmployee/${Employee.EmployeeID}`}><i className="far fa-edit"></i>Edit</Link><br/><br/>
+                                <button className="btn btn-icon icon-left btn-outline-danger" onClick={() => handleDelete(Employee.EmployeeID)}><i className="fas fa-times"></i>Delete</button>
                               </td>
                             </tr>
                           ))

@@ -1,6 +1,7 @@
 import Header from "./includes/header";
 import Footer from "./includes/footer";
 import useScript from "./utils/useScript";
+import { Link } from "react-router-dom";
 
 function ShowCustomer() {
   useScript('/assets/bundles/echart/echarts.js');
@@ -13,8 +14,8 @@ function ShowCustomer() {
             <div class="col-12">
               <div class="card">
                 <div class="card-header">
-                  <h4>Area Data</h4>
-                  <Link to="/addArea" className="btn btn-outline-primary">Add</Link>
+                  <h4>Customer Data</h4>
+                  <Link to="/addCustomer" className="btn btn-outline-primary">Add</Link>
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
@@ -22,23 +23,23 @@ function ShowCustomer() {
                       <thead>
                         <tr>
                           <th>No</th>
-                          <th>Area</th>
-                          <th>City</th>
-                          <th>Pincode</th>
+                          <th>name</th>
+                          <th>email</th>
+                          <th>mobileNo</th>
                           <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
                         {
-                          areaList.map((area, index) => (
+                          customerList.map((customer, index) => (
                             <tr>
                               <td>{index + 1}</td>
-                              <td>{area.areaName}</td>
-                              <td>{area.cityName}</td>
-                              <td>{area.pincode}</td>
+                              <td>{customer.CustomerName}</td>
+                              <td>{customer.CustomerEmail}</td>
+                              <td>{customer.MobileNO}</td>
                               <td>
-                                <Link className="btn btn-icon icon-left btn-outline-info" to={`/editArea/${area.areaID}`}><i className="far fa-edit"></i>Edit</Link><br/><br/>
-                                <button className="btn btn-icon icon-left btn-outline-danger" onClick={() => handleDelete(area.areaID)}><i className="fas fa-times"></i>Delete</button>
+                                <Link className="btn btn-icon icon-left btn-outline-info" to={`/editCustomer/${customer.customerID}`}><i className="far fa-edit"></i>Edit</Link><br/><br/>
+                                <button className="btn btn-icon icon-left btn-outline-danger" onClick={() => handleDelete(customer.customerID)}><i className="fas fa-times"></i>Delete</button>
                               </td>
                             </tr>
                           ))
