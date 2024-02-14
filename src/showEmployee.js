@@ -1,6 +1,9 @@
 import Header from "./includes/header";
 import Footer from "./includes/footer";
 import useScript from "./utils/useScript";
+import { useEffect, useState } from "react";
+import { Variables } from "./utils/Variables";
+import { Link } from "react-router-dom";
 
 function ShowEmployee() {
   useScript('/assets/bundles/echart/echarts.js');

@@ -2,13 +2,13 @@ import Header from "./includes/header";
 import Footer from "./includes/footer";
 import useScript from "./utils/useScript";
 import { Variables } from "./utils/Variables";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 function AddEmployee() {
   useScript('/assets/bundles/echart/echarts.js');
 
-  const [Employee, setemployee] = useState([]);
+  const [Employee, setEmployee] = useState([]);
   const [name, setName] = useState('');
   const [email, setEmail] = useState("");
   const [mobileNo, setMobileNo] = useState("");
@@ -26,19 +26,18 @@ function AddEmployee() {
 
   const fetchEmployee = async () => {
     try {
-      const request = await fetch(Variables.apiURL + "Employee");
+      const request = await fetch(Variables.apiURL + "Employee/"+id);
       if (!request.ok) {
         throw new Error('Failed to fetch options');
       }
       const response = await request.json();
       console.log(response);
-      setEmployee(response.data);
-      setName(response.data);
-      setEmail(response.data);
-      setMobileNo(response.data);
-      setDob(response.data);
-      setDoj(response.data);
-      setType(response.data);
+      setName(response.data.name);
+      setEmail(response.data.email);
+      setMobileNo(response.data.mobileNo);
+      setDob(response.data.dob);
+      setDoj(response.data.doj);
+      setType(response.data.type);
     } catch (error) {
       console.error('Error fetching options:', error);
     }
@@ -97,7 +96,7 @@ function AddEmployee() {
             <div class="row">
               <div class="col-12 col-md-6 col-lg-6">
                 <div class="card">
-                  <form>
+                  <form onSubmit={handleSubmit}>
                     <div class="card-header">
                       <h4>Add Employee</h4>
                     </div>
@@ -108,28 +107,28 @@ function AddEmployee() {
                       </div>
                       <div class="form-group">
                         <label>Email</label>
-                        <input type="email" class="form-control" value={name} onChange={(e) => setEmail(e.target.value)} required=""/>
+                        <input type="email" class="form-control" value={email} onChange={(e) => setEmail(e.target.value)} required=""/>
                       </div>
                       <div class="form-group">
                         <label>MobileNo</label>
-                        <input type="text" class="form-control" value={name} onChange={(e) => setMobileNo(e.target.value)} required=""/>
+                        <input type="text" class="form-control" value={mobileNo} onChange={(e) => setMobileNo(e.target.value)} required=""/>
                       </div>
                       <div class="form-group">
                         <label>Dob</label>
-                        <input type="date" class="form-control" value={name} onChange={(e) => setDob(e.target.value)} required=""/>
+                        <input type="date" class="form-control" value={dob} onChange={(e) => setDob(e.target.value)} required=""/>
                       </div>
                       <div class="form-group">
                         <label>Doj</label>
-                        <input type="date" class="form-control" value={name} onChange={(e) => setDoj(e.target.value)} required=""/>
+                        <input type="date" class="form-control" value={doj} onChange={(e) => setDoj(e.target.value)} required=""/>
                       </div>
                       <div class="form-group">
                         <label>Type</label>
-                        <input type="text" class="form-control" value={name} onChange={(e) => setType(e.target.value)} required=""/>
+                        <input type="text" class="form-control" value={type} onChange={(e) => setType(e.target.value)} required=""/>
                       </div>
                      
                     </div>
                     <div class="card-footer text-right">
-                      <button class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                   </form>
                 </div>

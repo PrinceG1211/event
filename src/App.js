@@ -53,14 +53,23 @@ function App() {
         <Route path='/addCustomer' Component={addCustomer}></Route>
         <Route path='/editCustomer/:id' Component={addCustomer}></Route>
         <Route path='/showCustomer' Component={showCustomer}></Route> 
+        {/* Emplyoeee */}
+        <Route path='/addEmployee' Component={addEmployee}></Route>
+        <Route path='/editEmployee/:id' Component={addEmployee}></Route>
+        <Route path='/showEmployee' Component={showEmployee}></Route> 
+        {/* EmployeeEvent */}
+        <Route path='/addEmployeeEvent' Component={addEmployeeEvent}></Route>
+        <Route path='/editEmployeeEvent/:id' Component={addEmployeeEvent}></Route>
+        <Route path='/showEmployeeEvent' Component={showEmployeeEvent}></Route>
+        {/* EmployeeBooking */}
+        <Route path='/addEventBooking' Component={addEventBooking}></Route>
+        <Route path='/editaddEventBooking/:id' Component={addEventBooking}></Route>
+        <Route path='/showEventBooking' Component={showEventBooking}></Route> 
 {/* 
         
-        <Route path='/addCustomer' Component={addCustomer}></Route>
-        <Route path='/showCustomer' Component={showCustomer}></Route>  
-        <Route path='/addEmployee' Component={addEmployee}></Route>
-        <Route path='/showEmployee' Component={showEmployee}></Route>  
-        <Route path='/addEmployeeEvent' Component={addEmployeeEvent}></Route>
-        <Route path='/showEmployeeEvent' Component={showEmployeeEvent}></Route>  
+    
+ 
+         
         <Route path='/addEventBooking' Component={addEventBooking}></Route>
         <Route path='/showEventBooking' Component={showEventBooking}></Route>  
         <Route path='/addEventDetail' Component={addEventDetail}></Route>

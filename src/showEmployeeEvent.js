@@ -1,6 +1,9 @@
 import Header from "./includes/header";
 import Footer from "./includes/footer";
 import useScript from "./utils/useScript";
+import { useEffect, useState } from "react";
+import { Variables } from "./utils/Variables";
+import { Link } from "react-router-dom";
 
 function ShowEmployeeEvent() {
   useScript('/assets/bundles/echart/echarts.js');
@@ -87,9 +90,10 @@ function ShowEmployeeEvent() {
                           employeeEventList.map((employeeEvent, index) => (
                             <tr>
                               <td>{index + 1}</td>
-                              <td>{employeeEvent.employeeID}</td>  
-                              <td>{employeeEvent.eventID}</td>
-                              <td>{employeeEvent.type}</td>
+
+                              <td>{employeeEvent.employeeName}</td>  
+                              <td>{employeeEvent.bookingType}</td>
+                              
                               <td>
                                 <Link className="btn btn-icon icon-left btn-outline-info" to={`/editEmployeeEvent/${employeeEvent.employeeEventID}`}><i className="far fa-edit"></i>Edit</Link><br/><br/>
                                 <button className="btn btn-icon icon-left btn-outline-danger" onClick={() => handleDelete(employeeEvent.employeeEVentID)}><i className="fas fa-times"></i>Delete</button>
