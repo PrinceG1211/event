@@ -10,6 +10,27 @@ function AddCity() {
   const [cityName, setCityName] = useState("");
   const { id } = useParams();
   const navigate = useNavigate();
+  useEffect(() => {
+    fetchCity();
+    if(id){
+      fetchCity();
+    }
+  }, []);
+  const fetchCity = async () => {
+    try {
+      const request = await fetch(Variables.apiURL + "City/"+id);
+      if (!request.ok) {
+        throw new Error('Failed to fetch options');
+      }
+      const response = await request.json();
+      console.log(response);
+      
+      setName(response.data.name);
+    
+    } catch (error) {
+      console.error('Error fetching options:', error);
+    }
+  };
 
   const handleSubmit = (e) => {
     

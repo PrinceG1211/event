@@ -23,16 +23,16 @@ function AddCustomer() {
 
   const fetchCustomer = async () => {
     try {
-      const request = await fetch(Variables.apiURL + "Customer");
+      const request = await fetch(Variables.apiURL + "Customer/"+id);
       if (!request.ok) {
         throw new Error('Failed to fetch options');
       }
       const response = await request.json();
       console.log(response);
-      setCustomer(response.data);
-      setName(response.data);
-      setEmail(response.data);
-      setMobileNo(response.data);
+      
+      setName(response.data.name);
+      setEmail(response.data.email);
+      setMobileNo(response.data.mobileNo);
     } catch (error) {
       console.error('Error fetching options:', error);
     }
