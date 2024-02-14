@@ -1,9 +1,9 @@
 import Header from "./includes/header";
 import Footer from "./includes/footer";
 import useScript from "./utils/useScript";
-import { Variables } from "./utils/Variables";
 import { useState, useEffect } from "react";
 import { useNavigate,useParams } from "react-router-dom";
+import { Variables } from "./utils/variables";
 
 function AddArea() {
   
