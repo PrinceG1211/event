@@ -61,10 +61,7 @@ function ShowArea() {
   useScript("assets/js/page/datatables.js");
   useScript("assets/js/scripts.js");
   useScript("assets/js/custom.js");
-
-
-
-  return (<>
+return (<>
     <Header></Header>
     <div class="main-content">
       <section class="section">
