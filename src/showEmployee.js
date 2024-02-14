@@ -18,7 +18,7 @@ function ShowEmployee() {
     }).then((response) => response.json())
       .then((data) => {
         console.log(data);
-        setCustomerList(data.data);
+        setEmployeeList(data.data);
       }, (error) => {
         console.log(error);
         alert("Failed");
