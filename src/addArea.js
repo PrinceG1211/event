@@ -3,7 +3,8 @@ import Footer from "./includes/footer";
 import useScript from "./utils/useScript";
 import { useState, useEffect } from "react";
 import { useNavigate,useParams } from "react-router-dom";
-import { Variables } from "./utils/variables";
+import { Variables } from "./utils/Variables";
+
 
 function AddArea() {
   
