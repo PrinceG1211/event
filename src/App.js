@@ -41,12 +41,16 @@ function App() {
     <Router>
       <Routes>
         <Route path='/' exact Component={dashboard}></Route>
+        {/* Area */}
         <Route path='/addArea' Component={addArea}></Route>
+        <Route path='/editArea/:id' Component={addArea}></Route>
         <Route path='/showArea' Component={showArea}></Route>
-        <Route path='/addAuth' Component={addAuth}></Route>
-        <Route path='/showAuth' Component={showAuth}></Route>  
+        {/* City */}
         <Route path='/addCity' Component={addCity}></Route>
+        <Route path='/editCity/:id' Component={addCity}></Route>
         <Route path='/showCity' Component={showCity}></Route>  
+{/* 
+        
         <Route path='/addCustomer' Component={addCustomer}></Route>
         <Route path='/showCustomer' Component={showCustomer}></Route>  
         <Route path='/addEmployee' Component={addEmployee}></Route>
@@ -70,7 +74,7 @@ function App() {
         <Route path='/addVendorCategory' Component={addVendorCategory}></Route>
         <Route path='/showVendorCategory' Component={showVendorCategory}></Route> 
         <Route path='/addVenue' Component={addVenue}></Route>
-        <Route path='/showVenue' Component={showVenue}></Route> 
+        <Route path='/showVenue' Component={showVenue}></Route>  */}
       </Routes>
     </Router>
   );

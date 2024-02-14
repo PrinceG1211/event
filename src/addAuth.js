@@ -1,6 +1,8 @@
 import Header from "./includes/header";
 import Footer from "./includes/footer";
 import useScript from "./utils/useScript";
+import { useEffect, useState } from "react";
+import { Variables } from "./utils/Variables";
 
 function AddAuth() {
   useScript('/assets/bundles/echart/echarts.js');
@@ -12,26 +14,11 @@ function AddAuth() {
   const [Email,setEmail]=useState("");
   const [MobileNo,setMobileNo]=useState("");
   useEffect(() => {
-    fetchCities();
+    
   }, []);
 
-  const fetchCities = async () => {
-    try {
-      const request = await fetch(variables.baseUrl + "City");
-      if (!request.ok) {
-        throw new Error('Failed to fetch options');
-      }
-      const response = await request.json();
-      console.log(response);
-      setCity(response.data);
-    } catch (error) {
-      console.error('Error fetching options:', error);
-    }
-  };
+  
 
-  const handleChange = (e) => {
-    setSelectedCity(e.target.value);
-  };
     return (<>
         <Header></Header>
         <div class="main-content">

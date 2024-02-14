@@ -3,9 +3,12 @@ import Footer from "./includes/footer";
 import useScript from "./utils/useScript";
 
 function Dashboard() {
-    useScript('/assets/bundles/echart/echarts.js');
-    useScript('/assets/bundles/chartjs/chart.min.js');
-    useScript('/assets/js/page/index.js');
+
+    useScript("/assets/bundles/echart/echarts.js");
+    useScript("/assets/bundles/chartjs/chart.min.js");
+    useScript("/assets/js/page/index.js");
+    useScript("/assets/js/scripts.js");
+    useScript("/assets/js/custom.js");
     return (<>
         <Header></Header>
         <div class="main-content">
@@ -147,9 +150,9 @@ function Dashboard() {
                                 <div class="table-responsive">
                                     <table class="table table-striped">
                                         <tr>
-                                            <th style={{width:"35%"}}>Cust Name</th>
-                                            <th style={{width:"35%"}}>Order No</th>
-                                            <th style={{width:"35%"}}>Status</th>
+                                            <th style={{ width: "35%" }}>Cust Name</th>
+                                            <th style={{ width: "35%" }}>Order No</th>
+                                            <th style={{ width: "35%" }}>Status</th>
                                             <th>Amount</th>
                                             <th>Details</th>
                                         </tr>
