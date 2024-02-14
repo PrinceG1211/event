@@ -2,9 +2,66 @@ import Header from "./includes/header";
 import Footer from "./includes/footer";
 import useScript from "./utils/useScript";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Variables } from "./utils/Variables";
 
 function ShowCity() {
   useScript('/assets/bundles/echart/echarts.js');
+
+  const [cityList, setCityList] = useState([]);
+  useEffect(() => {
+
+    fetch(Variables.apiURL + "City", {
+      method: "GET",
+      headers: {
+        accept: "Application/json",
+        "content-type": "Application/json",
+        // "Authorization": "Bearer " + token
+      }
+    }).then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setCityList(data.data);
+      }, (error) => {
+        console.log(error);
+        alert("Failed");
+      })
+  }, []);
+
+  const handleDelete = (id) => {
+    fetch(Variables.apiURL + "City/delete", {
+      method: "POST",
+      headers: {
+        accept: "Application/json",
+        "content-type": "Application/json",
+      },
+      body: JSON.stringify({
+        cityID: id
+      })
+    }).then((response) => response.json())
+      .then((data) => {
+        if (data.status === "success") {
+          setCityList(cityList.filter((item) => item.id !== id))
+        } else {
+          alert(data.message);
+        }
+      }, (error) => {
+        console.log(error);
+        alert("Failed");
+      })
+  }
+
+  useScript("assets/bundles/datatables/datatables.min.js");
+  useScript("assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js");
+  useScript("assets/bundles/datatables/export-tables/dataTables.buttons.min.js");
+  useScript("assets/bundles/datatables/export-tables/buttons.flash.min.js");
+  useScript("assets/bundles/datatables/export-tables/jszip.min.js");
+  useScript("assets/bundles/datatables/export-tables/pdfmake.min.js");
+  useScript("assets/bundles/datatables/export-tables/vfs_fonts.js");
+  useScript("assets/bundles/datatables/export-tables/buttons.print.min.js");
+  useScript("assets/js/page/datatables.js");
+  useScript("assets/js/scripts.js");
+  useScript("assets/js/custom.js");
     return (<>
         <Header></Header>
         <div class="main-content">

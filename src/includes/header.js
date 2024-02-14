@@ -109,6 +109,9 @@ function Header() {
             <li className="dropdown">
               <Link to="/showArea" className="nav-link"><i data-feather="map-pin"></i><span>Area</span></Link>
             </li>
+            <li className="dropdown">
+              <Link to="/showCustomer" className="nav-link"><i data-feather="users"></i><span>Customer</span></Link>
+            </li>
           </ul>
         </aside>
       </div>

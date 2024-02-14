@@ -49,6 +49,10 @@ function App() {
         <Route path='/addCity' Component={addCity}></Route>
         <Route path='/editCity/:id' Component={addCity}></Route>
         <Route path='/showCity' Component={showCity}></Route>  
+        {/* Customer */}
+        <Route path='/addCustomer' Component={addCustomer}></Route>
+        <Route path='/editCustomer/:id' Component={addCustomer}></Route>
+        <Route path='/showCustomer' Component={showCustomer}></Route> 
 {/* 
         
         <Route path='/addCustomer' Component={addCustomer}></Route>
