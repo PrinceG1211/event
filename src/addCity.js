@@ -1,9 +1,49 @@
 import Header from "./includes/header";
 import Footer from "./includes/footer";
 import useScript from "./utils/useScript";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Variables } from "./utils/Variables";
 
 function AddCity() {
   useScript('/assets/bundles/echart/echarts.js');
+  const [cityName, setCityName] = useState("");
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    
+    e.preventDefault();
+    var body = [];
+    if (id) {
+      body = JSON.stringify({
+        cityID: id,
+        cityName: cityName,
+      });
+    } else {
+      body = JSON.stringify({
+        cityName: cityName,
+      });
+    }
+    const url = id ? Variables.apiURL + "City/update" : Variables.apiURL + "City/add";
+    fetch(url, {
+      method: "POST",
+      headers: { accept: "Application/json", "content-type": "Application/json", },
+      body: body
+    }).then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        if (data.status === "success") {
+          console.log("Success");
+          navigate("/showCity");
+        }
+      }, (error) => {
+        console.log(error);
+        alert("Failed");
+      })
+  };
+  useScript("/assets/js/scripts.js");
+  useScript("/assets/js/custom.js");
     return (<>
         <Header></Header>
         <div class="main-content">
