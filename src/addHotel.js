@@ -1,9 +1,101 @@
 import Header from "./includes/header";
 import Footer from "./includes/footer";
 import useScript from "./utils/useScript";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { Variables } from "./utils/Variables";
 
 function AddHotel() {
   useScript('/assets/bundles/echart/echarts.js');
+  const [Hotel, setHotel] = useState([]);
+  const [packageID, setPackageID] = useState('');
+  const [hotelname, setHotelname] = useState("");
+  const [rating, setRating] = useState("");
+  const [email, setEmail] = useState("");
+  const [mobileNo, setMobileNo] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [area, setArea] = useState("");
+  const [image, setImage] = useState("");
+  const { id } = useParams();
+  const navigate = useNavigate();
+  useEffect(() => {
+    fetchHotel();
+    if(id){
+      fetchHotel();
+    }
+  }, []);
+
+  const fetchHotel = async () => {
+    try {
+      const request = await fetch(Variables.apiURL + "Hotel/"+id);
+      if (!request.ok) {
+        throw new Error('Failed to fetch options');
+      }
+      const response = await request.json();
+      console.log(response);
+      setPackageID(response.data.packageID);
+      setHotelname(response.data.hotelname);
+      setRating(response.data.rating);
+      setEmail(response.data.email);
+      setMobileNo(response.data.mobileNo);
+      setAddress(response.data.address)
+      setCity(response.data.city);
+      setArea(response.data.area);
+      setImage(response.data.image);
+    } catch (error) {
+      console.error('Error fetching options:', error);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    
+    e.preventDefault();
+    var body = [];
+    if (id) {
+      body = JSON.stringify({
+        HotelID: id ,
+        hotelname: Hotelname ,
+        rating: Rating ,
+        email : Email ,
+        mobileNo : MobileNo ,
+        address : Address ,
+        city : City ,
+        area : Area ,
+        image : Image,
+      });
+    } else {
+      body = JSON.stringify({
+        HotelID: id ,
+        hotelname: Hotelname ,
+        rating: Rating ,
+        email : Email,
+        mobileNo : MobileNo ,
+        address : Address ,
+        city : City ,
+        area : Area ,
+        image : Image ,
+      });
+    }
+    const url = id ? Variables.apiURL + "Hotel/update" : Variables.apiURL + "Hotel/add";
+    fetch(url, {
+      method: "POST",
+      headers: { accept: "Application/json", "content-type": "Application/json", },
+      body: body
+    }).then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        if (data.status === "success") {
+          console.log("Success");
+          navigate("/showHotel");
+        }
+      }, (error) => {
+        console.log(error);
+        alert("Failed");
+      })
+  };
+  useScript("/assets/js/scripts.js");
+  useScript("/assets/js/custom.js");
     return (<>
         <Header></Header>
         <div class="main-content">

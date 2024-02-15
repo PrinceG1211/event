@@ -65,17 +65,24 @@ function App() {
         <Route path='/addEventBooking' Component={addEventBooking}></Route>
         <Route path='/editaddEventBooking/:id' Component={addEventBooking}></Route>
         <Route path='/showEventBooking' Component={showEventBooking}></Route> 
-{/* 
-        
-    
- 
-         
-        <Route path='/addEventBooking' Component={addEventBooking}></Route>
-        <Route path='/showEventBooking' Component={showEventBooking}></Route>  
-        <Route path='/addEventDetail' Component={addEventDetail}></Route>
-        <Route path='/showEventDetail' Component={showEventDetail}></Route>  
+         {/* EventBooking */}
+         <Route path='/addEventBooking' Component={addEventBooking}></Route>
+        <Route path='/editaddEventBooking/:id' Component={addEventBooking}></Route>
+        <Route path='/showEventBooking' Component={showEventBooking}></Route> 
+         {/* EventDetail */}
+         <Route path='/addEventDetail' Component={addEventDetail}></Route>
+         <Route path='/editaddEventDetail/:id' Component={addEventDetail}></Route>
+        <Route path='/showEventDetail' Component={showEventDetail}></Route> 
+        {/* Hotel */}
         <Route path='/addHotel' Component={addHotel}></Route>
+        <Route path='/editaddHotel/:id' Component={addHotel}></Route>
         <Route path='/showHotel' Component={showHotel}></Route>  
+        {/* Image */}
+        <Route path='/addImage' Component={addImage}></Route>
+        <Route path='/editaddImage/:id' Component={addImage}></Route>
+        <Route path='/showImage' Component={showImage}></Route>  
+{/* 
+           
         <Route path='/addImage' Component={addImage}></Route>
         <Route path='/showImage' Component={showImage}></Route>  
         <Route path='/addInquiry' Component={addInquiry}></Route>

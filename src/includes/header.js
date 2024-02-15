@@ -118,7 +118,19 @@ function Header() {
             <li className="dropdown">
               <Link to="/showEmployeeEvent" className="nav-link"><i data-feather="mic"></i><span>EmployeeEvent</span></Link>
             </li>
+            <li className="dropdown">
+              <Link to="/showEventBooking" className="nav-link"><i data-feather="mic"></i><span>EventBooking</span></Link>
+            </li>
+            <li className="dropdown">
+              <Link to="/showEventDetail" className="nav-link"><i data-feather="mic"></i><span>EventDetail</span></Link>
+            </li>
           </ul>
+          <li className="dropdown">
+              <Link to="/showHotel" className="nav-link"><i data-feather="mic"></i><span>Hotel</span></Link>
+            </li>
+            <li className="dropdown">
+              <Link to="/showImage" className="nav-link"><i data-feather="mic"></i><span>Image</span></Link>
+            </li>
         </aside>
       </div>
   </>

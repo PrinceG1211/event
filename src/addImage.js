@@ -1,9 +1,79 @@
 import Header from "./includes/header";
 import Footer from "./includes/footer";
 import useScript from "./utils/useScript";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { Variables } from "./utils/Variables";
 
 function AddImage() {
   useScript('/assets/bundles/echart/echarts.js');
+  const [Image, setImage] = useState([]);
+  const [productID, setProductID] = useState('');
+  const [type, setType] = useState("");
+  const [path, setPath] = useState("");
+  const { id } = useParams();
+  const navigate = useNavigate();
+  useEffect(() => {
+    fetchImage();
+    if(id){
+      fetchImage();
+    }
+  }, []);
+
+  const fetchImage = async () => {
+    try {
+      const request = await fetch(Variables.apiURL + "Image/"+id);
+      if (!request.ok) {
+        throw new Error('Failed to fetch options');
+      }
+      const response = await request.json();
+      console.log(response);
+      setProductID(response.data.productID);
+      setType(response.data.type);
+      setPath(response.data.path);
+    } catch (error) {
+      console.error('Error fetching options:', error);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    
+    e.preventDefault();
+    var body = [];
+    if (id) {
+      body = JSON.stringify({
+        ImageID: id,
+        productID: productID,
+        type: type,
+        path : path,
+      });
+    } else {
+      body = JSON.stringify({
+        ImageID: id ,
+        productID: productID,
+        type: type,
+        path : path,
+      });
+    }
+    const url = id ? Variables.apiURL + "Image/update" : Variables.apiURL + "Image/add";
+    fetch(url, {
+      method: "POST",
+      headers: { accept: "Application/json", "content-type": "Application/json", },
+      body: body
+    }).then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        if (data.status === "success") {
+          console.log("Success");
+          navigate("/showImage");
+        }
+      }, (error) => {
+        console.log(error);
+        alert("Failed");
+      })
+  };
+  useScript("/assets/js/scripts.js");
+  useScript("/assets/js/custom.js");
     return (<>
         <Header></Header>
         <div class="main-content">

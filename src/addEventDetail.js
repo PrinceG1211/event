@@ -1,9 +1,90 @@
 import Header from "./includes/header";
 import Footer from "./includes/footer";
 import useScript from "./utils/useScript";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function AddEventDetail() {
   useScript('/assets/bundles/echart/echarts.js');
+  const [EventDetail, setEventDetail] = useState([]);
+  const [EventID, setEventID] = useState('');
+  const [VendorID, setVendorID] = useState("");
+  const [date, setDate] = useState("");
+  const [cost, setcost] = useState("");
+  const [details, setdetails] = useState("");
+  const [status, setstatus] = useState("");
+  const { id } = useParams();
+  const navigate = useNavigate();
+  useEffect(() => {
+    fetchEventDetail();
+    if(id){
+      fetchEventDetail();
+    }
+  }, []);
+
+  const fetchEventDetail = async () => {
+    try {
+      const request = await fetch(Variables.apiURL + "EventDetail/"+id);
+      if (!request.ok) {
+        throw new Error('Failed to fetch options');
+      }
+      const response = await request.json();
+      console.log(response);
+      setEventID(response.data.EventID);
+      setVendorID(response.data.VendorID);
+      setDate(response.data.date);
+      setCost(response.data.cost);
+      setDetails(response.data.details);
+      setStatus(response.data.status);
+    } catch (error) {
+      console.error('Error fetching options:', error);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    
+    e.preventDefault();
+    var body = [];
+    if (id) {
+      body = JSON.stringify({
+        EventDetailID: id,
+        EventID: EventID,
+        VendorID: VendorID,
+        date : Date,
+        cost : Cost,
+        details : Details,
+        status : Status,
+      });
+    } else {
+      body = JSON.stringify({
+        EventDetailID: id,
+        EventID: EventID,
+        VendorID: VendorID,
+        date : Date,
+        cost : Cost,
+        details : Details,
+        status : Status,
+      });
+    }
+    const url = id ? Variables.apiURL + "EventBooking/update" : Variables.apiURL + "EventBooking/add";
+    fetch(url, {
+      method: "POST",
+      headers: { accept: "Application/json", "content-type": "Application/json", },
+      body: body
+    }).then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        if (data.status === "success") {
+          console.log("Success");
+          navigate("/showEventBooking");
+        }
+      }, (error) => {
+        console.log(error);
+        alert("Failed");
+      })
+  };
+  useScript("/assets/js/scripts.js");
+  useScript("/assets/js/custom.js");
     return (<>
         <Header></Header>
         <div class="main-content">

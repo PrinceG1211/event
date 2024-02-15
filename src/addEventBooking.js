@@ -1,42 +1,51 @@
 import Header from "./includes/header";
 import Footer from "./includes/footer";
 import useScript from "./utils/useScript";
+import { Variables } from "./utils/Variables";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 function AddEventBooking() {
   useScript('/assets/bundles/echart/echarts.js');
-
-  useScript('/assets/bundles/echart/echarts.js');
-
   const [EventBooking, setEventBooking] = useState([]);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState("");
-  const [mobileNo, setMobileNo] = useState("");
-  const [dob, setDob] = useState("");
-  const [doj, setDoj] = useState("");
-  const [type, setType] = useState("");
+  const [bookingType, setBookingType] = useState('');
+  const [customerID, setCustomerID] = useState("");
+  const [eventID, setEventID] = useState("");
+  const [packageID, setPackageID] = useState("");
+  const [bookingDate, setBookingDate] = useState("");
+  const [bookingStartDate, setBookingStartDate] = useState("");
+  const [bookingEndDate, setBookingEndDate] = useState("");
+  const [bookingStatus, setBookingStatus] = useState("");
+  const [venue, setVenue] = useState("");
+  const [noOfGuest, setNoOfGuest] = useState("");
+  const [subTotal, setSubTotal] = useState("");
   const { id } = useParams();
   const navigate = useNavigate();
   useEffect(() => {
-    fetchEmployee();
+    fetchEventBooking();
     if(id){
-      fetchEmployee();
+      fetchEventBooking();
     }
   }, []);
 
-  const fetchEmployee = async () => {
+  const fetchEventBooking = async () => {
     try {
-      const request = await fetch(Variables.apiURL + "Employee/"+id);
+      const request = await fetch(Variables.apiURL + "EventBooking/"+id);
       if (!request.ok) {
         throw new Error('Failed to fetch options');
       }
       const response = await request.json();
       console.log(response);
-      setName(response.data.name);
-      setEmail(response.data.email);
-      setMobileNo(response.data.mobileNo);
-      setDob(response.data.dob);
-      setDoj(response.data.doj);
-      setType(response.data.type);
+      setBookingType(response.data.bookingType);
+      setCustomerID(response.data.customerID);
+      setEventID(response.data.eventID);
+      setPackageID(response.data.packageID);
+      setBookingDate(response.data.bookingDate);
+      setBookingEndDate(response.data.bookingEndDate);
+      setBookingStatus(response.data.status);
+      setVenue(response.data.venue);
+      setNoOfGuest(response.data.noOfGuest);
+      setSubTotal(response.data.subTotal);
     } catch (error) {
       console.error('Error fetching options:', error);
     }
@@ -48,26 +57,36 @@ function AddEventBooking() {
     var body = [];
     if (id) {
       body = JSON.stringify({
-        employeeID: id,
-        name: name,
-        email: email,
-        mobileNo:mobileNo,
-        dob: dob,
-        doj: doj,
-        type: type,
+        EventBookingID: id,
+        bookingType: bookingType,
+        customerID: customerID,
+        eventID : eventID,
+        packageID : packageID,
+        bookingDate : bookingDate,
+        bookingStartDate : bookingStartDate,
+        bookingEndDate:  bookingEndDate,
+        bookingStatus:  bookingStatus,
+        venue: venue,
+        noOfGuest: noOfGuest,
+        subTotal: subTotal,
       });
     } else {
       body = JSON.stringify({
-        employeeID: id,
-        name: name,
-        email: email,
-        mobileNo:mobileNo,
-        dob: dob,
-        doj: doj,
-        type: type,
+        EventBookingID: id,
+        bookingType: bookingType,
+        customerID: customerID,
+        eventID : eventID,
+        packageID : packageID,
+        bookingDate : bookingDate,
+        bookingStartDate : bookingStartDate,
+        bookingEndDate:  bookingEndDate,
+        bookingStatus:  bookingStatus,
+        venue: venue,
+        noOfGuest: noOfGuest,
+        subTotal: subTotal,
       });
     }
-    const url = id ? Variables.apiURL + "Employee/update" : Variables.apiURL + "Employee/add";
+    const url = id ? Variables.apiURL + "EventBooking/update" : Variables.apiURL + "EventBooking/add";
     fetch(url, {
       method: "POST",
       headers: { accept: "Application/json", "content-type": "Application/json", },
@@ -77,7 +96,7 @@ function AddEventBooking() {
         console.log(data);
         if (data.status === "success") {
           console.log("Success");
-          navigate("/showEmployee");
+          navigate("/showEventBooking");
         }
       }, (error) => {
         console.log(error);
