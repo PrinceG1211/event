@@ -89,6 +89,7 @@ function ShowEventBooking() {
                           <th>venue</th>
                           <th>noOfGuest</th>
                           <th>subTotal</th>
+                          <th>totalCost</th>
                           <th>Action</th>
                         </tr>
                       </thead>
@@ -108,6 +109,7 @@ function ShowEventBooking() {
                               <td>{eventBookinkg.venue}</td>
                               <td>{eventBookinkg.noOfGuest}</td>
                               <td>{eventBookinkg.subTotal}</td>
+                              <td>{eventBookinkg.totalCost}</td>
                               <td>
                                 <Link className="btn btn-icon icon-left btn-outline-info" to={`/editEventBookinkg/${eventBookinkg.eventBookinkgID}`}><i className="far fa-edit"></i>Edit</Link><br/><br/>
                                 <button className="btn btn-icon icon-left btn-outline-danger" onClick={() => handleDelete(eventBookinkg.eventBookinkgID)}><i className="fas fa-times"></i>Delete</button>

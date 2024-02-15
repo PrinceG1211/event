@@ -1,8 +1,9 @@
 import Header from "./includes/header";
 import Footer from "./includes/footer";
 import useScript from "./utils/useScript";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Variables } from "./utils/Variables";
 
 function AddEventDetail() {
   useScript('/assets/bundles/echart/echarts.js');
@@ -33,9 +34,9 @@ function AddEventDetail() {
       setEventID(response.data.EventID);
       setVendorID(response.data.VendorID);
       setDate(response.data.date);
-      setCost(response.data.cost);
-      setDetails(response.data.details);
-      setStatus(response.data.status);
+      setcost(response.data.cost);
+      setdetails(response.data.details);
+      setstatus(response.data.status);
     } catch (error) {
       console.error('Error fetching options:', error);
     }
@@ -50,10 +51,10 @@ function AddEventDetail() {
         EventDetailID: id,
         EventID: EventID,
         VendorID: VendorID,
-        date : Date,
-        cost : Cost,
-        details : Details,
-        status : Status,
+        date : date,
+        cost : cost,
+        details : details,
+        status : status,
       });
     } else {
       body = JSON.stringify({
@@ -61,9 +62,9 @@ function AddEventDetail() {
         EventID: EventID,
         VendorID: VendorID,
         date : Date,
-        cost : Cost,
-        details : Details,
-        status : Status,
+        cost : cost,
+        details : details,
+        status : status,
       });
     }
     const url = id ? Variables.apiURL + "EventBooking/update" : Variables.apiURL + "EventBooking/add";
@@ -99,28 +100,28 @@ function AddEventDetail() {
                     </div>
                     <div class="card-body">
                       <div class="form-group">
-                        <label>eventID</label>
-                        <input type="text" class="form-control" required=""/>
+                        <label>EventID</label>
+                        <input type="text" class="form-control" value={EventID} onChange={(e) => EventID(e.target.value)} required=""/>
                       </div>
                       <div class="form-group">
-                        <label>vendorID</label>
-                        <input type="text" class="form-control" required=""/>
+                        <label>VendorID</label>
+                        <input type="text" class="form-control" value={VendorID} onChange={(e) => VendorID(e.target.value)} required=""/>
                       </div>
                       <div class="form-group">
                         <label>date</label>
-                        <input type="date" class="form-control"/>
+                        <input type="date" class="form-control" value={date} onChange={(e) => date(e.target.value)} required=""/>
                       </div>
                       <div class="form-group mb-0">
                         <label>cost</label>
-                        <textarea class="form-control" required=""></textarea>
+                        <textarea class="form-control" value={cost} onChange={(e) => cost(e.target.value)} required=""></textarea>
                       </div>
                       <div class="form-group">
                         <label>details</label>
-                        <input type="text" class="form-control" required=""/>
+                        <input type="text" class="form-control" value={details} onChange={(e) => details(e.target.value)} required=""/>
                       </div>
                       <div class="form-group">
                         <label>status</label>
-                        <input type="text" class="form-control" required=""/>
+                        <input type="text" class="form-control" value={status} onChange={(e) => status(e.target.value)} required=""/>
                       </div>
                     </div>
                     <div class="card-footer text-right">

@@ -19,6 +19,7 @@ function AddEventBooking() {
   const [venue, setVenue] = useState("");
   const [noOfGuest, setNoOfGuest] = useState("");
   const [subTotal, setSubTotal] = useState("");
+  const [totalCost, setTotalcost] = useState("");
   const { id } = useParams();
   const navigate = useNavigate();
   useEffect(() => {
@@ -46,6 +47,7 @@ function AddEventBooking() {
       setVenue(response.data.venue);
       setNoOfGuest(response.data.noOfGuest);
       setSubTotal(response.data.subTotal);
+      setTotalcost(response.data.totalcost);
     } catch (error) {
       console.error('Error fetching options:', error);
     }
@@ -57,7 +59,7 @@ function AddEventBooking() {
     var body = [];
     if (id) {
       body = JSON.stringify({
-        EventBookingID: id,
+        BookingID: id,
         bookingType: bookingType,
         customerID: customerID,
         eventID : eventID,
@@ -69,10 +71,11 @@ function AddEventBooking() {
         venue: venue,
         noOfGuest: noOfGuest,
         subTotal: subTotal,
+        totalCost: totalCost,
       });
     } else {
       body = JSON.stringify({
-        EventBookingID: id,
+        BookingID: id,
         bookingType: bookingType,
         customerID: customerID,
         eventID : eventID,
@@ -84,6 +87,7 @@ function AddEventBooking() {
         venue: venue,
         noOfGuest: noOfGuest,
         subTotal: subTotal,
+        totalCost: totalCost,
       });
     }
     const url = id ? Variables.apiURL + "EventBooking/update" : Variables.apiURL + "EventBooking/add";
@@ -120,56 +124,56 @@ function AddEventBooking() {
                     </div>
                     <div class="card-body">
                       <div class="form-group">
-                        <label>bookingID</label>
-                        <input type="text" class="form-control" required=""/>
+                        <label>BookingID</label>
+                        <input type="text" class="form-control" value={BookingID} onChange={(e) => BookingID(e.target.value)} required=""/>
                       </div>
                       <div class="form-group">
                         <label>bookingType</label>
-                        <input type="text" class="form-control" required=""/>
+                        <input type="text" class="form-control" value={bookingType} onChange={(e) => bookingType(e.target.value)} required=""/>
                       </div>
                       <div class="form-group">
                         <label>eventID</label>
-                        <input type="text" class="form-control"/>
+                        <input type="text" class="form-control" value={eventID} onChange={(e) => eventID(e.target.value)} required=""/>
                       </div>
                       <div class="form-group mb-0">
                         <label>customerID</label>
-                        <input type="text" class="form-control" required=""/>
+                        <input type="text" class="form-control" value={customerID} onChange={(e) => customerID(e.target.value)} required=""/>
                       </div>
                       <div class="form-group">
                         <label>bookingDate</label>
-                        <input type="date" class="form-control" required=""/>
+                        <input type="date" class="form-control" value={bookingDate} onChange={(e) => bookingDate(e.target.value)} required=""/>
                       </div>
                       <div class="form-group">
                         <label>bookingStartDate</label>
-                        <input type="date" class="form-control" required=""/>
+                        <input type="date" class="form-control" value={bookingStartDate} onChange={(e) => bookingStartDate(e.target.value)} required=""/>
                       </div>
                       <div class="form-group">
                         <label>bookingEndDate</label>
-                        <input type="date" class="form-control" required=""/>
+                        <input type="date" class="form-control" value={bookingEndDate} onChange={(e) => bookingEndDate(e.target.value)} required=""/>
                       </div>
                       <div class="form-group">
                         <label>bookingStatus</label>
-                        <input type="text" class="form-control" required=""/>
+                        <input type="text" class="form-control" value={bookingStatus} onChange={(e) => bookingStatus(e.target.value)} required=""/>
                       </div>
                       <div class="form-group">
                         <label>venue</label>
-                        <input type="text" class="form-control" required=""/>
+                        <input type="text" class="form-control" value={venue} onChange={(e) => venue(e.target.value)} required=""/>
                       </div>
                       <div class="form-group">
                         <label>noOfGuest</label>
-                        <input type="text" class="form-control" required=""/>
+                        <input type="text" class="form-control" value={noOfGuest} onChange={(e) => noOfGuest(e.target.value)} required=""/>
                       </div>
                       <div class="form-group">
                         <label>subTotal</label>
-                        <input type="text" class="form-control" required=""/>
+                        <input type="text" class="form-control" value={subTotal} onChange={(e) => subTotal(e.target.value)} required=""/>
                       </div>
                       <div class="form-group">
                         <label>totalCost</label>
-                        <input type="text" class="form-control" required=""/>
+                        <input type="text" class="form-control" value={totalCost} onChange={(e) => totalCost(e.target.value)} required=""/>
                       </div>
                       <div class="form-group">
                         <label>packageID</label>
-                        <input type="text" class="form-control" required=""/>
+                        <input type="text" class="form-control" value={packageID} onChange={(e) => packageID(e.target.value)} required=""/>
                       </div>
                     </div>
                     <div class="card-footer text-right">

@@ -7,7 +7,7 @@ import { Variables } from "./utils/Variables";
 
 function AddHotel() {
   useScript('/assets/bundles/echart/echarts.js');
-  const [Hotel, setHotel] = useState([]);
+  const [hotelID, setHotelID] = useState([]);
   const [packageID, setPackageID] = useState('');
   const [hotelname, setHotelname] = useState("");
   const [rating, setRating] = useState("");
@@ -34,6 +34,7 @@ function AddHotel() {
       }
       const response = await request.json();
       console.log(response);
+      setHotelID(response.data.setHotelID)
       setPackageID(response.data.packageID);
       setHotelname(response.data.hotelname);
       setRating(response.data.rating);
@@ -54,27 +55,27 @@ function AddHotel() {
     var body = [];
     if (id) {
       body = JSON.stringify({
-        HotelID: id ,
-        hotelname: Hotelname ,
-        rating: Rating ,
-        email : Email ,
-        mobileNo : MobileNo ,
-        address : Address ,
-        city : City ,
-        area : Area ,
-        image : Image,
+        hotelID: id ,
+        hotelname: hotelname ,
+        rating: rating ,
+        email : email ,
+        mobileNo : mobileNo ,
+        address : address ,
+        city : city ,
+        area : area ,
+        image : image,
       });
     } else {
       body = JSON.stringify({
-        HotelID: id ,
-        hotelname: Hotelname ,
-        rating: Rating ,
-        email : Email,
-        mobileNo : MobileNo ,
-        address : Address ,
-        city : City ,
-        area : Area ,
-        image : Image ,
+
+        hotelname: hotelname ,
+        rating: rating ,
+        email : email ,
+        mobileNo : mobileNo ,
+        address : address ,
+        city : city ,
+        area : area ,
+        image : image,
       });
     }
     const url = id ? Variables.apiURL + "Hotel/update" : Variables.apiURL + "Hotel/add";
@@ -111,39 +112,39 @@ function AddHotel() {
                     <div class="card-body">
                       <div class="form-group">
                         <label>hotelID</label>
-                        <input type="text" class="form-control" required=""/>
+                        <input type="text" class="form-control"  value={hotelID} onChange={(e) => hotelID(e.target.value)}required=""/>
                       </div>
                       <div class="form-group">
                         <label>packageID</label>
-                        <input type="text" class="form-control" required=""/>
+                        <input type="text" class="form-control"  value={packageID} onChange={(e) => setPackageID(e.target.value)} required=""/>
                       </div>
                       <div class="form-group">
                         <label>hotelName</label>
-                        <input type="text" class="form-control"/>
+                        <input type="text" class="form-control"  value={hotelname} onChange={(e) => setHotelname(e.target.value)}  required=""/>
                       </div>
                       <div class="form-group mb-0">
                         <label>rating</label>
-                        <input type="text" class="form-control"/>
+                        <input type="text" class="form-control" value={rating} onChange={(e) => setRating(e.target.value)}  required=""/>
                       </div>
                       <div class="form-group">
                         <label>email</label>
-                        <input type="email" class="form-control" required=""/>
+                        <input type="email" class="form-control" value={email} onChange={(e) => setEmail(e.target.value)} required=""/>
                       </div>
                       <div class="form-group">
                         <label>mobileNo</label>
-                        <input type="text" class="form-control" required=""/>
+                        <input type="text" class="form-control" value={mobileNo} onChange={(e) => setMobileNo(e.target.value)}required=""/>
                       </div>
                       <div class="form-group">
                         <label>address</label>
-                        <input type="text" class="form-control" required=""/>
+                        <input type="text" class="form-control"  value={address} onChange={(e) => setAddress(e.target.value)}required=""/>
                       </div>
                       <div class="form-group">
                         <label>city</label>
-                        <input type="text" class="form-control" required=""/>
+                        <input type="text" class="form-control"  value={city} onChange={(e) => setCity(e.target.value)}required=""/>
                       </div>
                       <div class="form-group">
                         <label>area</label>
-                        <input type="t/*ext" class="form-control" required=""/>
+                        <input type="t/*ext" class="form-control"  value={area} onChange={(e) => setArea(e.target.value)} required=""/>
                       </div>
                       <div class="form-group">
                           <label for="imageUpload"></label>
