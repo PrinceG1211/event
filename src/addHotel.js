@@ -9,7 +9,7 @@ function AddHotel() {
   useScript('/assets/bundles/echart/echarts.js');
   const [hotelID, setHotelID] = useState([]);
   const [packageID, setPackageID] = useState('');
-  const [hotelname, setHotelname] = useState("");
+  const [hotelName, setHotelname] = useState("");
   const [rating, setRating] = useState("");
   const [email, setEmail] = useState("");
   const [mobileNo, setMobileNo] = useState("");
@@ -36,7 +36,7 @@ function AddHotel() {
       console.log(response);
       setHotelID(response.data.setHotelID)
       setPackageID(response.data.packageID);
-      setHotelname(response.data.hotelname);
+      setHotelname(response.data.hotelName);
       setRating(response.data.rating);
       setEmail(response.data.email);
       setMobileNo(response.data.mobileNo);
@@ -56,7 +56,7 @@ function AddHotel() {
     if (id) {
       body = JSON.stringify({
         hotelID: id ,
-        hotelname: hotelname ,
+        hotelname: hotelName ,
         rating: rating ,
         email : email ,
         mobileNo : mobileNo ,
@@ -68,7 +68,7 @@ function AddHotel() {
     } else {
       body = JSON.stringify({
 
-        hotelname: hotelname ,
+        hotelname: hotelName ,
         rating: rating ,
         email : email ,
         mobileNo : mobileNo ,
@@ -110,17 +110,14 @@ function AddHotel() {
                       <h4>Default Validation</h4>
                     </div>
                     <div class="card-body">
-                      <div class="form-group">
-                        <label>hotelID</label>
-                        <input type="text" class="form-control"  value={hotelID} onChange={(e) => hotelID(e.target.value)}required=""/>
-                      </div>
+                      
                       <div class="form-group">
                         <label>packageID</label>
                         <input type="text" class="form-control"  value={packageID} onChange={(e) => setPackageID(e.target.value)} required=""/>
                       </div>
                       <div class="form-group">
                         <label>hotelName</label>
-                        <input type="text" class="form-control"  value={hotelname} onChange={(e) => setHotelname(e.target.value)}  required=""/>
+                        <input type="text" class="form-control"  value={hotelName} onChange={(e) => setHotelname(e.target.value)}  required=""/>
                       </div>
                       <div class="form-group mb-0">
                         <label>rating</label>

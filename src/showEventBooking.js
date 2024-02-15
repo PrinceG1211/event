@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 function ShowEventBooking() {
   useScript('/assets/bundles/echart/echarts.js');
-  const [eventBookinkgList, setEventBooking] = useState([]);
+  const [eventBookinkgList, setEventBookingList] = useState([]);
   useEffect(() => {
 
     fetch(Variables.apiURL + "EventBooking", {
@@ -15,12 +15,12 @@ function ShowEventBooking() {
       headers: {
         accept: "Application/json",
         "content-type": "Application/json",
-        // "Authorization": "Bearer " + token
+    
       }
     }).then((response) => response.json())
       .then((data) => {
         console.log(data);
-        setEventBooking(data.data);
+        setEventBookingList(data.data);
       }, (error) => {
         console.log(error);
         alert("Failed");
@@ -40,7 +40,7 @@ function ShowEventBooking() {
     }).then((response) => response.json())
       .then((data) => {
         if (data.status === "success") {
-          setEventBooking( eventBookinkgList.filter((item) => item.id !== id))
+          setEventBookingList( eventBookinkgList.filter((item) => item.id !== id))
         } else {
           alert(data.message);
         }
@@ -78,6 +78,7 @@ function ShowEventBooking() {
                     <table class="table table-striped table-hover" id="tableExport" style={{ width: "100%" }}>
                       <thead>
                         <tr>
+                          <th>NO</th>
                           <th>bookingType</th>
                           <th>customerID</th>
                           <th>eventID</th>
@@ -99,9 +100,9 @@ function ShowEventBooking() {
                             <tr>
                               <td>{index + 1}</td>
                               <td>{eventBookinkg.bookingType}</td>  
-                              <td>{eventBookinkg.customerID}</td>
+                              <td>{eventBookinkg.customerName}</td>
                               <td>{eventBookinkg.eventID}</td>
-                              <td>{eventBookinkg.packageID}</td>
+                              <td>{eventBookinkg.packageName}</td>
                               <td>{eventBookinkg.bookingDate}</td>
                               <td>{eventBookinkg.bookingStartDate}</td>
                               <td>{eventBookinkg.bookingEndDate}</td>
@@ -111,8 +112,8 @@ function ShowEventBooking() {
                               <td>{eventBookinkg.subTotal}</td>
                               <td>{eventBookinkg.totalCost}</td>
                               <td>
-                                <Link className="btn btn-icon icon-left btn-outline-info" to={`/editEventBookinkg/${eventBookinkg.eventBookinkgID}`}><i className="far fa-edit"></i>Edit</Link><br/><br/>
-                                <button className="btn btn-icon icon-left btn-outline-danger" onClick={() => handleDelete(eventBookinkg.eventBookinkgID)}><i className="fas fa-times"></i>Delete</button>
+                                <Link className="btn btn-icon icon-left btn-outline-info" to={`/editEventBooking/${eventBookinkg.bookingID}`}><i className="far fa-edit"></i>Edit</Link><br/><br/>
+                                <button className="btn btn-icon icon-left btn-outline-danger" onClick={() => handleDelete(eventBookinkg.bookingID)}><i className="fas fa-times"></i>Delete</button>
                               </td>
                             </tr>
                           ))

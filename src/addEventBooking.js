@@ -40,26 +40,26 @@ function AddEventBooking() {
       setBookingType(response.data.bookingType);
       setCustomerID(response.data.customerID);
       setEventID(response.data.eventID);
-      setPackageID(response.data.packageID);
       setBookingDate(response.data.bookingDate);
+      setBookingStartDate(response.data.bookingStartDate);
       setBookingEndDate(response.data.bookingEndDate);
       setBookingStatus(response.data.status);
       setVenue(response.data.venue);
       setNoOfGuest(response.data.noOfGuest);
       setSubTotal(response.data.subTotal);
       setTotalcost(response.data.totalcost);
+      setPackageID(response.data.packageID);
     } catch (error) {
       console.error('Error fetching options:', error);
     }
   };
 
   const handleSubmit = (e) => {
-    
     e.preventDefault();
     var body = [];
     if (id) {
       body = JSON.stringify({
-        BookingID: id,
+        bookingID: id,
         bookingType: bookingType,
         customerID: customerID,
         eventID : eventID,
@@ -75,7 +75,7 @@ function AddEventBooking() {
       });
     } else {
       body = JSON.stringify({
-        BookingID: id,
+        bookingID: id,
         bookingType: bookingType,
         customerID: customerID,
         eventID : eventID,
@@ -118,62 +118,59 @@ function AddEventBooking() {
             <div class="row">
               <div class="col-12 col-md-6 col-lg-6">
                 <div class="card">
-                  <form>
+                  <form onSubmit={handleSubmit}>
                     <div class="card-header">
                       <h4>Default Validation</h4>
                     </div>
                     <div class="card-body">
-                      <div class="form-group">
-                        <label>BookingID</label>
-                        <input type="text" class="form-control" value={BookingID} onChange={(e) => BookingID(e.target.value)} required=""/>
-                      </div>
+                     
                       <div class="form-group">
                         <label>bookingType</label>
-                        <input type="text" class="form-control" value={bookingType} onChange={(e) => bookingType(e.target.value)} required=""/>
+                        <input type="text" class="form-control" value={bookingType} onChange={(e) => setBookingType(e.target.value)} required=""/>
                       </div>
                       <div class="form-group">
                         <label>eventID</label>
-                        <input type="text" class="form-control" value={eventID} onChange={(e) => eventID(e.target.value)} required=""/>
+                        <input type="text" class="form-control" value={eventID} onChange={(e) => setEventID(e.target.value)} required=""/>
                       </div>
                       <div class="form-group mb-0">
                         <label>customerID</label>
-                        <input type="text" class="form-control" value={customerID} onChange={(e) => customerID(e.target.value)} required=""/>
+                        <input type="text" class="form-control" value={customerID} onChange={(e) => setCustomerID(e.target.value)} required=""/>
                       </div>
                       <div class="form-group">
                         <label>bookingDate</label>
-                        <input type="date" class="form-control" value={bookingDate} onChange={(e) => bookingDate(e.target.value)} required=""/>
+                        <input type="date" class="form-control" value={bookingDate} onChange={(e) => setBookingDate(e.target.value)} required=""/>
                       </div>
                       <div class="form-group">
                         <label>bookingStartDate</label>
-                        <input type="date" class="form-control" value={bookingStartDate} onChange={(e) => bookingStartDate(e.target.value)} required=""/>
+                        <input type="date" class="form-control" value={bookingStartDate} onChange={(e) => setBookingStartDate(e.target.value)} required=""/>
                       </div>
                       <div class="form-group">
                         <label>bookingEndDate</label>
-                        <input type="date" class="form-control" value={bookingEndDate} onChange={(e) => bookingEndDate(e.target.value)} required=""/>
+                        <input type="date" class="form-control" value={bookingEndDate} onChange={(e) => setBookingEndDate(e.target.value)} required=""/>
                       </div>
                       <div class="form-group">
                         <label>bookingStatus</label>
-                        <input type="text" class="form-control" value={bookingStatus} onChange={(e) => bookingStatus(e.target.value)} required=""/>
+                        <input type="text" class="form-control" value={bookingStatus} onChange={(e) => setBookingStatus(e.target.value)} required=""/>
                       </div>
                       <div class="form-group">
                         <label>venue</label>
-                        <input type="text" class="form-control" value={venue} onChange={(e) => venue(e.target.value)} required=""/>
+                        <input type="text" class="form-control" value={venue} onChange={(e) => setVenue(e.target.value)} required=""/>
                       </div>
                       <div class="form-group">
                         <label>noOfGuest</label>
-                        <input type="text" class="form-control" value={noOfGuest} onChange={(e) => noOfGuest(e.target.value)} required=""/>
+                        <input type="text" class="form-control" value={noOfGuest} onChange={(e) => setNoOfGuest(e.target.value)} required=""/>
                       </div>
                       <div class="form-group">
                         <label>subTotal</label>
-                        <input type="text" class="form-control" value={subTotal} onChange={(e) => subTotal(e.target.value)} required=""/>
+                        <input type="text" class="form-control" value={subTotal} onChange={(e) => setSubTotal(e.target.value)} required=""/>
                       </div>
                       <div class="form-group">
                         <label>totalCost</label>
-                        <input type="text" class="form-control" value={totalCost} onChange={(e) => totalCost(e.target.value)} required=""/>
+                        <input type="text" class="form-control" value={totalCost} onChange={(e) => setTotalcost(e.target.value)} required=""/>
                       </div>
                       <div class="form-group">
                         <label>packageID</label>
-                        <input type="text" class="form-control" value={packageID} onChange={(e) => packageID(e.target.value)} required=""/>
+                        <input type="text" class="form-control" value={packageID} onChange={(e) => setPackageID(e.target.value)} required=""/>
                       </div>
                     </div>
                     <div class="card-footer text-right">

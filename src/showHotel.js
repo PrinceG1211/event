@@ -41,7 +41,7 @@ function ShowHotel() {
     }).then((response) => response.json())
       .then((data) => {
         if (data.status === "success") {
-          setHotelList( hotelList.filter((item) => item.id !== id))
+          setHotelList(hotelList.filter((item) => item.id !== id))
         } else {
           alert(data.message);
         }
@@ -79,6 +79,7 @@ function ShowHotel() {
                     <table class="table table-striped table-hover" id="tableExport" style={{ width: "100%" }}>
                       <thead>
                         <tr>
+                          <th>NO</th>
                           <th>packageID</th>
                           <th>hotelname</th>
                           <th>rating</th>
@@ -96,8 +97,8 @@ function ShowHotel() {
                           hotelList.map((hotel, index) => (
                             <tr>
                               <td>{index + 1}</td>
-                              <td>{hotel.packageID}</td>  
-                              <td>{hotel.hotelname}</td>
+                              <td>{hotel.packageName}</td>  
+                              <td>{hotel.hotelName}</td>
                               <td>{hotel.rating}</td>
                               <td>{hotel.email}</td>
                               <td>{hotel.mobileNo}</td>

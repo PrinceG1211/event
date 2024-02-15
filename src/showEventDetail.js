@@ -6,7 +6,6 @@ import { Variables } from "./utils/Variables";
 import { Link } from "react-router-dom";
 
 function ShowEventDetail() {
-  useScript('/assets/bundles/echart/echarts.js');
   const [eventDetailList, setEventDetailList] = useState([]);
   useEffect(() => {
 
@@ -35,12 +34,12 @@ function ShowEventDetail() {
         "content-type": "Application/json",
       },
       body: JSON.stringify({
-        eventDetailListID: id
+        categoryID: id
       })
     }).then((response) => response.json())
       .then((data) => {
         if (data.status === "success") {
-          setEventDetailList( eventDetailList.filter((item) => item.id !== id))
+          setEventDetailList(eventDetailList.filter((item) => item.id !== id))
         } else {
           alert(data.message);
         }
@@ -78,6 +77,7 @@ function ShowEventDetail() {
                     <table class="table table-striped table-hover" id="tableExport" style={{ width: "100%" }}>
                       <thead>
                         <tr>
+                          <th>No</th>
                           <th>EventID</th>
                           <th>VendorID</th>
                           <th>date</th>
@@ -92,8 +92,8 @@ function ShowEventDetail() {
                           eventDetailList.map((eventDetail, index) => (
                             <tr>
                               <td>{index + 1}</td>
-                              <td>{eventDetail.EventID}</td>  
-                              <td>{eventDetail.VendorID}</td>
+                              <td>{eventDetail.businessName}</td>  
+                              <td>{eventDetail.vendorName}</td>
                               <td>{eventDetail.date}</td>
                               <td>{eventDetail.cost}</td>
                               <td>{eventDetail.details}</td>

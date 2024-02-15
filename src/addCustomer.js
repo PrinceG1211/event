@@ -29,7 +29,6 @@ function AddCustomer() {
       }
       const response = await request.json();
       console.log(response);
-      
       setName(response.data.name);
       setEmail(response.data.email);
       setMobileNo(response.data.mobileNo);
@@ -86,7 +85,6 @@ function AddCustomer() {
               <div class="col-12 col-md-6 col-lg-6">
                 <div class="card">
                   <form  onSubmit={handleSubmit}>
-                    
                     <div class="card-header">
                       <h4>Add Customer</h4>
                     </div>
