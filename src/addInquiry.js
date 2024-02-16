@@ -25,7 +25,7 @@ function AddInquiry() {
 
   const fetchInquiry = async () => {
     try {
-      const request = await fetch(Variables.apiURL + "Customer/"+id);
+      const request = await fetch(Variables.apiURL + "Inquiry/"+id);
       if (!request.ok) {
         throw new Error('Failed to fetch options');
       }
@@ -114,7 +114,7 @@ function AddInquiry() {
                       </div>
                       <div class="form-group">
                         <label>Subject</label>
-                        <input type="email" class="form-control" value={subject} onChange={(e) => setSubject(e.target.value)} required=""/>
+                        <input type="text" class="form-control" value={subject} onChange={(e) => setSubject(e.target.value)} required=""/>
                       </div>
                       <div class="form-group">
                         <label>Status</label>

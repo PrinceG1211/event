@@ -41,7 +41,7 @@ function ShowInquiry() {
     }).then((response) => response.json())
       .then((data) => {
         if (data.status === "success") {
-          setInquiryList( inquiryList.filter((item) => item.id !== id))
+          setInquiryList(inquiryList.filter((item) => item.id !== id))
         } else {
           alert(data.message);
         }
@@ -79,12 +79,13 @@ function ShowInquiry() {
                     <table class="table table-striped table-hover" id="tableExport" style={{ width: "100%" }}>
                       <thead>
                         <tr>
+                          <th>No</th>
                           <th>name</th>
                           <th>email</th>
                           <th>mobileNo</th>
                           <th>subject</th>
                           <th>status</th>
-                          <th>discription</th>
+                          <th>description</th>
                           <th>Action</th>
                         </tr>
                       </thead>
@@ -98,7 +99,7 @@ function ShowInquiry() {
                               <td>{inquiry.mobileNo}</td>
                               <td>{inquiry.subject}</td>  
                               <td>{inquiry.status}</td>
-                              <td>{inquiry.discription}</td>
+                              <td>{inquiry.description}</td>
                               <td>
                                 <Link className="btn btn-icon icon-left btn-outline-info" to={`/editInquiry/${inquiry.inquiryID}`}><i className="far fa-edit"></i>Edit</Link><br/><br/>
                                 <button className="btn btn-icon icon-left btn-outline-danger" onClick={() => handleDelete(inquiry.inquiryID)}><i className="fas fa-times"></i>Delete</button>

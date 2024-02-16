@@ -70,29 +70,30 @@ function App() {
          <Route path='/addEventDetail' Component={addEventDetail}></Route>
          <Route path='/editEventDetail/:id' Component={addEventDetail}></Route>
         <Route path='/showEventDetail' Component={showEventDetail}></Route> 
-      {/* Hotel */}
+        {/* Hotel */}
         <Route path='/addHotel' Component={addHotel}></Route>
         <Route path='/editHotel/:id' Component={addHotel}></Route>
         <Route path='/showHotel' Component={showHotel}></Route>  
-{/* 
-
-       
-      
-        <Route path='/addImage' Component={addImage}></Route>
-        <Route path='/editaddImage/:id' Component={addImage}></Route>
-        <Route path='/showImage' Component={showImage}></Route>     
-        <Route path='/addImage' Component={addImage}></Route>
-        <Route path='/showImage' Component={showImage}></Route>  
+        {/* Inquiry */}
         <Route path='/addInquiry' Component={addInquiry}></Route>
-        <Route path='/showInquiry' Component={showInquiry}></Route>  
+        <Route path='/editInquiry/:id' Component={addInquiry}></Route>
+        <Route path='/showInquiry' Component={showInquiry}></Route> 
+        {/* PackageDetail */}
         <Route path='/addPackageDetail' Component={addPackageDetail}></Route>
+        <Route path='/editPackageDetail/:id' Component={addPackageDetail}></Route>
         <Route path='/showPackageDetail' Component={showPackageDetail}></Route>  
+        {/* Vendor */}
         <Route path='/addVendor' Component={addVendor}></Route>
+        <Route path='/editVendor/:id' Component={addVendor}></Route>
         <Route path='/showVendor' Component={showVendor}></Route> 
+        {/* VendorCategory */}
         <Route path='/addVendorCategory' Component={addVendorCategory}></Route>
+        <Route path='/editVendorCategory/:id' Component={addVendorCategory}></Route>
         <Route path='/showVendorCategory' Component={showVendorCategory}></Route> 
+        {/* Venue */}
         <Route path='/addVenue' Component={addVenue}></Route>
-        <Route path='/showVenue' Component={showVenue}></Route>  */}
+        <Route path='/editVenue/:id' Component={addVenue}></Route>
+        <Route path='/showVenue' Component={showVenue}></Route>
       </Routes>
     </Router>
   );
