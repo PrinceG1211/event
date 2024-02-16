@@ -119,18 +119,35 @@ function Header() {
               <Link to="/showEmployeeEvent" className="nav-link"><i data-feather="mic"></i><span>EmployeeEvent</span></Link>
             </li>
             <li className="dropdown">
-              <Link to="/showEventBooking" className="nav-link"><i data-feather="mic"></i><span>EventBooking</span></Link>
+              <Link to="/showEventBooking" className="nav-link"><i data-feather="calendar"></i><span>EventBooking</span></Link>
             </li>
             <li className="dropdown">
-              <Link to="/showEventDetail" className="nav-link"><i data-feather="mic"></i><span>EventDetail</span></Link>
+              <Link to="/showEventDetail" className="nav-link"><i data-feather="list"></i><span>EventDetail</span></Link>
+            </li>
+            <li className="dropdown">
+              <Link to="/showHotel" className="nav-link"><i data-feather="home"></i><span>Hotel</span></Link>
+            </li>
+            <li className="dropdown">
+              <Link to="/showImage" className="nav-link"><i data-feather="image"></i><span>Image</span></Link>
+            </li>
+            <li className="dropdown">
+              <Link to="/showInquiry" className="nav-link"><i data-feather="info"></i><span>Inquiry</span></Link>
+            </li>
+            <li className="dropdown">
+              <Link to="/showPackageDetail" className="nav-link"><i data-feather="package"></i><span>PackageDetail</span></Link>
+            </li>
+            <li className="dropdown">
+              <Link to="/showVendor" className="nav-link"><i data-feather="user-check"></i><span>Vendor</span></Link>
+            </li>
+            <li className="dropdown">
+              <Link to="/showVendorCategory" className="nav-link"><i data-feather="codepen"></i><span>VendorCategory</span></Link>
+            </li>
+            <li className="dropdown">
+              <Link to="/showVenue" className="nav-link"><i data-feather="map-pin"></i><span>Venue</span></Link>
             </li>
           </ul>
-          <li className="dropdown">
-              <Link to="/showHotel" className="nav-link"><i data-feather="mic"></i><span>Hotel</span></Link>
-            </li>
-            <li className="dropdown">
-              <Link to="/showImage" className="nav-link"><i data-feather="mic"></i><span>Image</span></Link>
-            </li>
+          
+            
         </aside>
       </div>
   </>

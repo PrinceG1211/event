@@ -27,6 +27,7 @@ function ShowEventDetail() {
   }, []);
 
   const handleDelete = (id) => {
+    console.log(id);
     fetch(Variables.apiURL + "EventDetail/delete", {
       method: "POST",
       headers: {
@@ -34,10 +35,11 @@ function ShowEventDetail() {
         "content-type": "Application/json",
       },
       body: JSON.stringify({
-        categoryID: id
+        eventDetailID: id
       })
     }).then((response) => response.json())
       .then((data) => {
+        console.log(data);
         if (data.status === "success") {
           setEventDetailList(eventDetailList.filter((item) => item.id !== id))
         } else {
