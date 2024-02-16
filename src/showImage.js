@@ -110,6 +110,7 @@ function ShowImage() {
         </div>
       </section>
     </div>
+    <Footer></Footer>
     </>);
 }
 
