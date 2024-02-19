@@ -1,9 +1,83 @@
 import Header from "./includes/header";
 import Footer from "./includes/footer";
 import useScript from "./utils/useScript";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { Variables } from "./utils/Variables";
 
 function AddPackageDetail() {
   useScript('/assets/bundles/echart/echarts.js');
+
+  const [packageDetail, setPackageDetail] = useState([]);
+  const [packageName, setPackageName] = useState('');
+  const [packageDescription, setPackageDescription] = useState("");
+  const [price, setPrice] = useState("");
+ 
+  const { id } = useParams();
+  const navigate = useNavigate();
+  useEffect(() => {
+    fetchPackageDetail();
+    if(id){
+      fetchPackageDetail();
+    }
+  }, []);
+
+  const fetchPackageDetail = async () => {
+    try {
+      const request = await fetch(Variables.apiURL + "PackageDetail/"+id);
+      if (!request.ok) {
+        throw new Error('Failed to fetch options');
+      }
+      const response = await request.json();
+      console.log(response);
+      setPackageName(response.data.packageName);
+      setPackageDescription(response.data.packageDescription);
+      setPrice(response.data.price);
+      
+    } catch (error) {
+      console.error('Error fetching options:', error);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    
+    e.preventDefault();
+    var body = [];
+    if (id) {
+      body = JSON.stringify({
+        packageID: id,
+        packageName: packageName,
+        packageDescription: packageDescription,
+        price:price,
+       
+      });
+    } else {
+      body = JSON.stringify({
+        packageID: id,
+        packageName: packageName,
+        packageDescription: packageDescription,
+        price:price,
+      });
+    }
+    const url = id ? Variables.apiURL + "PackageDetail/update" : Variables.apiURL + "PackageDetail/add";
+    fetch(url, {
+      method: "POST",
+      headers: { accept: "Application/json", "content-type": "Application/json", },
+      body: body
+    }).then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        if (data.status === "success") {
+          console.log("Success");
+          navigate("/showPackageDetail");
+        }
+      }, (error) => {
+        console.log(error);
+        alert("Failed");
+      })
+  };
+  useScript("/assets/js/scripts.js");
+  useScript("/assets/js/custom.js");
     return (<>
         <Header></Header>
         <div class="main-content">
@@ -12,26 +86,23 @@ function AddPackageDetail() {
             <div class="row">
               <div class="col-12 col-md-6 col-lg-6">
                 <div class="card">
-                  <form>
+                  <form onSubmit={handleSubmit}>
                     <div class="card-header">
-                      <h4>Default Validation</h4>
+                      <h4>Add PackageDetail</h4>
                     </div>
                     <div class="card-body">
-                    <div class="form-group">
-                        <label>Package ID</label>
-                        <input type="text" class="form-control" required=""/>
-                      </div>
+                   
                       <div class="form-group">
                         <label>PackageName</label>
-                        <input type="text" class="form-control" required=""/>
+                        <input type="text" class="form-control" value={packageName} onChange={(e) => setPackageName(e.target.value)} required=""/>
                       </div>
                       <div class="form-group mb-0">
                         <label>PackageDiscription</label>
-                        <textarea class="form-control" required=""></textarea>
+                        <textarea class="form-control" value={packageDescription} onChange={(e) => setPackageDescription(e.target.value)} required=""></textarea>
                       </div>
                       <div class="form-group">
                         <label>Price</label>
-                        <input type="text" class="form-control"/>
+                        <input type="text" class="form-control" value={price} onChange={(e) => setPrice(e.target.value)} required="" />
                       </div>
                     </div>
                     <div class="card-footer text-right">

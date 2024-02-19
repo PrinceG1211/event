@@ -78,6 +78,7 @@ function ShowPackageDetail() {
                     <table class="table table-striped table-hover" id="tableExport" style={{ width: "100%" }}>
                       <thead>
                         <tr>
+                          <th>No</th>
                           <th>packageName</th>
                           <th>packageDiscription</th>
                           <th>price</th>
@@ -90,11 +91,11 @@ function ShowPackageDetail() {
                             <tr>
                               <td>{index + 1}</td>
                               <td>{packageDetail.packageName}</td>  
-                              <td>{packageDetail.packageDiscription}</td>
+                              <td>{packageDetail.packageDescription}</td>
                               <td>{packageDetail.price}</td>
                               <td>
-                                <Link className="btn btn-icon icon-left btn-outline-info" to={`/editPackageDetail/${packageDetail.packageDetailID}`}><i className="far fa-edit"></i>Edit</Link><br/><br/>
-                                <button className="btn btn-icon icon-left btn-outline-danger" onClick={() => handleDelete(packageDetail.packageDetailID)}><i className="fas fa-times"></i>Delete</button>
+                                <Link className="btn btn-icon icon-left btn-outline-info" to={`/editPackageDetail/${packageDetail.packageID}`}><i className="far fa-edit"></i>Edit</Link><br/><br/>
+                                <button className="btn btn-icon icon-left btn-outline-danger" onClick={() => handleDelete(packageDetail.packageID)}><i className="fas fa-times"></i>Delete</button>
                               </td>
                             </tr>
                           ))

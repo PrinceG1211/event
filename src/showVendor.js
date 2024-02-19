@@ -78,6 +78,7 @@ function ShowVendor() {
                     <table class="table table-striped table-hover" id="tableExport" style={{ width: "100%" }}>
                       <thead>
                         <tr>
+                        <th>No</th>
                           <th>bname</th>
                           <th>vendorName</th>
                           <th>contactPerson</th>
@@ -105,9 +106,9 @@ function ShowVendor() {
                               <td>{vendor.category}</td>  
                               <td>{vendor.packageID}</td>
                               <td>{vendor.price}</td>
-                              <td>{vendor.image}</td>
+                              <td><img src={Variables.photoURL+vendor.image} height={100} width={100}/></td>
                               <td>
-                                <Link className="btn btn-icon icon-left btn-outline-info" to={`/editvendor/${vendor.vendorID}`}><i className="far fa-edit"></i>Edit</Link><br/><br/>
+                                <Link className="btn btn-icon icon-left btn-outline-info" to={`/editVendor/${vendor.vendorID}`}><i className="far fa-edit"></i>Edit</Link><br/><br/>
                                 <button className="btn btn-icon icon-left btn-outline-danger" onClick={() => handleDelete(vendor.vendorID)}><i className="fas fa-times"></i>Delete</button>
                               </td>
                             </tr>
