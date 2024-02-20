@@ -78,6 +78,7 @@ function ShowVenue() {
                     <table class="table table-striped table-hover" id="tableExport" style={{ width: "100%" }}>
                       <thead>
                         <tr>
+                          <th>No</th>
                           <th>venueName</th>
                           <th>capacity</th>
                           <th>contactPerson</th>
@@ -107,10 +108,10 @@ function ShowVenue() {
                               <td>{Venue.price}</td>
                               <td>{Venue.city}</td>
                               <td>{Venue.area}</td>  
-                              <td>{Venue.packageID}</td>
+                              <td>{Venue.packageName}</td>
                               <td>
-                                <Link className="btn btn-icon icon-left btn-outline-info" to={`/editVenue/${Venue.VenueID}`}><i className="far fa-edit"></i>Edit</Link><br/><br/>
-                                <button className="btn btn-icon icon-left btn-outline-danger" onClick={() => handleDelete(Venue.VenueID)}><i className="fas fa-times"></i>Delete</button>
+                                <Link className="btn btn-icon icon-left btn-outline-info" to={`/editVenue/${Venue.venueID}`}><i className="far fa-edit"></i>Edit</Link><br/><br/>
+                                <button className="btn btn-icon icon-left btn-outline-danger" onClick={() => handleDelete(Venue.venueID)}><i className="fas fa-times"></i>Delete</button>
                               </td>
                             </tr>
                           ))

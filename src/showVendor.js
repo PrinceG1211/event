@@ -104,7 +104,7 @@ function ShowVendor() {
                               <td>{vendor.contactNo}</td>
                               <td>{vendor.address}</td>
                               <td>{vendor.category}</td>  
-                              <td>{vendor.packageID}</td>
+                              <td>{vendor.packageName}</td>
                               <td>{vendor.price}</td>
                               <td><img src={Variables.photoURL+vendor.image} height={100} width={100}/></td>
                               <td>
