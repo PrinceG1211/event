@@ -8,6 +8,7 @@ import { Variables } from "./utils/Variables";
 function AddVendor() {
   useScript('/assets/bundles/echart/echarts.js');
   const [Vendor, setVendor] = useState([]);
+  const [vendorID, setVendorID] = useState('');
   const [bname, setBname] = useState('');
   const [vendorName, setVendorName] = useState('');
   const [email, setEmail] = useState("");
@@ -35,6 +36,7 @@ function AddVendor() {
       }
       const response = await request.json();
       console.log(response);
+      setVendorID(response.data.vendorID);
       setBname(response.data.bname);
       setVendorName(response.data.vendorName);
       setEmail(response.data.email);
@@ -50,32 +52,31 @@ function AddVendor() {
       console.error('Error fetching options:', error);
     }
   };
+  const handleMultipleFileChange=(e) => {
+    setVendorID(e.target.value);
+  }
 
   const handleSubmit = (e) => {
     
     e.preventDefault();
     var formData = new FormData();
-    formData.append("productName", productName);
-    formData.append("productDescription", productDescription);
-    formData.append("categoryID", categoryID);
+    formData.append("vendorID", vendorID);
+    formData.append("bname", bname);
+    formData.append("contactPerson", contactPerson);
+    formData.append("email", email);
+    formData.append("contactNo", contactNo);
+    formData.append("address", address);
+    formData.append("category", category);
+    formData.append("packageID", packageID);
+    formData.append("price", price);
+
     gallery.forEach((image,index) => {
       formData.append(`images[${index}]`,image);
-      });
-    } else {
-      body = JSON.stringify({
-        vendorID: id,
-        bname: bname,
-        vendorName: vendorName,
-        contactPerson: contactPerson,
-        email: email,
-        contactNo:contactNo,
-        address:address,
-        category:category,
-        packageID:packageID,
-        price: price,
-        image:image,
-      });
-    }
+      })
+
+      if(id) {
+        formData.append("vendorID", id);
+      }
     const url = id ? Variables.apiURL + "Vendor/update" : Variables.apiURL + "Vendor/add";
     fetch(url, {
       method: "POST",
@@ -83,15 +84,10 @@ function AddVendor() {
       body: body
     }).then((response) => response.json())
       .then((data) => {
-        console.log(data);
         if (data.status === "success") {
-          console.log("Success");
           navigate("/showVendor");
         }
-      }, (error) => {
-        console.log(error);
-        alert("Failed");
-      })
+      }).catch((e)=>console.log(e))
   };
   useScript("/assets/js/scripts.js");
   useScript("/assets/js/custom.js");
@@ -146,7 +142,7 @@ function AddVendor() {
                       </div>
                       <div class="form-group">
                           <label for="imageUpload">Image</label>
-                          <input type="file" id="imageUpload" name="imageUpload" accept="image/*"/>
+                          <input type="file" multiple onChange={handleMultipleFileChange} accept="image/*" placeholder="Image" />
                        </div>
                     </div>
                     <div class="card-footer text-right">
