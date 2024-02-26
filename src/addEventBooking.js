@@ -54,6 +54,9 @@ function AddEventBooking() {
     }
   };
 
+  const handleChange = (e) => {
+    setBookingDate(e.target.value);
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     var body = [];
@@ -124,10 +127,15 @@ function AddEventBooking() {
                     </div>
                     <div class="card-body">
                      
-                      <div class="form-group">
-                        <label>bookingType</label>
-                        <input type="text" class="form-control" value={bookingType} onChange={(e) => setBookingType(e.target.value)} required=""/>
-                      </div>
+                    <div class="form-group">
+                      <label>Booking Type</label>
+                      <select class="form-control" value={id} onChange={handleChange}>
+                        <option value="" >Select Event</option>
+                        {EventBooking.map(EventBooking => (
+                          <option key={EventBooking.id} value={EventBooking.id}>{EventBooking.bookingType}</option>
+                        ))}
+                      </select>
+                    </div>
                       <div class="form-group">
                         <label>eventID</label>
                         <input type="text" class="form-control" value={eventID} onChange={(e) => setEventID(e.target.value)} required=""/>
