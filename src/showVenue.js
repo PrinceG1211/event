@@ -104,7 +104,7 @@ function ShowVenue() {
                               <td>{Venue.email}</td>  
                               <td>{Venue.mobileNo}</td>
                               <td>{Venue.address}</td>
-                              <td>{Venue.image}</td>  
+                              <td><img src={Variables.photoURL+Venue.image} height={100} width={100}/></td> 
                               <td>{Venue.price}</td>
                               <td>{Venue.city}</td>
                               <td>{Venue.area}</td>  

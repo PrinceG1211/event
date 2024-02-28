@@ -7,103 +7,120 @@ import { Variables } from "./utils/Variables";
 
 function AddVenue() {
   useScript('/assets/bundles/echart/echarts.js');
-  const [Venue, setVenue] = useState([]);
+ 
+  const [venueID, setVenueID] = useState('');
   const [venueName, setVenueName] = useState('');
-  const [capacity,setCapacity] = useState("");
+  const [capacity, setCapacity] = useState('');
   const [contactPerson, setContactPerson] = useState("");
   const [email, setEmail] = useState("");
   const [mobileNo, setMobileNo] = useState("");
   const [address, setAddress] = useState("");
-  const [image, setImage] = useState("");
+  const [selectedFile, setSelectedFile] = useState(null);
   const [price, setPrice] = useState("");
   const [city, setCity] = useState("");
   const [area, setArea] = useState("");
+  const [packageList, setPackageList] = useState([]);
   const [packageID, setPackageID] = useState("");
+  
   const { id } = useParams();
   const navigate = useNavigate();
   useEffect(() => {
-    fetchVenue();
-    if(id){
+    fetchPackageList();
+    if (id) {
       fetchVenue();
     }
   }, []);
 
-  const fetchVenue = async () => {
+  const fetchPackageList = async () => {
     try {
-      const request = await fetch(Variables.apiURL + "Venue/"+id);
+      const request = await fetch(Variables.apiURL + "PackageDetail");
       if (!request.ok) {
         throw new Error('Failed to fetch options');
       }
       const response = await request.json();
       console.log(response);
+      setPackageList(response.data);
+    } catch (error) {
+      console.error('Error fetching options:', error);
+    }
+  };
+
+  const fetchVenue = async () => {
+    try {
+      const request = await fetch(Variables.apiURL + "Venue/" + id);
+      if (!request.ok) {
+        throw new Error('Failed to fetch options');
+      }
+      const response = await request.json();
+      console.log(response);
+      setVenueID(response.data.venueID);
       setVenueName(response.data.venueName);
       setCapacity(response.data.capacity);
       setContactPerson(response.data.contactPerson);
       setEmail(response.data.email);
       setMobileNo(response.data.mobileNo);
       setAddress(response.data.address);
-      setImage(response.data.image);
       setPrice(response.data.price);
       setCity(response.data.city);
       setArea(response.data.area);
       setPackageID(response.data.packageID);
+      
+
     } catch (error) {
       console.error('Error fetching options:', error);
     }
   };
 
+  const handleChange = (e) => {
+    setPackageID(e.target.value);
+  };
+
+  const handleFileChange = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
+
+
   const handleSubmit = (e) => {
-    
     e.preventDefault();
-    var body = [];
+    const formData = new FormData();
+  
     if (id) {
-      body = JSON.stringify({
-        venueID: id,
-        venueName: venueName,
-        capacity: capacity,
-        contactPerson: contactPerson,
-        email: email,
-        mobileNo:mobileNo,
-        address:address,
-        image:image,
-        price:price,
-        city:city,
-        area:area,
-        packageID:packageID,
-      });
+      formData.append("VenueID", id);
     } else {
-      body = JSON.stringify({
-        venueID: id,
-        venueName: venueName,
-        capacity: capacity,
-        contactPerson: contactPerson,
-        email: email,
-        mobileNo:mobileNo,
-        address:address,
-        image:image,
-        price:price,
-        city:city,
-        area:area,
-        packageID:packageID,
-      });
+      
+      formData.append("venueName", venueName);
+      formData.append("capacity", capacity);
+      formData.append("contactPerson", contactPerson);
+      formData.append("email", email);
+      formData.append("mobileNo", mobileNo);
+      formData.append("address", address);
+      formData.append("image", selectedFile); // Make sure selectedFile is defined
+      formData.append("price", price);
+      formData.append("city", city);
+      formData.append("area", area);
+      formData.append("packageID", packageID);
+      
+      
     }
+  
     const url = id ? Variables.apiURL + "Venue/update" : Variables.apiURL + "Venue/add";
+  
     fetch(url, {
       method: "POST",
-      headers: { accept: "Application/json", "content-type": "Application/json", },
-      body: body
-    }).then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        if (data.status === "success") {
-          console.log("Success");
-          navigate("/showVenue");
-        }
-      }, (error) => {
-        console.log(error);
-        alert("Failed");
-      })
+      body: formData // Don't manually set Content-Type
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      if (data.status === "success") {
+        navigate("/showVenue");
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
   };
+
   useScript("/assets/js/scripts.js");
   useScript("/assets/js/custom.js");
     return (<>
@@ -117,7 +134,7 @@ function AddVenue() {
                 <div class="card">
                   <form onSubmit={handleSubmit}> 
                     <div class="card-header">
-                      <h4>Default Validation</h4>
+                      <h4>Add Venue</h4>
                     </div>
                     <div class="card-body">
                    
@@ -145,10 +162,10 @@ function AddVenue() {
                         <label>Address</label>
                         <textarea class="form-control" value={address} onChange={(e) => setAddress(e.target.value)} required=""></textarea>
                       </div>
-                      <div class="form-group">
-                          <label for="image"></label><br></br>
-                          <input type="file" id="imageUpload" name="imageUpload" accept="image/*"/>
-                       </div>
+                      <div className="form-group">
+                      <label for="imageUpload"></label>
+                      <input type="file" onChange={handleFileChange} accept="image/*" placeholder="#" />
+                    </div>
                     
                     <div class="form-group">
                         <label>price</label>
@@ -162,6 +179,13 @@ function AddVenue() {
                         <label>Area</label>
                         <input type="text" class="form-control" value={area} onChange={(e) => setArea(e.target.value)} required=""/>
                       </div>
+                      <label>Package</label>
+                      <select class="form-control" value={packageID} onChange={handleChange}>
+                        <option value="" >Select </option>
+                        {packageList.map(Package => (
+                          <option key={Package.packageID} value={Package.packageID}>{Package.packageName}</option>
+                        ))}
+                      </select>
                     </div>
                     <div class="card-footer text-right">
                     <button type="submit" class="btn btn-primary">Submit</button>

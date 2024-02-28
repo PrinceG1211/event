@@ -1,8 +1,8 @@
 import Header from "./includes/header";
 import Footer from "./includes/footer";
 import useScript from "./utils/useScript";
-import { Variables } from "./utils/Variables";
 import { useEffect, useState } from "react";
+import { Variables } from "./utils/Variables";
 import { Link } from "react-router-dom";
 
 function ShowVendor() {
@@ -35,7 +35,7 @@ function ShowVendor() {
         "content-type": "Application/json",
       },
       body: JSON.stringify({
-        vendorID: id
+        VendorID: id
       })
     }).then((response) => response.json())
       .then((data) => {
@@ -78,9 +78,9 @@ function ShowVendor() {
                     <table class="table table-striped table-hover" id="tableExport" style={{ width: "100%" }}>
                       <thead>
                         <tr>
-                        <th>No</th>
-                          <th>bname</th>
-                          <th>vendorName</th>
+                          <th>No</th>
+                          <th>BName</th>
+                          <th>VendorName</th>
                           <th>contactPerson</th>
                           <th>email</th>
                           <th>contactNo</th>
@@ -94,22 +94,22 @@ function ShowVendor() {
                       </thead>
                       <tbody>
                         {
-                        VendorList.map((vendor, index) => (
+                       VendorList.map((Vendor, index) => (
                             <tr>
                               <td>{index + 1}</td>
-                              <td>{vendor.bname}</td>  
-                              <td>{vendor.vendorName}</td>
-                              <td>{vendor.contactPerson}</td>
-                              <td>{vendor.email}</td>  
-                              <td>{vendor.contactNo}</td>
-                              <td>{vendor.address}</td>
-                              <td>{vendor.category}</td>  
-                              <td>{vendor.packageName}</td>
-                              <td>{vendor.price}</td>
-                              <td><img src={Variables.photoURL+vendor.image} height={100} width={100}/></td>
+                              <td>{Vendor.bname}</td>
+                              <td>{Vendor.vendorName}</td>  
+                              <td>{Vendor.contactPerson}</td>
+                              <td>{Vendor.email}</td>  
+                              <td>{Vendor.contactNo}</td>
+                              <td>{Vendor.address}</td>
+                              <td>{Vendor.category}</td>
+                              <td>{Vendor.packageName}</td>
+                              <td>{Vendor.price}</td>
+                              <td><img src={Variables.photoURL+Vendor.image} height={100} width={100}/></td> 
                               <td>
-                                <Link className="btn btn-icon icon-left btn-outline-info" to={`/editVendor/${vendor.vendorID}`}><i className="far fa-edit"></i>Edit</Link><br/><br/>
-                                <button className="btn btn-icon icon-left btn-outline-danger" onClick={() => handleDelete(vendor.vendorID)}><i className="fas fa-times"></i>Delete</button>
+                                <Link className="btn btn-icon icon-left btn-outline-info" to={`/editVendor/${Vendor.vendorID}`}><i className="far fa-edit"></i>Edit</Link><br/><br/>
+                                <button className="btn btn-icon icon-left btn-outline-danger" onClick={() => handleDelete(Vendor.vendorID)}><i className="fas fa-times"></i>Delete</button>
                               </td>
                             </tr>
                           ))
@@ -127,7 +127,6 @@ function ShowVendor() {
     </div>
     <Footer></Footer>
     </>);
-
 }
 
 export default ShowVendor;
