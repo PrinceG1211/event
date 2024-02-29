@@ -15,19 +15,36 @@ function AddVendor() {
   const [email, setEmail] = useState("");
   const [contactNo, setContactNo] = useState("");
   const [address, setAddress] = useState("");
-  const [category, setCategory] = useState('');
+  const [categoryID, setCategoryId] = useState('');
   const [packageList, setPackageList] = useState([]);
+  const [categoryList, setCategoryList] = useState([]);
   const [packageID, setPackageID] = useState("");
   const [price, setPrice] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
- const { id } = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
   useEffect(() => {
     fetchPackageList();
+    fetchCategoryList();
     if (id) {
       fetchVendor();
     }
   }, []);
+
+  
+  const fetchCategoryList = async () => {
+    try {
+      const request = await fetch(Variables.apiURL + "VendorCategory");
+      if (!request.ok) {
+        throw new Error('Failed to fetch options');
+      }
+      const response = await request.json();
+      console.log(response);
+      setCategoryList(response.data);
+    } catch (error) {
+      console.error('Error fetching options:', error);
+    }
+  };
 
   const fetchPackageList = async () => {
     try {
@@ -58,7 +75,7 @@ function AddVendor() {
       setEmail(response.data.email);
       setContactNo(response.data.contactNo);
       setAddress(response.data.address);
-      setCategory(response.data.category);
+      setCategoryId(response.data.categoryID);
       setPackageID(response.data.packageID);
       setPrice(response.data.price);
     
@@ -67,8 +84,14 @@ function AddVendor() {
     }
   };
 
+  const categoryChange = (e) => {
+    
+    setCategoryId(e.target.value);
+  };
+ 
   const handleChange = (e) => {
     setPackageID(e.target.value);
+    
   };
 
   const handleFileChange = (event) => {
@@ -82,20 +105,20 @@ function AddVendor() {
   
     if (id) {
       formData.append("vendorID", id);
-    } else {
+      
+    } 
+      
       formData.append("bname",bname );
       formData.append("vendorName", vendorName);
       formData.append("contactPerson", contactPerson);
       formData.append("email", email);
       formData.append("contactNo", contactNo);
       formData.append("address", address);
-      formData.append("category", category);
+      formData.append("category", categoryID);
       formData.append("packageID", packageID);
       formData.append("price", price);
       formData.append("image", selectedFile); // Make sure selectedFile is defined
 
-    }
-  
     const url = id ? Variables.apiURL + "Vendor/update" : Variables.apiURL + "Vendor/add";
   
     fetch(url, {
@@ -157,10 +180,13 @@ function AddVendor() {
                         <label>Address</label>
                         <textarea class="form-control" value={address} onChange={(e) => setAddress(e.target.value)} required=""></textarea>
                       </div>
-                      <div class="form-group mb-0">
-                        <label>Category</label>
-                        <textarea class="form-control" value={category} onChange={(e) => setCategory(e.target.value)} required=""></textarea>
-                      </div>
+                      <label>Category</label>
+                      <select class="form-control" value={categoryID} onChange={categoryChange}>
+                        <option value="" >Select </option>
+                        {categoryList.map(Category => (
+                          <option key={Category.categoryID} value={Category.categoryID}>{Category.parentName == ""?"":Category.parentName+" -> "}{Category.categoryName}</option>
+                        ))}
+                      </select>
                       <label>Package</label>
                       <select class="form-control" value={packageID} onChange={handleChange}>
                         <option value="" >Select </option>

@@ -35,7 +35,7 @@ function ShowVendorCategory() {
         "content-type": "Application/json",
       },
       body: JSON.stringify({
-        vendorCategoryID: id
+        categoryID: id
       })
     }).then((response) => response.json())
       .then((data) => {
@@ -78,6 +78,7 @@ function ShowVendorCategory() {
                     <table class="table table-striped table-hover" id="tableExport" style={{ width: "100%" }}>
                       <thead>
                         <tr>
+                          <th>No</th>
                           <th>categoryName</th>
                           <th>parentID</th>
                           <th>Action</th>
@@ -89,10 +90,10 @@ function ShowVendorCategory() {
                             <tr>
                               <td>{index + 1}</td>
                               <td>{vendorCategory.categoryName}</td>  
-                              <td>{vendorCategory.parentID}</td>
+                              <td>{vendorCategory.parentName}</td>
                               <td>
-                                <Link className="btn btn-icon icon-left btn-outline-info" to={`/editvendorCategory/${vendorCategory.vendorCategoryID}`}><i className="far fa-edit"></i>Edit</Link><br/><br/>
-                                <button className="btn btn-icon icon-left btn-outline-danger" onClick={() => handleDelete(vendorCategory.vendorCategoryID)}><i className="fas fa-times"></i>Delete</button>
+                                <Link className="btn btn-icon icon-left btn-outline-info" to={`/editVendorCategory/${vendorCategory.categoryID}`}><i className="far fa-edit"></i>Edit</Link><br/><br/>
+                                <button className="btn btn-icon icon-left btn-outline-danger" onClick={() => handleDelete(vendorCategory.categoryID)}><i className="fas fa-times"></i>Delete</button>
                               </td>
                             </tr>
                           ))
