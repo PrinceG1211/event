@@ -10,130 +10,133 @@ function AddVendorCategory() {
   
   const [categoryName, setCategoryName] = useState("");
   const [parentID, setParentID] = useState("");
+  const [selectedFile, setSelectedFile] = useState(null);
   const [parentCategoryList, setParentCategoryList] = useState([]);
   const { id } = useParams();
   const navigate = useNavigate();
+  
   useEffect(() => {
-    fetchParentCategoryList()
-    if(id){
+    fetchParentCategoryList();
+    if (id) {
       fetchVendorCategory();
     }
-  }, []);
+  }, [id]);
 
   const fetchParentCategoryList = async () => {
     try {
       const request = await fetch(Variables.apiURL + "VendorCategory");
       if (!request.ok) {
-        throw new Error('Failed to fetch options');
+        throw new Error('Failed to fetch parent category list');
       }
       const response = await request.json();
-      console.log(response);
+      if (response.status !== "success") {
+        throw new Error('Invalid response format');
+      }
       setParentCategoryList(response.data);
     } catch (error) {
-      console.error('Error fetching options:', error);
+      console.error('Error fetching parent category list:', error);
     }
   };
-
+  
   const fetchVendorCategory = async () => {
     try {
       const request = await fetch(Variables.apiURL + "VendorCategory/"+id);
       if (!request.ok) {
-        throw new Error('Failed to fetch options');
+        throw new Error('Failed to fetch vendor category');
       }
       const response = await request.json();
-      console.log(response);
+      if (response.status !== "success") {
+        throw new Error('Invalid response format');
+      }
       setCategoryName(response.data.categoryName);
       setParentID(response.data.parentID);
-     
-     
     } catch (error) {
-      console.error('Error fetching options:', error);
+      console.error('Error fetching vendor category:', error);
     }
   };
+  
   const handleChange = (e) => {
     setParentID(e.target.value);
-    
+  };
+
+  const handleFileChange = (event) => {
+    setSelectedFile(event.target.files[0]);
   };
 
   const handleSubmit = (e) => {
-    
     e.preventDefault();
-    var body = [];
+    const formData = new FormData();
+  
     if (id) {
-      body = JSON.stringify({
-        categoryID: id,
-        categoryName: categoryName,
-        parentID:parentID,
-      });
-    } else {
-      body = JSON.stringify({
-        categoryID: id,
-        categoryName: categoryName,
-        parentID:parentID,
-      });
-    }
+      formData.append("categoryID", id);
+    } 
+    formData.append("categoryName", categoryName);
+    formData.append("image", selectedFile);
+    formData.append("parentID", parentID);
+    
     const url = id ? Variables.apiURL + "VendorCategory/update" : Variables.apiURL + "VendorCategory/add";
+  
     fetch(url, {
       method: "POST",
-      headers: { accept: "Application/json", "content-type": "Application/json", },
-      body: body
-    }).then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        if (data.status === "success") {
-          console.log("Success");
-          navigate("/showVendorCategory");
-        }
-      }, (error) => {
-        console.log(error);
-        alert("Failed");
-      })
+      body: formData
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.status === "success") {
+        navigate("/showVendorCategory");
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
   };
+  
   useScript("/assets/js/scripts.js");
   useScript("/assets/js/custom.js");
 
-    return (<>
-        <Header></Header>
-        <div class="main-content">
-        <section class="section">
-          <div class="section-body">
-            <div class="row">
-              <div class="col-12 col-md-6 col-lg-6">
-                <div class="card">
+  return (
+    <>
+      <Header />
+      <div className="main-content">
+        <section className="section">
+          <div className="section-body">
+            <div className="row">
+              <div className="col-12 col-md-6 col-lg-6">
+                <div className="card">
                   <form onSubmit={handleSubmit}>
-                    <div class="card-header">
+                    <div className="card-header">
                       <h4>Default Validation</h4>
                     </div>
-                    <div class="card-body">
-                    
-                      <div class="form-group">
+                    <div className="card-body">
+                      <div className="form-group">
                         <label>categoryName</label>
-                        <input type="text" class="form-control" value={categoryName} onChange={(e) => setCategoryName(e.target.value)} required=""/>
+                        <input type="text" className="form-control" value={categoryName} onChange={(e) => setCategoryName(e.target.value)} required />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="imageUpload">Image</label>
+                        <input type="file" onChange={handleFileChange} accept="image/*" placeholder="#" />
                       </div>
                       <label>ParentID</label>
-                      <select class="form-control" value={parentID} onChange={handleChange}>
-                        <option value="" >Select </option>
-                        {parentCategoryList.map(Parent => (
-                          <option key={Parent.categoryID} value={Parent.categoryID}>{Parent.categoryName}</option>
+                      <select className="form-control" value={parentID} onChange={handleChange}>
+                        <option value="">Select</option>
+                        {parentCategoryList.map(parent => (
+                          <option key={parent.categoryID} value={parent.categoryID}>{parent.categoryName}</option>
                         ))}
                       </select>
-                      
                     </div>
-                    <div class="card-footer text-right">
-                      <button class="btn btn-primary">Submit</button>
+                    <div className="card-footer text-right">
+                      <button type="submit" className="btn btn-primary">Submit</button>
                     </div>
                   </form>
                 </div>
-                
               </div>
-              
             </div>
           </div>
         </section>
-       
       </div>
-        <Footer></Footer>
-    </>);
+      <Footer />
+    </>
+  );
 }
 
 export default AddVendorCategory;

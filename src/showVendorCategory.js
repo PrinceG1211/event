@@ -80,6 +80,7 @@ function ShowVendorCategory() {
                         <tr>
                           <th>No</th>
                           <th>categoryName</th>
+                          <th>Image</th>
                           <th>parentID</th>
                           <th>Action</th>
                         </tr>
@@ -89,7 +90,8 @@ function ShowVendorCategory() {
                        VendorCategoryList.map((vendorCategory, index) => (
                             <tr>
                               <td>{index + 1}</td>
-                              <td>{vendorCategory.categoryName}</td>  
+                              <td>{vendorCategory.categoryName}</td> 
+                              <td><img src={Variables.photoURL+vendorCategory.image} height={100} width={100}/></td>  
                               <td>{vendorCategory.parentName}</td>
                               <td>
                                 <Link className="btn btn-icon icon-left btn-outline-info" to={`/editVendorCategory/${vendorCategory.categoryID}`}><i className="far fa-edit"></i>Edit</Link><br/><br/>

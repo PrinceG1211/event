@@ -99,6 +99,7 @@ function Dashboard() {
                     </div>
                     
                         <div class="col-xl-3 col-lg-6">
+                        <Link to="/showEmployee">
                         <div class="card">
                             <div class="card-bg">
                                 <div class="p-t-20 d-flex justify-content-between">
@@ -112,8 +113,10 @@ function Dashboard() {
                                 <canvas id="cardChart1" height="80"></canvas>
                             </div>
                         </div>
+                        </Link>
                     </div>
                     <div class="col-xl-3 col-lg-6">
+                    <Link to="/showEventDetail">
                         <div class="card">
                             <div class="card-bg">
                                 <div class="p-t-20 d-flex justify-content-between">
@@ -127,6 +130,7 @@ function Dashboard() {
                                 <canvas id="cardChart1" height="80"></canvas>
                             </div>
                         </div>
+                        </Link>
                     </div>
                 </div>
 
