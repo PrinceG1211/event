@@ -69,10 +69,10 @@ function AddHotel() {
 
  
  
-  const handleChange = (e) => {
-    setPackageID(e.target.value);
-    
-  };
+    const handleChange = (e) => {
+      setPackageID(e.target.value);
+      
+    };
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
