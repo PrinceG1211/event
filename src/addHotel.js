@@ -7,97 +7,119 @@ import { Variables } from "./utils/Variables";
 
 function AddHotel() {
   useScript('/assets/bundles/echart/echarts.js');
-  const [hotelID, setHotelID] = useState([]);
-  const [packageID, setPackageID] = useState('');
-  const [hotelName, setHotelname] = useState("");
-  const [rating, setRating] = useState("");
+ 
+  const [hotelID, sethotelID] = useState('');
+  const [packageID, setPackageID] = useState("");
+  const [hotelName, setHotelName] = useState('');
+  const [rating, setRating] = useState('');
   const [email, setEmail] = useState("");
   const [mobileNo, setMobileNo] = useState("");
   const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [area, setArea] = useState("");
-  const [image, setImage] = useState("");
+  const [city, setCity] = useState('');
+  const [area, setArea] = useState('');
+  const [packageList, setPackageList] = useState([]);
+  const [selectedFile, setSelectedFile] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
   useEffect(() => {
-    fetchHotel();
-    if(id){
+    fetchPackageList();
+    if (id) {
       fetchHotel();
     }
   }, []);
 
-  const fetchHotel = async () => {
+  
+  
+
+  const fetchPackageList = async () => {
     try {
-      const request = await fetch(Variables.apiURL + "Hotel/"+id);
+      const request = await fetch(Variables.apiURL + "PackageDetail");
       if (!request.ok) {
         throw new Error('Failed to fetch options');
       }
       const response = await request.json();
       console.log(response);
-      setHotelID(response.data.setHotelID)
-      setPackageID(response.data.packageID);
-      setHotelname(response.data.hotelName);
-      setRating(response.data.rating);
-      setEmail(response.data.email);
-      setMobileNo(response.data.mobileNo);
-      setAddress(response.data.address)
-      setCity(response.data.city);
-      setArea(response.data.area);
-      setImage(response.data.image);
+      setPackageList(response.data);
     } catch (error) {
       console.error('Error fetching options:', error);
     }
   };
 
-  const handleSubmit = (e) => {
-    
-    e.preventDefault();
-    var body = [];
-    if (id) {
-      body = JSON.stringify({
-        hotelID: id ,
-        hotelname: hotelName ,
-        rating: rating ,
-        email : email ,
-        mobileNo : mobileNo ,
-        address : address ,
-        city : city ,
-        area : area ,
-        image : image,
-      });
-    } else {
-      body = JSON.stringify({
-
-        hotelname: hotelName ,
-        rating: rating ,
-        email : email ,
-        mobileNo : mobileNo ,
-        address : address ,
-        city : city ,
-        area : area ,
-        image : image,
-      });
+  const fetchHotel = async () => {
+    try {
+      const request = await fetch(Variables.apiURL + "Hotel/" + id);
+      if (!request.ok) {
+        throw new Error('Failed to fetch options');
+      }
+      const response = await request.json();
+      console.log(response);
+      sethotelID(response.data.hotelID);
+      setPackageID(response.data.packageID);
+      setHotelName(response.data.hotelName);
+      setRating(response.data.rating);
+      setEmail(response.data.email);
+      setMobileNo(response.data.mobileNo);
+      setAddress(response.data.address);
+      setCity(response.data.city);
+      setArea(response.data.area);    
+    } catch (error) {
+      console.error('Error fetching options:', error);
     }
+  };
+
+ 
+ 
+  const handleChange = (e) => {
+    setPackageID(e.target.value);
+    
+  };
+
+  const handleFileChange = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+  
+    if (id) {
+      formData.append("hotelID", id);
+      
+    } 
+      formData.append("packageID", packageID);
+      formData.append("hotelName",hotelName);
+      formData.append("rating", rating);
+      formData.append("email", email);
+      formData.append("mobileNo", mobileNo);
+      formData.append("address", address);
+      formData.append("city", city);
+      formData.append("area", area);
+
+      formData.append("image", selectedFile); // Make sure selectedFile is defined
+
     const url = id ? Variables.apiURL + "Hotel/update" : Variables.apiURL + "Hotel/add";
+  
     fetch(url, {
       method: "POST",
-      headers: { accept: "Application/json", "content-type": "Application/json", },
-      body: body
-    }).then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        if (data.status === "success") {
-          console.log("Success");
-          navigate("/showHotel");
-        }
-      }, (error) => {
-        console.log(error);
-        alert("Failed");
-      })
+      body: formData // Don't manually set Content-Type
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      if (data.status === "success") {
+        navigate("/showHotel");
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
   };
+
   useScript("/assets/js/scripts.js");
   useScript("/assets/js/custom.js");
     return (<>
+
         <Header></Header>
         <div class="main-content">
         <section class="section">
@@ -105,70 +127,71 @@ function AddHotel() {
             <div class="row">
               <div class="col-12 col-md-6 col-lg-6">
                 <div class="card">
-                  <form onSubmit={handleSubmit}>
+                  <form onSubmit={handleSubmit}> 
                     <div class="card-header">
-                      <h4>Add Hodel</h4>
+                      <h4>Add Hotel</h4>
                     </div>
                     <div class="card-body">
-                      
-                      <div class="form-group">
-                        <label>packageID</label>
-                        <input type="text" class="form-control"  value={packageID} onChange={(e) => setPackageID(e.target.value)} required=""/>
-                      </div>
-                      <div class="form-group">
+                   
+                    <label>Package</label>
+                      <select class="form-control" value={packageID} onChange={handleChange}>
+                        <option value="" >Select </option>
+                        {packageList.map(Package => (
+                          <option key={Package.packageID} value={Package.packageID}>{Package.packageName}</option>
+                        ))}
+                      </select>
+                    <div class="form-group">
                         <label>hotelName</label>
-                        <input type="text" class="form-control"  value={hotelName} onChange={(e) => setHotelname(e.target.value)}  required=""/>
+                        <input type="text" class="form-control" value={hotelName} onChange={(e) => setHotelName(e.target.value)} required=""/>
                       </div>
-                      <div class="form-group mb-0">
-                        <label>rating</label>
-                        <input type="text" class="form-control" value={rating} onChange={(e) => setRating(e.target.value)}  required=""/>
-                      </div>
+
                       <div class="form-group">
-                        <label>email</label>
+                        <label>rating</label>
+                        <input type="text" class="form-control" value={rating} onChange={(e) => setRating(e.target.value)} required=""/>
+                      </div>
+
+                      <div class="form-group">
+                        <label>Email</label>
                         <input type="email" class="form-control" value={email} onChange={(e) => setEmail(e.target.value)} required=""/>
                       </div>
+            
                       <div class="form-group">
-                        <label>mobileNo</label>
-                        <input type="text" class="form-control" value={mobileNo} onChange={(e) => setMobileNo(e.target.value)}required=""/>
+                        <label>MobileNo</label>
+                        <input type="text" class="form-control" value={mobileNo} onChange={(e) => setMobileNo(e.target.value)} required=""/>
                       </div>
-                      <div class="form-group">
-                        <label>address</label>
-                        <input type="text" class="form-control"  value={address} onChange={(e) => setAddress(e.target.value)}required=""/>
+                      
+                      <div class="form-group mb-0">
+                        <label>Address</label>
+                        <textarea class="form-control" value={address} onChange={(e) => setAddress(e.target.value)} required=""></textarea>
                       </div>
+
                       <div class="form-group">
-                        <label>city</label>
-                        <input type="text" class="form-control"  value={city} onChange={(e) => setCity(e.target.value)}required=""/>
+                        <label>City</label>
+                        <input type="text" class="form-control" value={city} onChange={(e) => setCity(e.target.value)} required=""/>
                       </div>
+
                       <div class="form-group">
-                        <label>area</label>
-                        <input type="t/*ext" class="form-control"  value={area} onChange={(e) => setArea(e.target.value)} required=""/>
+                        <label>Area</label>
+                        <input type="text" class="form-control" value={area} onChange={(e) => setArea(e.target.value)} required=""/>
                       </div>
-                      <div class="form-group">
-                          <label for="imageUpload"></label>
-                          <input type="file" id="imageUpload" name="imageUpload" accept="image/*"/>
-                       </div>
+
+                      <div className="form-group">
+                      <label for="imageUpload"></label>
+                      <input type="file" onChange={handleFileChange} accept="image/*" placeholder="#" />
                     </div>
+                </div>
                     <div class="card-footer text-right">
                     <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                   </form>
                 </div>
-                <div class="card">
-                
-                </div>
+               
               </div>
-              <div class="col-12 col-md-6 col-lg-6">
-                <div class="card">
-                  
-                </div>
-                <div class="card">
-                  
-                </div>
-              </div>
+              
             </div>
           </div>
         </section>
-       
+        
       </div>
         <Footer></Footer>
     </>);
