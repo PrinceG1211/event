@@ -10,10 +10,21 @@ function Dashboard() {
     const [VendorList, setVendorList] = useState([]);
     const [EmployeeList, setEmployeeList] = useState([]);
     const [eventDetailList, setEventDetailList] = useState([]);
+    const [customerList, setCustomerList] = useState([]);
+    const [areaList, setAreaList] = useState([]);
+    const [cityList, setCityList] = useState([]);
+    const [eventBooking, setEventBooking] = useState([]);
+    const [employeeEvent, setEmployeeEvent] = useState([]);
     useEffect(() => {
         fetchVendor()
         fetchEmployee()
         fetchEventDetailList()
+        fetchCustomerList()
+        fetchArea()
+        fetchCity()
+        fetchEventBooking()
+        fetchEmployeeEvent()
+
     }, []);
 
     const fetchVendor = () => {
@@ -64,6 +75,97 @@ function Dashboard() {
             .then((data) => {
                 console.log(data);
                 setEventDetailList(data.data);
+            }, (error) => {
+                console.log(error);
+                alert("Failed");
+            });
+    };
+
+    const fetchCustomerList = () => {
+        fetch(Variables.apiURL + "Customer", {
+            method: "GET",
+            headers: {
+                accept: "Application/json",
+                "content-type": "Application/json",
+                // "Authorization": "Bearer " + token
+            }
+        }).then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                setCustomerList(data.data);
+            }, (error) => {
+                console.log(error);
+                alert("Failed");
+            });
+    };
+
+    const fetchArea = () => {
+        fetch(Variables.apiURL + "Area", {
+            method: "GET",
+            headers: {
+                accept: "Application/json",
+                "content-type": "Application/json",
+                // "Authorization": "Bearer " + token
+            }
+        }).then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                setAreaList(data.data);
+            }, (error) => {
+                console.log(error);
+                alert("Failed");
+            });
+    };
+
+    
+    const fetchCity = () => {
+        fetch(Variables.apiURL + "City", {
+            method: "GET",
+            headers: {
+                accept: "Application/json",
+                "content-type": "Application/json",
+                // "Authorization": "Bearer " + token
+            }
+        }).then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                setCityList(data.data);
+            }, (error) => {
+                console.log(error);
+                alert("Failed");
+            });
+    };
+    
+    const fetchEventBooking = () => {
+        fetch(Variables.apiURL + "EventBooking", {
+            method: "GET",
+            headers: {
+                accept: "Application/json",
+                "content-type": "Application/json",
+                // "Authorization": "Bearer " + token
+            }
+        }).then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                setEventBooking(data.data);
+            }, (error) => {
+                console.log(error);
+                alert("Failed");
+            });
+    };
+      
+    const fetchEmployeeEvent = () => {
+        fetch(Variables.apiURL + "EmployeeEvent", {
+            method: "GET",
+            headers: {
+                accept: "Application/json",
+                "content-type": "Application/json",
+                // "Authorization": "Bearer " + token
+            }
+        }).then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                setEmployeeEvent(data.data);
             }, (error) => {
                 console.log(error);
                 alert("Failed");
@@ -126,6 +228,91 @@ function Dashboard() {
                                         <h4><span>{eventDetailList.length}</span></h4>
                                     </div>
                                     <i class="fas fa-magic col-red font-30 p-r-30"></i>
+                                </div>
+                                <canvas id="cardChart1" height="80"></canvas>
+                            </div>
+                        </div>
+                        </Link>
+                    </div>
+                    <div class="col-xl-3 col-lg-6">
+                    <Link to="/showCustomer">
+                        <div class="card">
+                            <div class="card-bg">
+                                <div class="p-t-20 d-flex justify-content-between">
+                                    <div class="col">
+                                        <h4 class="mb-0">Customer</h4>
+                                        <br />
+                                        <h4><span>{customerList.length}</span></h4>
+                                    </div>
+                                    <i class="fas fa-female col-green font-40 p-r-40"></i>
+                                </div>
+                                <canvas id="cardChart1" height="80"></canvas>
+                            </div>
+                        </div>
+                        </Link>
+                    </div>
+                    <div class="col-xl-3 col-lg-6">
+                    <Link to="/showArea">
+                        <div class="card">
+                            <div class="card-bg">
+                                <div class="p-t-20 d-flex justify-content-between">
+                                    <div class="col">
+                                        <h4 class="mb-0">Area</h4>
+                                        <br />
+                                        <h4><span>{areaList.length}</span></h4>
+                                    </div>
+                                    <i class="fas fa-map-marked-alt col-white font-30 p-r-30"></i>
+                                </div>
+                                <canvas id="cardChart1" height="80"></canvas>
+                            </div>
+                        </div>
+                        </Link>
+                    </div>
+                    <div class="col-xl-3 col-lg-6">
+                    <Link to="/showCity">
+                        <div class="card">
+                            <div class="card-bg">
+                                <div class="p-t-20 d-flex justify-content-between">
+                                    <div class="col">
+                                        <h4 class="mb-0">City</h4>
+                                        <br />
+                                        <h4><span>{cityList.length}</span></h4>
+                                    </div>
+                                    <i class="fas fa-map-marker-alt col-red font-30 p-r-30"></i>
+                                </div>
+                                <canvas id="cardChart1" height="80"></canvas>
+                            </div>
+                        </div>
+                        </Link>
+                    </div>
+                    <div class="col-xl-3 col-lg-6">
+                    <Link to="/showEventBooking">
+                        <div class="card">
+                            <div class="card-bg">
+                                <div class="p-t-20 d-flex justify-content-between">
+                                    <div class="col">
+                                        <h4 class="mb-0">EventBooking</h4>
+                                        <br />
+                                        <h4><span>{eventBooking.length}</span></h4>
+                                    </div>
+                                    <i class="fas fa-calendar-alt col-brown font-30 p-r-30"></i>
+                                </div>
+                                <canvas id="cardChart1" height="80"></canvas>
+                            </div>
+                        </div>
+                        </Link>
+                    </div>
+                    <div class="col-xl-3 col-lg-6">
+                    <Link to="/showEmployeeEvent">
+                        <div class="card">
+                            <div class="card-bg">
+                                <div class="p-t-20 d-flex justify-content-between">
+                                    <div class="col">
+                                        <h4 class="mb-0">EventEmployee</h4>
+                                        <br />
+                                        <h4><span>{employeeEvent.length}</span></h4>
+                                    </div>
+                                    <i class="fas fa-id-badge col-Crimson font-30 p-r-30"></i>
                                 </div>
                                 <canvas id="cardChart1" height="80"></canvas>
                             </div>

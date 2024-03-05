@@ -94,7 +94,7 @@ function Header() {
               <img alt="image" src="assets/img/userbig.png"/>
             </div>
             <div className="sidebar-user-details">
-              <div className="user-name">Sarah Smith</div>
+              <div className="user-name">User</div>
               <div className="user-role">Administrator</div>
             </div>
           </div>
