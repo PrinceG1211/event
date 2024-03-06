@@ -81,7 +81,7 @@ function ShowHotel() {
                         <tr>
                           <th>NO</th>
                           <th>packageID</th>
-                          <th>hotelname</th>
+                          <th>hotelName</th>
                           <th>rating</th>
                           <th>email</th>
                           <th>mobileNo</th>
