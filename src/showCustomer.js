@@ -83,7 +83,8 @@ function ShowCustomer() {
                           <th>name</th>
                           <th>email</th>
                           <th>mobileNo</th>
-                          <th>Action</th>
+                          <th>Edit</th>
+                          <th>Delete</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -95,7 +96,9 @@ function ShowCustomer() {
                               <td>{customer.email}</td>
                               <td>{customer.mobileNo}</td>
                               <td>
-                                <Link className="btn btn-icon icon-left btn-outline-info" to={`/editCustomer/${customer.customerID}`}><i className="far fa-edit"></i>Edit</Link><br/><br/>
+                                <Link className="btn btn-icon icon-left btn-outline-info" to={`/editCustomer/${customer.customerID}`}><i className="far fa-edit"></i>Edit</Link>
+                                </td>
+                                <td>
                                 <button className="btn btn-icon icon-left btn-outline-danger" onClick={() => handleDelete(customer.customerID)}><i className="fas fa-times"></i>Delete</button>
                               </td>
                             </tr>

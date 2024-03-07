@@ -90,7 +90,8 @@ function ShowVenue() {
                           <th>city</th>
                           <th>area</th>
                           <th>packageID</th>
-                          <th>Action</th>
+                          <th>Edit</th>
+                          <th>Delete</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -110,7 +111,9 @@ function ShowVenue() {
                               <td>{Venue.area}</td>  
                               <td>{Venue.packageName}</td>
                               <td>
-                                <Link className="btn btn-icon icon-left btn-outline-info" to={`/editVenue/${Venue.venueID}`}><i className="far fa-edit"></i>Edit</Link><br/><br/>
+                                <Link className="btn btn-icon icon-left btn-outline-info" to={`/editVenue/${Venue.venueID}`}><i className="far fa-edit"></i>Edit</Link>
+                                </td>
+                                <td>
                                 <button className="btn btn-icon icon-left btn-outline-danger" onClick={() => handleDelete(Venue.venueID)}><i className="fas fa-times"></i>Delete</button>
                               </td>
                             </tr>

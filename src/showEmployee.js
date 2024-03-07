@@ -86,7 +86,8 @@ function ShowEmployee() {
                           <th>dob</th>
                           <th>doj</th>
                           <th>type</th>
-                          <th>Action</th>
+                          <th>Edit</th>
+                          <th>Delete</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -101,7 +102,9 @@ function ShowEmployee() {
                               <td>{employee.doj}</td>
                               <td>{employee.type}</td>
                               <td>
-                                <Link className="btn btn-icon icon-left btn-outline-info" to={`/editEmployee/${employee.employeeID}`}><i className="far fa-edit"></i>Edit</Link><br/><br/>
+                                <Link className="btn btn-icon icon-left btn-outline-info" to={`/editEmployee/${employee.employeeID}`}><i className="far fa-edit"></i>Edit</Link>
+                                </td>
+                                <td>
                                 <button className="btn btn-icon icon-left btn-outline-danger" onClick={() => handleDelete(employee.employeeID)}><i className="fas fa-times"></i>Delete</button>
                               </td>
                             </tr>

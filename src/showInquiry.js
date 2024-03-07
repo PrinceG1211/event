@@ -86,7 +86,8 @@ function ShowInquiry() {
                           <th>subject</th>
                           <th>status</th>
                           <th>description</th>
-                          <th>Action</th>
+                          <th>Edit</th>
+                          <th>Delete</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -101,7 +102,9 @@ function ShowInquiry() {
                               <td>{inquiry.status}</td>
                               <td>{inquiry.description}</td>
                               <td>
-                                <Link className="btn btn-icon icon-left btn-outline-info" to={`/editInquiry/${inquiry.inquiryID}`}><i className="far fa-edit"></i>Edit</Link><br/><br/>
+                                <Link className="btn btn-icon icon-left btn-outline-info" to={`/editInquiry/${inquiry.inquiryID}`}><i className="far fa-edit"></i>Edit</Link>
+                                </td>
+                                <td>
                                 <button className="btn btn-icon icon-left btn-outline-danger" onClick={() => handleDelete(inquiry.inquiryID)}><i className="fas fa-times"></i>Delete</button>
                               </td>
                             </tr>

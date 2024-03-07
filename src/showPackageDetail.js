@@ -82,7 +82,8 @@ function ShowPackageDetail() {
                           <th>packageName</th>
                           <th>packageDiscription</th>
                           <th>price</th>
-                          <th>Action</th>
+                          <th>Edit</th>
+                          <th>Delete</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -94,7 +95,9 @@ function ShowPackageDetail() {
                               <td>{packageDetail.packageDescription}</td>
                               <td>{packageDetail.price}</td>
                               <td>
-                                <Link className="btn btn-icon icon-left btn-outline-info" to={`/editPackageDetail/${packageDetail.packageID}`}><i className="far fa-edit"></i>Edit</Link><br/><br/>
+                                <Link className="btn btn-icon icon-left btn-outline-info" to={`/editPackageDetail/${packageDetail.packageID}`}><i className="far fa-edit"></i>Edit</Link>
+                                </td>
+                                <td>
                                 <button className="btn btn-icon icon-left btn-outline-danger" onClick={() => handleDelete(packageDetail.packageID)}><i className="fas fa-times"></i>Delete</button>
                               </td>
                             </tr>

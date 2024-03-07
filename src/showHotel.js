@@ -89,7 +89,8 @@ function ShowHotel() {
                           <th>city</th>
                           <th>area</th>
                           <th>image</th>
-                          <th>Action</th>
+                          <th>Edit</th>
+                          <th>Delete</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -107,7 +108,9 @@ function ShowHotel() {
                               <td>{hotel.area}</td>
                               <td><img src={Variables.photoURL+hotel.image} height={100} width={100}/></td>
                               <td>
-                                <Link className="btn btn-icon icon-left btn-outline-info" to={`/editHotel/${hotel.hotelID}`}><i className="far fa-edit"></i>Edit</Link><br/><br/>
+                                <Link className="btn btn-icon icon-left btn-outline-info" to={`/editHotel/${hotel.hotelID}`}><i className="far fa-edit"></i>Edit</Link>
+                                </td>
+                                <td>
                                 <button className="btn btn-icon icon-left btn-outline-danger" onClick={() => handleDelete(hotel.hotelID)}><i className="fas fa-times"></i>Delete</button>
                               </td>
                             </tr>

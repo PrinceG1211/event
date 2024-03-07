@@ -82,7 +82,8 @@ return (<>
                           <th>Area</th>
                           <th>City</th>
                           <th>Pincode</th>
-                          <th>Action</th>
+                          <th>Edit</th>
+                          <th>Delete</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -94,7 +95,9 @@ return (<>
                               <td>{area.cityName}</td>
                               <td>{area.pincode}</td>
                               <td>
-                                <Link className="btn btn-icon icon-left btn-outline-info" to={`/editArea/${area.areaID}`}><i className="far fa-edit"></i>Edit</Link><br/><br/>
+                                <Link className="btn btn-icon icon-left btn-outline-info" to={`/editArea/${area.areaID}`}><i className="far fa-edit"></i>Edit</Link>
+                                </td>
+                                <td>
                                 <button className="btn btn-icon icon-left btn-outline-danger" onClick={() => handleDelete(area.areaID)}><i className="fas fa-times"></i>Delete</button>
                               </td>
                             </tr>
