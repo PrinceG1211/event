@@ -3,7 +3,7 @@ import Footer from "./includes/footer";
 import useScript from "./utils/useScript";
 import { useEffect, useState } from "react";
 import { Variables } from "./utils/Variables";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Dashboard() {
 
@@ -15,7 +15,11 @@ function Dashboard() {
     const [cityList, setCityList] = useState([]);
     const [eventBooking, setEventBooking] = useState([]);
     const [employeeEvent, setEmployeeEvent] = useState([]);
+    const navigate = useNavigate();
     useEffect(() => {
+        if (!sessionStorage.getItem("isLogin")) {
+            navigate("/login");
+          }
         fetchVendor()
         fetchEmployee()
         fetchEventDetailList()
