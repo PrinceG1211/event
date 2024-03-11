@@ -3,10 +3,7 @@ import feather from 'feather-icons';
 import { Link, useNavigate } from 'react-router-dom';
 import { Variables } from '../utils/Variables';
 function Header() {
-  useEffect(() => {
-    fetchAuth();
-    feather.replace();
-  }, []);
+  
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [name, setName] = useState('');
   const [image, setImage] = useState('');
@@ -17,8 +14,9 @@ function Header() {
     if (sessionStorage.getItem("isLogin")) {
       console.log("User ID : " + sessionStorage.getItem("userID"));
       const userID = sessionStorage.getItem("userID");
-      fetchAuth(userID);
+     fetchAuth(sessionStorage.getItem("userID"));
     }
+    feather.replace();
   }, []);
   const logout = () => {
     sessionStorage.clear();
@@ -27,6 +25,7 @@ function Header() {
   const fetchAuth = (id) => {
     try {
       const url = Variables.apiURL + "Auth/" + id;
+      console.log("url : "+url);
       fetch(url, {
         method: "GET",
         headers: { accept: "Application/json", "content-type": "Application/json", },

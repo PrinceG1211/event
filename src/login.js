@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Variables } from "./utils/Variables";
 import useScript from "./utils/useScript";
 import { useNavigate } from "react-router-dom";
-    function Login() {
+    function AdminLogin() {
         const [email, setEmail] = useState("");
         const [password, setPassword] = useState("");
         const navigate = useNavigate();
@@ -97,4 +97,4 @@ import { useNavigate } from "react-router-dom";
         </div>
     );
 }
-export default Login;
+export default AdminLogin;

@@ -4,28 +4,30 @@ import useScript from "./utils/useScript";
 import { useEffect, useState } from "react";
 import { Variables } from "./utils/Variables";
 import { Link } from "react-router-dom";
+import loadScript from "./utils/loadScript";
 
 function ShowEmployee() {
-  useScript('/assets/bundles/echart/echarts.js');
   
+
   const [employeeList, setEmployeeList] = useState([]);
   useEffect(() => {
+    
 
-    fetch(Variables.apiURL + "Employee", {
-      method: "GET",
-      headers: {
-        accept: "Application/json",
-        "content-type": "Application/json",
-        // "Authorization": "Bearer " + token
-      }
-    }).then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        setEmployeeList(data.data);
-      }, (error) => {
-        console.log(error);
-        alert("Failed");
-      })
+      fetch(Variables.apiURL + "Employee", {
+        method: "GET",
+        headers: {
+          accept: "Application/json",
+          "content-type": "Application/json",
+          // "Authorization": "Bearer " + token
+        }
+      }).then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          setEmployeeList(data.data);
+        }, (error) => {
+          console.log(error);
+          alert("Failed");
+        });
   }, []);
 
   const handleDelete = (id) => {
@@ -41,7 +43,7 @@ function ShowEmployee() {
     }).then((response) => response.json())
       .then((data) => {
         if (data.status === "success") {
-          setEmployeeList( employeeList.filter((item) => item.id !== id))
+          setEmployeeList(employeeList.filter((item) => item.id !== id))
         } else {
           alert(data.message);
         }
@@ -51,20 +53,10 @@ function ShowEmployee() {
       })
   }
 
-  useScript("assets/bundles/datatables/datatables.min.js");
-  useScript("assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js");
-  useScript("assets/bundles/datatables/export-tables/dataTables.buttons.min.js");
-  useScript("assets/bundles/datatables/export-tables/buttons.flash.min.js");
-  useScript("assets/bundles/datatables/export-tables/jszip.min.js");
-  useScript("assets/bundles/datatables/export-tables/pdfmake.min.js");
-  useScript("assets/bundles/datatables/export-tables/vfs_fonts.js");
-  useScript("assets/bundles/datatables/export-tables/buttons.print.min.js");
-  useScript("assets/js/page/datatables.js");
-  useScript("assets/js/scripts.js");
-  useScript("assets/js/custom.js");
-    return (<>
-        <Header></Header>
-        <div class="main-content">
+  
+  return (<>
+    <Header></Header>
+    <div class="main-content">
       <section class="section">
         <div class="section-body">
           <div class="row">
@@ -93,9 +85,9 @@ function ShowEmployee() {
                       <tbody>
                         {
                           employeeList.map((employee, index) => (
-                            <tr>
+                            <tr key={index}>
                               <td>{index + 1}</td>
-                              <td>{employee.name}</td>  
+                              <td>{employee.name}</td>
                               <td>{employee.email}</td>
                               <td>{employee.mobileNo}</td>
                               <td>{employee.dob}</td>
@@ -103,8 +95,8 @@ function ShowEmployee() {
                               <td>{employee.type}</td>
                               <td>
                                 <Link className="btn btn-icon icon-left btn-outline-info" to={`/editEmployee/${employee.employeeID}`}><i className="far fa-edit"></i>Edit</Link>
-                                </td>
-                                <td>
+                              </td>
+                              <td>
                                 <button className="btn btn-icon icon-left btn-outline-danger" onClick={() => handleDelete(employee.employeeID)}><i className="fas fa-times"></i>Delete</button>
                               </td>
                             </tr>
@@ -121,8 +113,8 @@ function ShowEmployee() {
         </div>
       </section>
     </div>
-       <Footer></Footer>
-    </>);
+    <Footer></Footer>
+  </>);
 }
 
 export default ShowEmployee;

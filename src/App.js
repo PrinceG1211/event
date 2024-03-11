@@ -33,7 +33,8 @@ import addVenue from './addVenue';
 import showVenue from './showVenue';
 import './App.css';
 import { BrowserRouter as Router,Route, Routes } from 'react-router-dom';
-import Login from './login';
+import AdminLogin from './login';
+
 
 
 
@@ -96,7 +97,7 @@ function App() {
         <Route path='/editVenue/:id' Component={addVenue}></Route>
         <Route path='/showVenue' Component={showVenue}></Route>
         {/* login */}
-        <Route path='/login' Component={Login}></Route>
+        <Route path='/login' Component={AdminLogin}></Route>
       </Routes>
     </Router>
   );
