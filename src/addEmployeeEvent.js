@@ -76,16 +76,16 @@ function AddEmployeeEvent() {
     var body = [];
     if (id) {
       body = JSON.stringify({
-        employeeEventID: id,
-        employeeID: employeeID,
-        eventID: bookingID,
+        EmployeeEventID: id,
+        EmployeeID: employeeID,
+        EventID: bookingID,
         
       });
     } else {
       body = JSON.stringify({
-        employeeEventID: id,
-        employeeID: employeeID,
-        eventID: bookingID,
+        EmployeeEventID: id,
+        EmployeeID: employeeID,
+        EventID: bookingID,
       });
     }
     const url = id ? Variables.apiURL + "EmployeeEvent/update" : Variables.apiURL + "EmployeeEvent/add";
