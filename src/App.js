@@ -66,6 +66,7 @@ function App() {
         
          {/* EventBooking */}
          <Route path='/addEventBooking' Component={addEventBooking}></Route>
+         <Route path='/EventBooking/EventDetail/:id' Component={showEventDetail}></Route>
         <Route path='/editEventBooking/:id' Component={addEventBooking}></Route>
         <Route path='/showEventBooking' Component={showEventBooking}></Route> 
          {/* EventDetail */}
@@ -98,6 +99,7 @@ function App() {
         <Route path='/showVenue' Component={showVenue}></Route>
         {/* login */}
         <Route path='/login' Component={AdminLogin}></Route>
+        
       </Routes>
     </Router>
   );

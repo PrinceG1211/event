@@ -28,6 +28,7 @@ import { useNavigate } from "react-router-dom";
                     if (data.status === "success") {
                         sessionStorage.setItem("isLogin",true);
                         sessionStorage.setItem("userID",data.data.userID);
+                        sessionStorage.setItem("userType",data.data.type);
                         console.log("Success");
                         navigate("/");
                     }

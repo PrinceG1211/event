@@ -9,17 +9,50 @@ function AddEmployeeEvent() {
   useScript('/assets/bundles/echart/echarts.js');
  
   const [employeeEvent, setEmployeeEvent] = useState([]);
+  const [employee, setEmployee] = useState([]);
+  const [eventbooking, setEventBooking] = useState([]);
   const [employeeID, setEmployeeID] = useState('');
-  const [eventID, setEventID] = useState("");
+  const [bookingID, setBookingID] = useState("");
 
   const { id } = useParams();
   const navigate = useNavigate();
   useEffect(() => {
     fetchEmployeeEvent();
+    fetchEventBookingList();
+    fetchEmployeeList();
     if(id){
       fetchEmployeeEvent();
     }
   }, []);
+
+  
+  const fetchEmployeeList = async () => {
+    try {
+      const request = await fetch(Variables.apiURL + "Employee");
+      if (!request.ok) {
+        throw new Error('Failed to fetch options');
+      }
+      const response = await request.json();
+      console.log(response);
+      setEmployee(response.data);
+    } catch (error) {
+      console.error('Error fetching options:', error);
+    }
+  };
+  
+  const fetchEventBookingList = async () => {
+    try {
+      const request = await fetch(Variables.apiURL + "EventBooking");
+      if (!request.ok) {
+        throw new Error('Failed to fetch options');
+      }
+      const response = await request.json();
+      console.log(response);
+      setEventBooking(response.data);
+    } catch (error) {
+      console.error('Error fetching options:', error);
+    }
+  };
 
   const fetchEmployeeEvent = async () => {
     try {
@@ -30,7 +63,7 @@ function AddEmployeeEvent() {
       const response = await request.json();
       console.log(response);
       setEmployeeID(response.data.employeeID);
-      setEventID(response.data.eventID);
+      setBookingID(response.data.eventID);
       
     } catch (error) {
       console.error('Error fetching options:', error);
@@ -45,14 +78,14 @@ function AddEmployeeEvent() {
       body = JSON.stringify({
         employeeEventID: id,
         employeeID: employeeID,
-        eventID: eventID,
+        eventID: bookingID,
         
       });
     } else {
       body = JSON.stringify({
         employeeEventID: id,
         employeeID: employeeID,
-        eventID: eventID,
+        eventID: bookingID,
       });
     }
     const url = id ? Variables.apiURL + "EmployeeEvent/update" : Variables.apiURL + "EmployeeEvent/add";
@@ -72,6 +105,14 @@ function AddEmployeeEvent() {
         alert("Failed");
       })
   };
+  const handleChangeEvent = (e) => {
+    setEmployeeID(e.target.value);
+    setBookingID(e.target.value);
+  };
+  const handleChangeBooking = (e) => {
+    
+    setBookingID(e.target.value);
+  };
   useScript("/assets/js/scripts.js");
   useScript("/assets/js/custom.js");
 
@@ -89,14 +130,21 @@ function AddEmployeeEvent() {
                     </div>
                     <div class="card-body">
                      
-                      <div class="form-group">
-                        <label>employeeID</label>
-                        <input type="email" class="form-control"  value={employeeID} onChange={(e) => setEmployeeID(e.target.value)} required=""/>
-                      </div>
-                      <div class="form-group">
-                        <label>eventID</label>
-                        <input type="email" class="form-control" value={eventID} onChange={(e) => setEventID(e.target.value)} required=""/>
-                      </div>
+                    <select class="form-control" value={employeeID} onChange={handleChangeEvent}>
+                        <option value="" >EmployeeID </option>
+                        {employee.map(Employee => (
+                          <option key={Employee.employeeID} value={Employee.employeeID}>{Employee.name}</option>
+                        ))}
+                      </select>
+                      <br/>
+                      <br/>
+                      <br/>
+                      <select class="form-control" value={bookingID } onChange={handleChangeBooking}>
+                        <option value="" >EventID</option>
+                        {eventbooking.map(EventBooking => (
+                          <option key={EventBooking.bookingID } value={EventBooking.bookingID }>{EventBooking.bookingTyp}-{EventBooking.customerName}</option>
+                        ))}
+                      </select>
                       
                     </div>
                     <div class="card-footer text-right">

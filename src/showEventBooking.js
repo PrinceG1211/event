@@ -91,6 +91,7 @@ function ShowEventBooking() {
                           <th>noOfGuest</th>
                           <th>subTotal</th>
                           <th>totalCost</th>
+                          <th>EventDetail</th>
                           <th>Edit</th>
                           <th>Delete</th>
                         </tr>
@@ -112,6 +113,9 @@ function ShowEventBooking() {
                               <td>{eventBookinkg.noOfGuest}</td>
                               <td>{eventBookinkg.subTotal}</td>
                               <td>{eventBookinkg.totalCost}</td>
+                              <td>
+                                <Link className="btn btn-icon icon-left btn-outline-info" to={`/EventBooking/EventDetail/${eventBookinkg.bookingID}`}><i className="far fa-edit"></i>EventDetail</Link>
+                                </td>
                               <td>
                                 <Link className="btn btn-icon icon-left btn-outline-info" to={`/editEventBooking/${eventBookinkg.bookingID}`}><i className="far fa-edit"></i>Edit</Link>
                                 </td>

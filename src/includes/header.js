@@ -3,7 +3,7 @@ import feather from 'feather-icons';
 import { Link, useNavigate } from 'react-router-dom';
 import { Variables } from '../utils/Variables';
 function Header() {
-  
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [name, setName] = useState('');
   const [image, setImage] = useState('');
@@ -14,7 +14,7 @@ function Header() {
     if (sessionStorage.getItem("isLogin")) {
       console.log("User ID : " + sessionStorage.getItem("userID"));
       const userID = sessionStorage.getItem("userID");
-     fetchAuth(sessionStorage.getItem("userID"));
+      fetchAuth(sessionStorage.getItem("userID"));
     }
     feather.replace();
   }, []);
@@ -25,7 +25,7 @@ function Header() {
   const fetchAuth = (id) => {
     try {
       const url = Variables.apiURL + "Auth/" + id;
-      console.log("url : "+url);
+      console.log("url : " + url);
       fetch(url, {
         method: "GET",
         headers: { accept: "Application/json", "content-type": "Application/json", },
@@ -107,7 +107,7 @@ function Header() {
             <li><a href="login">Login</a></li>
           </>
           ) : (<>
-            <li> 
+            <li>
               <ul>
                 <li className="dropdown"><a href="#" data-toggle="dropdown"
                   className="nav-link dropdown-toggle nav-link-lg nav-link-user"> <img alt="image" src="assets/img/user.png"
@@ -127,11 +127,11 @@ function Header() {
                   </div>
                 </li>
               </ul>
-          </li>
-        </>)}
-      </ul>
+            </li>
+          </>)}
+        </ul>
 
-    </nav >
+      </nav >
       <div className="main-sidebar sidebar-style-2">
         <aside id="sidebar-wrapper">
 
@@ -144,59 +144,94 @@ function Header() {
               <div className="user-role">EVENT MANAGEMENT</div>
             </div>
           </div>
-          <ul className="sidebar-menu">
-            <li className="menu-header">Main</li>
-            <li className="dropdown active">
-              <Link to="/" className="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></Link>
-            </li>
-            <li className="dropdown">
-              <Link to="/showCity" className="nav-link"><i data-feather="map"></i><span>City</span></Link>
-            </li>
-            <li className="dropdown">
-              <Link to="/showArea" className="nav-link"><i data-feather="map-pin"></i><span>Area</span></Link>
-            </li>
-            <li className="dropdown">
-              <Link to="/showEmployee" className="nav-link"><i data-feather="user"></i><span>Employee</span></Link>
-            </li>
-            <li className="dropdown">
-              <Link to="/showCustomer" className="nav-link"><i data-feather="users"></i><span>Customer</span></Link>
-            </li>
-            <li className="dropdown">
-              <Link to="/showEmployeeEvent" className="nav-link"><i data-feather="mic"></i><span>EmployeeEvent</span></Link>
-            </li>
-            <li className="dropdown">
-              <Link to="/showEventBooking" className="nav-link"><i data-feather="calendar"></i><span>EventBooking</span></Link>
-            </li>
-            <li className="dropdown">
-              <Link to="/showEventDetail" className="nav-link"><i data-feather="list"></i><span>EventDetail</span></Link>
-            </li>
-            <li className="dropdown">
-              <Link to="/showHotel" className="nav-link"><i data-feather="home"></i><span>Hotel</span></Link>
-            </li>
-            <li className="dropdown">
-              <Link to="/showImage" className="nav-link"><i data-feather="image"></i><span>Image</span></Link>
-            </li>
-            <li className="dropdown">
-              <Link to="/showInquiry" className="nav-link"><i data-feather="info"></i><span>Inquiry</span></Link>
-            </li>
-            <li className="dropdown">
-              <Link to="/showPackageDetail" className="nav-link"><i data-feather="package"></i><span>PackageDetail</span></Link>
-            </li>
-            <li className="dropdown">
-              <Link to="/showVendor" className="nav-link"><i data-feather="user-check"></i><span>Vendor</span></Link>
-            </li>
-            <li className="dropdown">
-              <Link to="/showVendorCategory" className="nav-link"><i data-feather="codepen"></i><span>VendorCategory</span></Link>
-            </li>
-            <li className="dropdown">
-              <Link to="/showVenue" className="nav-link"><i data-feather="map-pin"></i><span>Venue</span></Link>
-            </li>
-          </ul>
+
+
+          {sessionStorage.getItem("userType") == "Admin" ? (<>
+
+            <ul className="sidebar-menu">
+              <li className="menu-header">Main</li>
+              <li className="dropdown active">
+                <Link to="/" className="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></Link>
+              </li>
+              <li className="dropdown">
+                <Link to="/showCity" className="nav-link"><i data-feather="map"></i><span>City</span></Link>
+              </li>
+              <li className="dropdown">
+                <Link to="/showArea" className="nav-link"><i data-feather="map-pin"></i><span>Area</span></Link>
+              </li>
+              <li className="dropdown">
+                <Link to="/showEmployee" className="nav-link"><i data-feather="user"></i><span>Employee</span></Link>
+              </li>
+              <li className="dropdown">
+                <Link to="/showCustomer" className="nav-link"><i data-feather="users"></i><span>Customer</span></Link>
+              </li>
+              <li className="dropdown">
+                <Link to="/showEmployeeEvent" className="nav-link"><i data-feather="mic"></i><span>EmployeeEvent</span></Link>
+              </li>
+              <li className="dropdown">
+                <Link to="/showEventBooking" className="nav-link"><i data-feather="calendar"></i><span>EventBooking</span></Link>
+              </li>
+              <li className="dropdown">
+                <Link to="/showEventDetail" className="nav-link"><i data-feather="list"></i><span>EventDetail</span></Link>
+              </li>
+              <li className="dropdown">
+                <Link to="/showHotel" className="nav-link"><i data-feather="home"></i><span>Hotel</span></Link>
+              </li>
+              <li className="dropdown">
+                <Link to="/showInquiry" className="nav-link"><i data-feather="info"></i><span>Inquiry</span></Link>
+              </li>
+              <li className="dropdown">
+                <Link to="/showPackageDetail" className="nav-link"><i data-feather="package"></i><span>PackageDetail</span></Link>
+              </li>
+              <li className="dropdown">
+                <Link to="/showVendor" className="nav-link"><i data-feather="user-check"></i><span>Vendor</span></Link>
+              </li>
+              <li className="dropdown">
+                <Link to="/showVendorCategory" className="nav-link"><i data-feather="codepen"></i><span>VendorCategory</span></Link>
+              </li>
+              <li className="dropdown">
+                <Link to="/showVenue" className="nav-link"><i data-feather="map-pin"></i><span>Venue</span></Link>
+              </li>
+            </ul>
+          </>
+          ) : sessionStorage.getItem("userType") == "Employee" ? (<>
+
+            <ul className="sidebar-menu">
+              <li className="menu-header">Main</li>
+              <li className="dropdown active">
+                <Link to="/" className="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></Link>
+              </li>
+              <li className="dropdown">
+                <Link to="/showEventBooking" className="nav-link"><i data-feather="calendar"></i><span>EventBooking</span></Link>
+              </li>
+              <li className="dropdown">
+                <Link to="/showEventDetail" className="nav-link"><i data-feather="list"></i><span>EventDetail</span></Link>
+              </li>
+            </ul>
+          </>
+          ) : (<>
+          
+            <ul className="sidebar-menu">
+              <li className="menu-header">Main</li>
+              <li className="dropdown active">
+                <Link to="/" className="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></Link>
+              </li>
+              <li className="dropdown">
+                <Link to="/showEmployeeEvent" className="nav-link"><i data-feather="mic"></i><span>EmployeeEvent</span></Link>
+              </li>
+              <li className="dropdown">
+                <Link to="/showEventBooking" className="nav-link"><i data-feather="calendar"></i><span>EventBooking</span></Link>
+              </li>
+              
+             
+            </ul>
+          </>)}
+
 
 
         </aside>
       </div>
-  </>
- );
+    </>
+  );
 }
 export default Header;

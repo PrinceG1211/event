@@ -14,6 +14,7 @@ function Dashboard() {
     const [areaList, setAreaList] = useState([]);
     const [cityList, setCityList] = useState([]);
     const [eventBooking, setEventBooking] = useState([]);
+    const [totalIncome, setTotalIncome] = useState([]);
     const [employeeEvent, setEmployeeEvent] = useState([]);
     const navigate = useNavigate();
     useEffect(() => {
@@ -28,6 +29,7 @@ function Dashboard() {
         fetchCity()
         fetchEventBooking()
         fetchEmployeeEvent()
+        fetchIncome()
 
     }, []);
 
@@ -157,6 +159,24 @@ function Dashboard() {
                 alert("Failed");
             });
     };
+
+    const fetchIncome = () => {
+        fetch(Variables.apiURL + "EventBooking/income", {
+            method: "GET",
+            headers: {
+                accept: "Application/json",
+                "content-type": "Application/json",
+                // "Authorization": "Bearer " + token
+            }
+        }).then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                setTotalIncome(data.data.TotalPackagePrice);
+            }, (error) => {
+                console.log(error);
+                alert("Failed");
+            });
+    };
       
     const fetchEmployeeEvent = () => {
         fetch(Variables.apiURL + "EmployeeEvent", {
@@ -203,7 +223,7 @@ function Dashboard() {
                         
                     </Link>
                     </div>
-                    
+                
                         <div class="col-xl-3 col-lg-6">
                         <Link to="/showEmployee">
                         <div class="card">
@@ -317,6 +337,23 @@ function Dashboard() {
                                         <h4><span>{employeeEvent.length}</span></h4>
                                     </div>
                                     <i class="fas fa-id-badge col-Crimson font-30 p-r-30"></i>
+                                </div>
+                                <canvas id="cardChart1" height="80"></canvas>
+                            </div>
+                        </div>
+                        </Link>
+                    </div>
+                    <div class="col-xl-3 col-lg-6">
+                    <Link to="#">
+                        <div class="card">
+                            <div class="card-bg">
+                                <div class="p-t-20 d-flex justify-content-between">
+                                    <div class="col">
+                                        <h4 class="mb-0">Income</h4>
+                                        <br />
+                                        <h4><span>{totalIncome}</span></h4>
+                                    </div>
+                                    <i class="fas fa-rupee-sign col-Crimson font-30 p-r-30"></i>
                                 </div>
                                 <canvas id="cardChart1" height="80"></canvas>
                             </div>
