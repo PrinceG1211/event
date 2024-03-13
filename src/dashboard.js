@@ -17,6 +17,11 @@ function Dashboard() {
     const [totalIncome, setTotalIncome] = useState([]);
     const [employeeEvent, setEmployeeEvent] = useState([]);
     const navigate = useNavigate();
+    const currencyOptions = {
+        style: 'currency',
+        currency: 'INR' // Indian Rupee
+      };
+    
     useEffect(() => {
         if (!sessionStorage.getItem("isLogin")) {
             navigate("/login");
@@ -171,7 +176,8 @@ function Dashboard() {
         }).then((response) => response.json())
             .then((data) => {
                 console.log(data);
-                setTotalIncome(data.data.TotalPackagePrice);
+               const tincome= new Intl.NumberFormat('en-IN', currencyOptions).format(data.data.TotalPackagePrice);
+                setTotalIncome(tincome );
             }, (error) => {
                 console.log(error);
                 alert("Failed");
