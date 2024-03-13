@@ -116,7 +116,7 @@ function ShowEventBooking() {
                               <td>{eventBookinkg.subTotal}</td>
                               <td>{eventBookinkg.totalCost}</td>
                               <td>
-                                <Link className="btn btn-icon icon-left btn-outline-info" to={`/EventBooking/EventDetail/${eventBookinkg.bookingID}`}><i className="far fa-edit"></i>EventDetail</Link>
+                                <Link className="btn btn-icon icon-left btn-outline-info" to={`/EventBooking/EventDetail/${eventBookinkg.bookingID}/booking`}><i className="far fa-edit"></i>EventDetail</Link>
                                 </td>
                                 {sessionStorage.getItem("userType") == "Admin" ? (<>
                               <td>

@@ -7,6 +7,7 @@ import { Link, useParams } from "react-router-dom";
 
 function ShowEventDetail() {
   const {id} = useParams();
+  const {type} = useParams();
   const [eventDetailList, setEventDetailList] = useState([]);
   useEffect(() => {
 
@@ -103,7 +104,7 @@ function ShowEventDetail() {
                               <td>{eventDetail.details}</td>
                               <td>{eventDetail.status}</td>
                               <td>
-                                <Link className="btn btn-icon icon-left btn-outline-info" to={`/editEventDetail/${eventDetail.eventDetailID}`}><i className="far fa-edit"></i>Edit</Link>
+                                <Link className="btn btn-icon icon-left btn-outline-info" to={`/editEventDetail/${eventDetail.eventDetailID}/${type}`}><i className="far fa-edit"></i>Edit</Link>
                               </td>
                               <td>
                                 <button className="btn btn-icon icon-left btn-outline-danger" onClick={() => handleDelete(eventDetail.eventDetailID)}><i className="fas fa-times"></i>Delete</button>

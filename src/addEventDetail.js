@@ -16,6 +16,7 @@ function AddEventDetail() {
   const [details, setDetails] = useState("");
   const [status, setStatus] = useState("");
   const { id } = useParams();
+  const { type } = useParams();
   const navigate = useNavigate();
   
   useEffect(() => {
@@ -97,7 +98,9 @@ function AddEventDetail() {
         status: status,
       });
     }
+    console.log(body);
     const url = id ? Variables.apiURL + "EventDetail/update" : Variables.apiURL + "EventDetail/add";
+    console.log(url);
     fetch(url, {
       method: "POST",
       headers: { accept: "Application/json", "content-type": "Application/json", },
@@ -107,7 +110,13 @@ function AddEventDetail() {
         console.log(data);
         if (data.status === "success") {
           console.log("Success");
-          navigate("/showEventDetail");
+          console.log(type);
+          if(type==="booking"){
+            navigate("/EventBooking/EventDetail/"+eventID+"/"+type);
+          }else{
+            navigate("/showEventDetail");
+          }
+          
         }
       }, (error) => {
         console.log(error);
