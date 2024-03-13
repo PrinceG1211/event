@@ -37,42 +37,42 @@ function AddCustomer() {
     }
   };
 
-  const handleSubmit = (e) => {
-    
-    e.preventDefault();
-    var body = [];
-    if (id) {
-      body = JSON.stringify({
-        customerID: id,
-        name: name,
-        email: email,
-        mobileNo:mobileNo,
-      });
-    } else {
-      body = JSON.stringify({
-        customerID: id,
-        name: name,
-        email: email,
-        mobileNo:mobileNo,
-      });
-    }
-    const url = id ? Variables.apiURL + "Customer/update" : Variables.apiURL + "Customer/add";
-    fetch(url, {
-      method: "POST",
-      headers: { accept: "Application/json", "content-type": "Application/json", },
-      body: body
-    }).then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        if (data.status === "success") {
-          console.log("Success");
-          navigate("/showCity");
-        }
-      }, (error) => {
-        console.log(error);
-        alert("Failed");
-      })
-  };
+    const handleSubmit = (e) => {
+      
+      e.preventDefault();
+      var body = [];
+      if (id) {
+        body = JSON.stringify({
+          customerID: id,
+          name: name,
+          email: email,
+          mobileNo:mobileNo,
+        });
+      } else {
+        body = JSON.stringify({
+          customerID: id,
+          name: name,
+          email: email,
+          mobileNo:mobileNo,
+        });
+      }
+      const url = id ? Variables.apiURL + "Customer/update" : Variables.apiURL + "Customer/add";
+      fetch(url, {
+        method: "POST",
+        headers: { accept: "Application/json", "content-type": "Application/json", },
+        body: body
+      }).then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          if (data.status === "success") {
+            console.log("Success");
+            navigate("/showCity");
+          }
+        }, (error) => {
+          console.log(error);
+          alert("Failed");
+        })
+    };
   useScript("/assets/js/scripts.js");
   useScript("/assets/js/custom.js");
 

@@ -110,7 +110,7 @@ function Header() {
             <li>
               <ul>
                 <li className="dropdown"><a href="#" data-toggle="dropdown"
-                  className="nav-link dropdown-toggle nav-link-lg nav-link-user"> <img alt="image" src="assets/img/user.png"
+                  className="nav-link dropdown-toggle nav-link-lg nav-link-user"> <img alt="image" src="assets/img/adminuser.png"
                     className="user-img-radious-style" /> <span className="d-sm-none d-lg-inline-block"></span></a>
                   <div className="dropdown-menu dropdown-menu-right pullDown">
                     <div className="dropdown-title">{name}</div>

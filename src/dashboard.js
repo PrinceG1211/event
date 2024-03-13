@@ -176,8 +176,12 @@ function Dashboard() {
         }).then((response) => response.json())
             .then((data) => {
                 console.log(data);
-               const tincome= new Intl.NumberFormat('en-IN', currencyOptions).format(data.data.TotalPackagePrice);
-                setTotalIncome(tincome );
+                setTotalIncome(new Intl.NumberFormat('en-IN', currencyOptions).format(0));
+                if(data.data != null)
+                {
+                setTotalIncome(new Intl.NumberFormat('en-IN', currencyOptions).format(data.data.TotalPackagePrice));
+                }
+               
             }, (error) => {
                 console.log(error);
                 alert("Failed");
