@@ -166,7 +166,11 @@ function Dashboard() {
     };
 
     const fetchIncome = () => {
-        fetch(Variables.apiURL + "EventBooking/income", {
+        var url = Variables.apiURL + "EventBooking/income";
+    if(sessionStorage.getItem("userType") === "Vendor"){
+      url = Variables.apiURL + "EventBooking/getbyVendorincome/"+sessionStorage.getItem("userID"); 
+    } 
+        fetch(url, {
             method: "GET",
             headers: {
                 accept: "Application/json",
@@ -212,6 +216,8 @@ function Dashboard() {
     useScript("/assets/js/custom.js");
     return (<>
         <Header></Header>
+        {sessionStorage.getItem("userType") == "Admin" ? (<>
+
         <div class="main-content">
             <section class="section">
                 <div class="row ">
@@ -375,6 +381,135 @@ function Dashboard() {
             </section>
 
         </div>
+        </>
+          ) : sessionStorage.getItem("userType") == "Employee" ? (<>
+          
+        <div class="main-content">
+            <section class="section">
+                <div class="row ">
+                    <div class="col-xl-3 col-lg-6">
+                    <Link to="/showArea">
+                        <div class="card">
+                            <div class="card-bg">
+                                <div class="p-t-20 d-flex justify-content-between">
+                                    <div class="col">
+                                        <h4 class="mb-0">Area</h4>
+                                        <br />
+                                        <h4><span>{areaList.length}</span></h4>
+                                    </div>
+                                    <i class="fas fa-map-marked-alt col-white font-30 p-r-30"></i>
+                                </div>
+                                <canvas id="cardChart1" height="80"></canvas>
+                            </div>
+                        </div>
+                        </Link>
+                    </div>
+                    <div class="col-xl-3 col-lg-6">
+                    <Link to="/showCity">
+                        <div class="card">
+                            <div class="card-bg">
+                                <div class="p-t-20 d-flex justify-content-between">
+                                    <div class="col">
+                                        <h4 class="mb-0">City</h4>
+                                        <br />
+                                        <h4><span>{cityList.length}</span></h4>
+                                    </div>
+                                    <i class="fas fa-map-marker-alt col-red font-30 p-r-30"></i>
+                                </div>
+                                <canvas id="cardChart1" height="80"></canvas>
+                            </div>
+                        </div>
+                        </Link>
+                    </div>
+                    <div class="col-xl-3 col-lg-6">
+                    <Link to="/showEventBooking">
+                        <div class="card">
+                            <div class="card-bg">
+                                <div class="p-t-20 d-flex justify-content-between">
+                                    <div class="col">
+                                        <h4 class="mb-0">EventBooking</h4>
+                                        <br />
+                                        <h4><span>{eventBooking.length}</span></h4>
+                                    </div>
+                                    <i class="fas fa-calendar-alt col-brown font-30 p-r-30"></i>
+                                </div>
+                                <canvas id="cardChart1" height="80"></canvas>
+                            </div>
+                        </div>
+                        </Link>
+                    </div>
+                    <div class="col-xl-3 col-lg-6">
+                    <Link to="/showEmployeeEvent">
+                        <div class="card">
+                            <div class="card-bg">
+                                <div class="p-t-20 d-flex justify-content-between">
+                                    <div class="col">
+                                        <h4 class="mb-0">EventEmployee</h4>
+                                        <br />
+                                        <h4><span>{employeeEvent.length}</span></h4>
+                                    </div>
+                                    <i class="fas fa-id-badge col-Crimson font-30 p-r-30"></i>
+                                </div>
+                                <canvas id="cardChart1" height="80"></canvas>
+                            </div>
+                        </div>
+                        </Link>
+                    </div>
+                    
+                </div>
+
+            </section>
+
+        </div>
+        </>
+          ) : sessionStorage.getItem("userType") == "Vendor" ? (<>
+            
+        <div class="main-content">
+            <section class="section">
+                <div class="row ">
+                   
+                    <div class="col-xl-3 col-lg-6">
+                    <Link to="/showEventBooking">
+                        <div class="card">
+                            <div class="card-bg">
+                                <div class="p-t-20 d-flex justify-content-between">
+                                    <div class="col">
+                                        <h4 class="mb-0">EventBooking</h4>
+                                        <br />
+                                        <h4><span>{eventBooking.length}</span></h4>
+                                    </div>
+                                    <i class="fas fa-calendar-alt col-brown font-30 p-r-30"></i>
+                                </div>
+                                <canvas id="cardChart1" height="80"></canvas>
+                            </div>
+                        </div>
+                        </Link>
+                    </div>
+                    
+                    <div class="col-xl-3 col-lg-6">
+                    <Link to="#">
+                        <div class="card">
+                            <div class="card-bg">
+                                <div class="p-t-20 d-flex justify-content-between">
+                                    <div class="col">
+                                        <h4 class="mb-0">Income</h4>
+                                        <br />
+                                        <h4><span>{totalIncome}</span></h4>
+                                    </div>
+                                    <i class="fas fa-rupee-sign col-Crimson font-30 p-r-30"></i>
+                                </div>
+                                <canvas id="cardChart1" height="80"></canvas>
+                            </div>
+                        </div>
+                        </Link>
+                    </div>
+                </div>
+
+            </section>
+
+        </div>
+        </>
+          ):(<></>)}
         <Footer></Footer>
     </>);
 }

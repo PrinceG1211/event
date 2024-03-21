@@ -258,26 +258,19 @@ function Header() {
               </li>
             </ul>
           </>
-          ) : (<>
+          ) : sessionStorage.getItem("userType") == "Vendor" ? (<>
           
             <ul className="sidebar-menu">
               <li className="menu-header">Main</li>
               <li className="dropdown active">
                 <Link to="/" className="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></Link>
               </li>
-              <li className="dropdown">
-                <Link to="/showEmployeeEvent" className="nav-link"><i data-feather="mic"></i><span>EmployeeEvent</span></Link>
-              </li>
-              <li className="dropdown">
+               <li className="dropdown">
                 <Link to="/showEventBooking" className="nav-link"><i data-feather="calendar"></i><span>EventBooking</span></Link>
               </li>
-              
-             
-            </ul>
-          </>)}
-
-
-
+             </ul>
+          </>
+          ):(<></>)}
         </aside>
       </div>
     </>
