@@ -10,8 +10,14 @@ function ShowEventDetail() {
   const {type} = useParams();
   const [eventDetailList, setEventDetailList] = useState([]);
   useEffect(() => {
-
-    fetch(Variables.apiURL + "EventDetail/getbyevent/" +id, {
+    var url = Variables.apiURL + "EventDetail/getbyevent/" +id;
+    if(sessionStorage.getItem("userType") === "Vendor"){
+      url = Variables.apiURL + "EventDetail/getbyeventVendor/"+id+"/"+sessionStorage.getItem("userID"); 
+    }
+    if(sessionStorage.getItem("userType") === "Venue"){
+      url = Variables.apiURL + "EventDetail/getbyeventVenue/"+id+"/"+sessionStorage.getItem("userID"); 
+    }
+    fetch(url, {
       method: "GET",
       headers: {
         accept: "Application/json",

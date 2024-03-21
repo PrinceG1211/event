@@ -9,8 +9,15 @@ function ShowEventBooking() {
   useScript('/assets/bundles/echart/echarts.js');
   const [eventBookinkgList, setEventBookingList] = useState([]);
   useEffect(() => {
-
-    fetch(Variables.apiURL + "EventBooking", {
+    var url = Variables.apiURL + "EventBooking";
+    if(sessionStorage.getItem("userType") === "Vendor"){
+      url += "/getbyeventbookingVendor/"+sessionStorage.getItem("userID"); 
+    }
+    if(sessionStorage.getItem("userType") === "Venue"){
+      url += "/getbyeventbookingVenue/"+sessionStorage.getItem("userID"); 
+    }
+    
+    fetch(url, {
       method: "GET",
       headers: {
         accept: "Application/json",

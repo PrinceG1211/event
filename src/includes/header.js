@@ -14,7 +14,14 @@ function Header() {
     if (sessionStorage.getItem("isLogin")) {
       console.log("User ID : " + sessionStorage.getItem("userID"));
       const userID = sessionStorage.getItem("userID");
-      fetchAuth(sessionStorage.getItem("userID"));
+      if(sessionStorage.getItem("userType") === "Vendor"){
+        fetchVendor(sessionStorage.getItem("userID"));
+      }else if(sessionStorage.getItem("userType") === "Venue"){
+        fetchVenue(sessionStorage.getItem("userID"));
+      }else{
+        fetchAuth(sessionStorage.getItem("userID"));
+      }
+      
     }
     feather.replace();
   }, []);
@@ -34,6 +41,48 @@ function Header() {
           console.log(data);
 
           setName(data.data.userName);
+          setImage(data.data.image);
+        }, (error) => {
+          console.log(error);
+          alert("Failed");
+        });
+    } catch (error) {
+      console.error('Error fetching options:', error);
+    }
+  };
+  const fetchVenue = (id) => {
+    try {
+      const url = Variables.apiURL + "Venue/" + id;
+      console.log("url : " + url);
+      fetch(url, {
+        method: "GET",
+        headers: { accept: "Application/json", "content-type": "Application/json", },
+      }).then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+
+          setName(data.data.contactPerson);
+          setImage(data.data.image);
+        }, (error) => {
+          console.log(error);
+          alert("Failed");
+        });
+    } catch (error) {
+      console.error('Error fetching options:', error);
+    }
+  };
+  const fetchVendor = (id) => {
+    try {
+      const url = Variables.apiURL + "Vendor/" + id;
+      console.log("url : " + url);
+      fetch(url, {
+        method: "GET",
+        headers: { accept: "Application/json", "content-type": "Application/json", },
+      }).then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+
+          setName(data.data.vendorName);
           setImage(data.data.image);
         }, (error) => {
           console.log(error);
