@@ -174,9 +174,9 @@ function Header() {
               <li className="dropdown">
                 <Link to="/showEventDetail" className="nav-link"><i data-feather="list"></i><span>EventDetail</span></Link>
               </li>
-              <li className="dropdown">
+              {/* <li className="dropdown">
                 <Link to="/showHotel" className="nav-link"><i data-feather="home"></i><span>Hotel</span></Link>
-              </li>
+              </li> */}
               <li className="dropdown">
                 <Link to="/showInquiry" className="nav-link"><i data-feather="info"></i><span>Inquiry</span></Link>
               </li>
