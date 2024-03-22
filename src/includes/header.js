@@ -14,14 +14,16 @@ function Header() {
     if (sessionStorage.getItem("isLogin")) {
       console.log("User ID : " + sessionStorage.getItem("userID"));
       const userID = sessionStorage.getItem("userID");
-      if(sessionStorage.getItem("userType") === "Vendor"){
+      if (sessionStorage.getItem("userType") === "Vendor") {
         fetchVendor(sessionStorage.getItem("userID"));
-      }else if(sessionStorage.getItem("userType") === "Venue"){
+      } else if (sessionStorage.getItem("userType") === "Venue") {
         fetchVenue(sessionStorage.getItem("userID"));
-      }else{
+      } else {
         fetchAuth(sessionStorage.getItem("userID"));
       }
-      
+
+    } else {
+      navigate("/login");
     }
     feather.replace();
   }, []);
@@ -39,9 +41,14 @@ function Header() {
       }).then((response) => response.json())
         .then((data) => {
           console.log(data);
+          if (data.status === "success") {
+            setName(data.data.userName);
+            setImage(data.data.image);
+          } else {
+            setName([]);
+            setImage([]);
+          }
 
-          setName(data.data.userName);
-          setImage(data.data.image);
         }, (error) => {
           console.log(error);
           alert("Failed");
@@ -104,14 +111,7 @@ function Header() {
               <i data-feather="maximize"></i>
             </a></li>
             <li>
-              <form className="form-inline mr-auto">
-                <div className="search-element">
-                  <input className="form-control" type="search" placeholder="Search" aria-label="Search" data-width="200" />
-                  <button className="btn" type="submit">
-                    <i className="fas fa-search"></i>
-                  </button>
-                </div>
-              </form>
+
             </li>
           </ul>
         </div>
@@ -157,7 +157,7 @@ function Header() {
           </>
           ) : (<>
             <li>
-              <ul>
+              
                 <li className="dropdown"><a href="#" data-toggle="dropdown"
                   className="nav-link dropdown-toggle nav-link-lg nav-link-user"> <img alt="image" src="assets/img/adminuser.png"
                     className="user-img-radious-style" /> <span className="d-sm-none d-lg-inline-block"></span></a>
@@ -165,17 +165,13 @@ function Header() {
                     <div className="dropdown-title">{name}</div>
                     <a href="profile.html" className="dropdown-item has-icon"> <i className="far
 										fa-user"></i> Profile
-                    </a> <a href="timeline.html" className="dropdown-item has-icon"> <i className="fas fa-bolt"></i>
-                      Activities
-                    </a> <a href="#" className="dropdown-item has-icon"> <i className="fas fa-cog"></i>
-                      Settings
-                    </a>
+                    </a> 
                     <a onClick={() => logout()} className="dropdown-item has-icon text-danger"> <i className="fas fa-sign-out-alt"></i>
                       Logout
                     </a>
                   </div>
                 </li>
-              </ul>
+              
             </li>
           </>)}
         </ul>
@@ -202,11 +198,13 @@ function Header() {
               <li className="dropdown active">
                 <Link to="/" className="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></Link>
               </li>
-              <li className="dropdown">
-                <Link to="/showCity" className="nav-link"><i data-feather="map"></i><span>City</span></Link>
-              </li>
-              <li className="dropdown">
-                <Link to="/showArea" className="nav-link"><i data-feather="map-pin"></i><span>Area</span></Link>
+              <li class="dropdown">
+                <a href="#" class="nav-link has-dropdown"><i data-feather="globe"></i><span>Cities</span></a>
+                <ul class="dropdown-menu">
+                  <li><Link to="/showCity" className="nav-link"><i data-feather="navigation"></i><span>City</span></Link></li>
+                  <li><Link to="/showArea" className="nav-link"><i data-feather="map-pin"></i><span>Area</span></Link></li>
+                  <li><Link to="/showVenue" className="nav-link"><i data-feather="map"></i><span>Venue</span></Link></li>
+                </ul>
               </li>
               <li className="dropdown">
                 <Link to="/showEmployee" className="nav-link"><i data-feather="user"></i><span>Employee</span></Link>
@@ -214,15 +212,23 @@ function Header() {
               <li className="dropdown">
                 <Link to="/showCustomer" className="nav-link"><i data-feather="users"></i><span>Customer</span></Link>
               </li>
-              <li className="dropdown">
-                <Link to="/showEmployeeEvent" className="nav-link"><i data-feather="mic"></i><span>EmployeeEvent</span></Link>
+              <li class="dropdown">
+                <a href="#" class="nav-link has-dropdown"><i data-feather="gift"></i><span>Event</span></a>
+                <ul class="dropdown-menu">
+                  <li><Link to="/showEmployeeEvent" className="nav-link"><i data-feather="mic"></i><span>EmployeeEvent</span></Link></li>
+                  <li><Link to="/showEventBooking" className="nav-link"><i data-feather="calendar"></i><span>EventBooking</span></Link></li>
+                  <li><Link to="/showEventDetail" className="nav-link"><i data-feather="list"></i><span>EventDetail</span></Link></li>
+                </ul>
               </li>
-              <li className="dropdown">
-                <Link to="/showEventBooking" className="nav-link"><i data-feather="calendar"></i><span>EventBooking</span></Link>
+              <li class="dropdown">
+                <a href="#" class="nav-link has-dropdown"><i data-feather="grid"></i><span>Vendor</span></a>
+                <ul class="dropdown-menu">
+                  <li><Link to="/showVendorCategory" className="nav-link"><i data-feather="codepen"></i><span>VendorCategory</span></Link></li>
+                  <li><Link to="/showVendor" className="nav-link"><i data-feather="user-check"></i><span>Vendor</span></Link></li>
+                  
+                </ul>
               </li>
-              <li className="dropdown">
-                <Link to="/showEventDetail" className="nav-link"><i data-feather="list"></i><span>EventDetail</span></Link>
-              </li>
+             
               {/* <li className="dropdown">
                 <Link to="/showHotel" className="nav-link"><i data-feather="home"></i><span>Hotel</span></Link>
               </li> */}
@@ -233,13 +239,7 @@ function Header() {
                 <Link to="/showPackageDetail" className="nav-link"><i data-feather="package"></i><span>PackageDetail</span></Link>
               </li>
               <li className="dropdown">
-                <Link to="/showVendor" className="nav-link"><i data-feather="user-check"></i><span>Vendor</span></Link>
-              </li>
-              <li className="dropdown">
-                <Link to="/showVendorCategory" className="nav-link"><i data-feather="codepen"></i><span>VendorCategory</span></Link>
-              </li>
-              <li className="dropdown">
-                <Link to="/showVenue" className="nav-link"><i data-feather="map-pin"></i><span>Venue</span></Link>
+                
               </li>
             </ul>
           </>
@@ -259,18 +259,18 @@ function Header() {
             </ul>
           </>
           ) : sessionStorage.getItem("userType") == "Vendor" ? (<>
-          
+
             <ul className="sidebar-menu">
               <li className="menu-header">Main</li>
               <li className="dropdown active">
                 <Link to="/" className="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></Link>
               </li>
-               <li className="dropdown">
+              <li className="dropdown">
                 <Link to="/showEventBooking" className="nav-link"><i data-feather="calendar"></i><span>EventBooking</span></Link>
               </li>
-             </ul>
+            </ul>
           </>
-          ):(<></>)}
+          ) : (<></>)}
         </aside>
       </div>
     </>

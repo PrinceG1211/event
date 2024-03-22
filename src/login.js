@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Variables } from "./utils/Variables";
-import useScript from "./utils/useScript";
+
 import { useNavigate } from "react-router-dom";
     function AdminLogin() {
         const [email, setEmail] = useState("");
@@ -39,8 +39,6 @@ import { useNavigate } from "react-router-dom";
     
                
         };
-    useScript("/assets/js/custom.js");
-    useScript("/assets/js/scripts.js");
     return (
         <div id="app">
             <section class="section">

@@ -49,9 +49,15 @@ function Dashboard() {
         }).then((response) => response.json())
             .then((data) => {
                 console.log(data);
-                setVendorList(data.data);
+                if(data.status === "success"){
+                    setVendorList(data.data);
+                }else{
+                    setVendorList([]);
+                }
+                
             }, (error) => {
                 console.log(error);
+                setVendorList([]);
                 alert("Failed");
             });
     };
@@ -67,9 +73,15 @@ function Dashboard() {
         }).then((response) => response.json())
             .then((data) => {
                 console.log(data);
-                setEmployeeList(data.data);
+                if(data.status === "success"){
+                    setEmployeeList(data.data);
+                }else{
+                    setEmployeeList([]);
+                }
+               
             }, (error) => {
                 console.log(error);
+                setEmployeeList([]);
                 alert("Failed");
             });
     };
@@ -85,9 +97,15 @@ function Dashboard() {
         }).then((response) => response.json())
             .then((data) => {
                 console.log(data);
-                setEventDetailList(data.data);
+                if(data.status === "success"){
+                    setEventDetailList(data.data);
+                }else{
+                    setEventDetailList([]);
+                }
+                
             }, (error) => {
                 console.log(error);
+                setEventDetailList([]);
                 alert("Failed");
             });
     };
@@ -103,9 +121,15 @@ function Dashboard() {
         }).then((response) => response.json())
             .then((data) => {
                 console.log(data);
-                setCustomerList(data.data);
+                if(data.status === "success"){
+                    setCustomerList(data.data);
+                }else{
+                    setCustomerList([]);
+                }
+                
             }, (error) => {
                 console.log(error);
+                setCustomerList([]);
                 alert("Failed");
             });
     };
@@ -121,9 +145,15 @@ function Dashboard() {
         }).then((response) => response.json())
             .then((data) => {
                 console.log(data);
-                setAreaList(data.data);
+                if(data.status === "success"){
+                    setAreaList(data.data);
+                }else{
+                    setAreaList([]);
+                }
+                
             }, (error) => {
                 console.log(error);
+                setAreaList([]);
                 alert("Failed");
             });
     };
@@ -140,9 +170,15 @@ function Dashboard() {
         }).then((response) => response.json())
             .then((data) => {
                 console.log(data);
-                setCityList(data.data);
+                if(data.status === "success"){
+                    setCityList(data.data);
+                }else{
+                    setCityList([]);
+                }
+                
             }, (error) => {
                 console.log(error);
+                setCityList([]);
                 alert("Failed");
             });
     };
@@ -158,9 +194,14 @@ function Dashboard() {
         }).then((response) => response.json())
             .then((data) => {
                 console.log(data);
-                setEventBooking(data.data);
+                if(data.status === "success"){
+                    setEventBooking(data.data);
+                }else{
+                    setEventBooking([]);
+                }
             }, (error) => {
                 console.log(error);
+                setEventBooking([]);
                 alert("Failed");
             });
     };
@@ -188,6 +229,7 @@ function Dashboard() {
                
             }, (error) => {
                 console.log(error);
+                setTotalIncome([]);
                 alert("Failed");
             });
     };
@@ -203,9 +245,15 @@ function Dashboard() {
         }).then((response) => response.json())
             .then((data) => {
                 console.log(data);
-                setEmployeeEvent(data.data);
+                if(data.status === "success"){
+                    setEmployeeEvent(data.data);
+                }else{
+                    setEmployeeEvent([]);
+                }
+                
             }, (error) => {
                 console.log(error);
+                setEmployeeEvent([]);
                 alert("Failed");
             });
     };
@@ -229,7 +277,7 @@ function Dashboard() {
                                     <div class="col">
                                         <h4 class="mb-0">Vendor</h4>
                                         <br />
-                                        <h4><span>{VendorList.length}</span></h4>
+                                        <h4><span>{VendorList ? VendorList.length : 0}</span></h4>
                                     </div>
                                     <i class="fas fa-male col-green font-40 p-r-40"></i>
                                 </div>
@@ -248,7 +296,7 @@ function Dashboard() {
                                     <div class="col">
                                         <h4 class="mb-0">Employee</h4>
                                         <br />
-                                        <h4><span>{EmployeeList.length}</span></h4>
+                                        <h4><span>{EmployeeList ? EmployeeList.length : 0}</span></h4>
                                     </div>
                                     <i class="fas fa-id-card-alt col-orange font-30 p-r-30"></i>
                                 </div>
@@ -265,7 +313,7 @@ function Dashboard() {
                                     <div class="col">
                                         <h4 class="mb-0">Event</h4>
                                         <br />
-                                        <h4><span>{eventDetailList.length}</span></h4>
+                                        <h4><span>{eventDetailList ? eventDetailList.length : 0}</span></h4>
                                     </div>
                                     <i class="fas fa-magic col-red font-30 p-r-30"></i>
                                 </div>
@@ -282,7 +330,7 @@ function Dashboard() {
                                     <div class="col">
                                         <h4 class="mb-0">Customer</h4>
                                         <br />
-                                        <h4><span>{customerList.length}</span></h4>
+                                        <h4><span>{customerList ? customerList.length : 0}</span></h4>
                                     </div>
                                     <i class="fas fa-female col-green font-40 p-r-40"></i>
                                 </div>
@@ -299,7 +347,7 @@ function Dashboard() {
                                     <div class="col">
                                         <h4 class="mb-0">Area</h4>
                                         <br />
-                                        <h4><span>{areaList.length}</span></h4>
+                                        <h4><span>{areaList ? areaList.length : 0}</span></h4>
                                     </div>
                                     <i class="fas fa-map-marked-alt col-white font-30 p-r-30"></i>
                                 </div>
@@ -316,7 +364,7 @@ function Dashboard() {
                                     <div class="col">
                                         <h4 class="mb-0">City</h4>
                                         <br />
-                                        <h4><span>{cityList.length}</span></h4>
+                                        <h4><span>{cityList ? cityList.length : 0}</span></h4>
                                     </div>
                                     <i class="fas fa-map-marker-alt col-red font-30 p-r-30"></i>
                                 </div>
@@ -333,7 +381,7 @@ function Dashboard() {
                                     <div class="col">
                                         <h4 class="mb-0">EventBooking</h4>
                                         <br />
-                                        <h4><span>{eventBooking.length}</span></h4>
+                                        <h4><span>{eventBooking ? eventBooking.length : 0}</span></h4>
                                     </div>
                                     <i class="fas fa-calendar-alt col-brown font-30 p-r-30"></i>
                                 </div>
@@ -350,7 +398,7 @@ function Dashboard() {
                                     <div class="col">
                                         <h4 class="mb-0">EventEmployee</h4>
                                         <br />
-                                        <h4><span>{employeeEvent.length}</span></h4>
+                                        <h4><span>{employeeEvent ? employeeEvent.length : 0}</span></h4>
                                     </div>
                                     <i class="fas fa-id-badge col-Crimson font-30 p-r-30"></i>
                                 </div>
@@ -395,7 +443,7 @@ function Dashboard() {
                                     <div class="col">
                                         <h4 class="mb-0">Area</h4>
                                         <br />
-                                        <h4><span>{areaList.length}</span></h4>
+                                        <h4><span>{areaList ? areaList.length : 0}</span></h4>
                                     </div>
                                     <i class="fas fa-map-marked-alt col-white font-30 p-r-30"></i>
                                 </div>
@@ -412,7 +460,7 @@ function Dashboard() {
                                     <div class="col">
                                         <h4 class="mb-0">City</h4>
                                         <br />
-                                        <h4><span>{cityList.length}</span></h4>
+                                        <h4><span>{cityList ? cityList.length : 0}</span></h4>
                                     </div>
                                     <i class="fas fa-map-marker-alt col-red font-30 p-r-30"></i>
                                 </div>
@@ -429,7 +477,7 @@ function Dashboard() {
                                     <div class="col">
                                         <h4 class="mb-0">EventBooking</h4>
                                         <br />
-                                        <h4><span>{eventBooking.length}</span></h4>
+                                        <h4><span>{eventBooking ? eventBooking.length : 0}</span></h4>
                                     </div>
                                     <i class="fas fa-calendar-alt col-brown font-30 p-r-30"></i>
                                 </div>
@@ -446,7 +494,7 @@ function Dashboard() {
                                     <div class="col">
                                         <h4 class="mb-0">EventEmployee</h4>
                                         <br />
-                                        <h4><span>{employeeEvent.length}</span></h4>
+                                        <h4><span>{employeeEvent ? employeeEvent.length : 0}</span></h4>
                                     </div>
                                     <i class="fas fa-id-badge col-Crimson font-30 p-r-30"></i>
                                 </div>
@@ -476,7 +524,7 @@ function Dashboard() {
                                     <div class="col">
                                         <h4 class="mb-0">EventBooking</h4>
                                         <br />
-                                        <h4><span>{eventBooking.length}</span></h4>
+                                        <h4><span>{eventBooking ? eventBooking.length : 0}</span></h4>
                                     </div>
                                     <i class="fas fa-calendar-alt col-brown font-30 p-r-30"></i>
                                 </div>
