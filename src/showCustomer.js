@@ -72,7 +72,7 @@ function ShowCustomer() {
               <div class="card">
                 <div class="card-header">
                   <h4>Customer Data</h4>
-                  <Link to="/addCustomer" className="btn btn-outline-primary">Add</Link>
+                 
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
@@ -83,8 +83,7 @@ function ShowCustomer() {
                           <th>name</th>
                           <th>email</th>
                           <th>mobileNo</th>
-                          <th>Edit</th>
-                          <th>Delete</th>
+                         
                         </tr>
                       </thead>
                       <tbody>
@@ -95,12 +94,7 @@ function ShowCustomer() {
                               <td>{customer.name}</td>  
                               <td>{customer.email}</td>
                               <td>{customer.mobileNo}</td>
-                              <td>
-                                <Link className="btn btn-icon icon-left btn-outline-info" to={`/editCustomer/${customer.customerID}`}><i className="far fa-edit"></i>Edit</Link>
-                                </td>
-                                <td>
-                                <button className="btn btn-icon icon-left btn-outline-danger" onClick={() => handleDelete(customer.customerID)}><i className="fas fa-times"></i>Delete</button>
-                              </td>
+                              
                             </tr>
                           ))
                         }

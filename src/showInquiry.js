@@ -72,7 +72,7 @@ function ShowInquiry() {
               <div class="card">
                 <div class="card-header">
                   <h4>Inquiry Data</h4>
-                  <Link to="/addInquiry" className="btn btn-outline-primary">Add</Link>
+                  
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">

@@ -8,6 +8,7 @@ import { Variables } from "./utils/Variables";
 function AddCity() {
   useScript('/assets/bundles/echart/echarts.js');
   const [cityName, setCityName] = useState("");
+  const [name, setName] = useState("");
   const { id } = useParams();
   const navigate = useNavigate();
   useEffect(() => {
