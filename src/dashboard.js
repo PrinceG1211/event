@@ -305,23 +305,7 @@ function Dashboard() {
                         </div>
                         </Link>
                     </div>
-                    <div class="col-xl-3 col-lg-6">
-                    <Link to="/showEventDetail">
-                        <div class="card">
-                            <div class="card-bg">
-                                <div class="p-t-20 d-flex justify-content-between">
-                                    <div class="col">
-                                        <h4 class="mb-0">Event</h4>
-                                        <br />
-                                        <h4><span>{eventDetailList ? eventDetailList.length : 0}</span></h4>
-                                    </div>
-                                    <i class="fas fa-magic col-red font-30 p-r-30"></i>
-                                </div>
-                                <canvas id="cardChart1" height="80"></canvas>
-                            </div>
-                        </div>
-                        </Link>
-                    </div>
+                  
                     <div class="col-xl-3 col-lg-6">
                     <Link to="/showCustomer">
                         <div class="card">

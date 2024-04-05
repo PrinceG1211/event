@@ -78,7 +78,7 @@ function ShowEventBooking() {
               <div class="card">
                 <div class="card-header">
                   <h4>EventBooking Data</h4>
-                  <Link to="/addEventBooking" className="btn btn-outline-primary">Add</Link>
+                
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">

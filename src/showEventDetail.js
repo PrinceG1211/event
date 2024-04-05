@@ -80,7 +80,7 @@ function ShowEventDetail() {
               <div class="card">
                 <div class="card-header">
                   <h4>EventDetail Data</h4>
-                  <Link to="/addEventDetail" className="btn btn-outline-primary">Add</Link>
+                  
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
