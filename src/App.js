@@ -34,6 +34,7 @@ import showVenue from './showVenue';
 import './App.css';
 import { BrowserRouter as Router,Route, Routes } from 'react-router-dom';
 import AdminLogin from './login';
+import Profile from './profile';
 
 
 
@@ -100,6 +101,7 @@ function App() {
         <Route path='/showVenue' Component={showVenue}></Route>
         {/* login */}
         <Route path='/login' Component={AdminLogin}></Route>
+        <Route path='profile' Component={Profile}></Route>
         
         
       </Routes>

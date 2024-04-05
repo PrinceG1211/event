@@ -116,40 +116,8 @@ function Header() {
           </ul>
         </div>
         <ul className="navbar-nav navbar-right">
-          <li className="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
-            className="nav-link nav-link-lg message-toggle"><i data-feather="mail"></i>
-            <span className="badge headerBadge1">
-            </span> </a>
-            <div className="dropdown-menu dropdown-list dropdown-menu-right pullDown">
-              <div className="dropdown-header">
-                Messages
-                <div className="float-right">
-                  <a href="#">Mark All As Read</a>
-                </div>
-              </div>
-
-              <div className="dropdown-footer text-center">
-                <a href="#">View All <i className="fas fa-chevron-right"></i></a>
-              </div>
-            </div>
-          </li>
-          <li className="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
-            className="nav-link notification-toggle nav-link-lg"><i data-feather="bell"></i>
-            <span className="badge headerBadge2">
-            </span> </a>
-            <div className="dropdown-menu dropdown-list dropdown-menu-right pullDown">
-              <div className="dropdown-header">
-                Notifications
-                <div className="float-right">
-                  <a href="#">Mark All As Read</a>
-                </div>
-              </div>
-
-              <div className="dropdown-footer text-center">
-                <a href="#">View All <i className="fas fa-chevron-right"></i></a>
-              </div>
-            </div>
-          </li>
+          
+         
 
           {!isLoggedIn ? (<>
 
@@ -163,7 +131,7 @@ function Header() {
                     className="user-img-radious-style" /> <span className="d-sm-none d-lg-inline-block"></span></a>
                   <div className="dropdown-menu dropdown-menu-right pullDown">
                     <div className="dropdown-title">{name}</div>
-                    <a href="profile.html" className="dropdown-item has-icon"> <i className="far
+                    <a href="profile" className="dropdown-item has-icon"> <i className="far
 										fa-user"></i> Profile
                     </a> 
                     <a onClick={() => logout()} className="dropdown-item has-icon text-danger"> <i className="fas fa-sign-out-alt"></i>
