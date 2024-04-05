@@ -19,14 +19,14 @@ function AddEmployee() {
   const navigate = useNavigate();
   useEffect(() => {
     fetchEmployee();
-    if(id){
+    if (id) {
       fetchEmployee();
     }
   }, []);
 
   const fetchEmployee = async () => {
     try {
-      const request = await fetch(Variables.apiURL + "Employee/"+id);
+      const request = await fetch(Variables.apiURL + "Employee/" + id);
       if (!request.ok) {
         throw new Error('Failed to fetch options');
       }
@@ -44,7 +44,7 @@ function AddEmployee() {
   };
 
   const handleSubmit = (e) => {
-    
+
     e.preventDefault();
     var body = [];
     if (id) {
@@ -52,7 +52,7 @@ function AddEmployee() {
         employeeID: id,
         name: name,
         email: email,
-        mobileNo:mobileNo,
+        mobileNo: mobileNo,
         dob: dob,
         doj: doj,
         type: type,
@@ -62,7 +62,7 @@ function AddEmployee() {
         employeeID: id,
         name: name,
         email: email,
-        mobileNo:mobileNo,
+        mobileNo: mobileNo,
         dob: dob,
         doj: doj,
         type: type,
@@ -88,68 +88,63 @@ function AddEmployee() {
   useScript("/assets/js/scripts.js");
   useScript("/assets/js/custom.js");
 
-    return (<>
-        <Header></Header>
-        <div class="main-content">
-        <section class="section">
-          <div class="section-body">
-            <div class="row">
-              <div class="col-12 col-md-6 col-lg-6">
-                <div class="card">
-                  <form onSubmit={handleSubmit}>
-                    <div class="card-header">
-                      <h4>Add Employee</h4>
+  return (<>
+    <Header></Header>
+    <div class="main-content">
+      <section class="section">
+        <div class="section-body">
+          <div class="row">
+            <div class="col-12 col-md-6 col-lg-6">
+              <div class="card">
+                <form onSubmit={handleSubmit}>
+                  <div class="card-header">
+                    <h4>Add Employee</h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label>Your Name</label>
+                      <input type="text" class="form-control" value={name} onChange={(e) => setName(e.target.value)} required="" />
                     </div>
-                    <div class="card-body">
-                      <div class="form-group">
-                        <label>Your Name</label>
-                        <input type="text" class="form-control" value={name} onChange={(e) => setName(e.target.value)} required=""/>
-                      </div>
-                      <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" class="form-control" value={email} onChange={(e) => setEmail(e.target.value)} required=""/>
-                      </div>
-                      <div class="form-group">
-                        <label>MobileNo</label>
-                        <input type="text" class="form-control" value={mobileNo} onChange={(e) => setMobileNo(e.target.value)} required=""/>
-                      </div>
-                      <div class="form-group">
-                        <label>Dob</label>
-                        <input type="date" class="form-control" value={dob} onChange={(e) => setDob(e.target.value)} required=""/>
-                      </div>
-                      <div class="form-group">
-                        <label>Doj</label>
-                        <input type="date" class="form-control" value={doj} onChange={(e) => setDoj(e.target.value)} required=""/>
-                      </div>
-                      <div class="form-group">
-                        <label>Type</label>
-                        <input type="text" class="form-control" value={type} onChange={(e) => setType(e.target.value)} required=""/>
-                      </div>
-                     
+                    <div class="form-group">
+                      <label>Email</label>
+                      <input type="email" class="form-control" value={email} onChange={(e) => setEmail(e.target.value)} required="" />
                     </div>
-                    <div class="card-footer text-right">
+                    <div class="form-group">
+                      <label>MobileNo</label>
+                      <input type="text" class="form-control" value={mobileNo} onChange={(e) => setMobileNo(e.target.value)} required="" />
+                    </div>
+                    <div class="form-group">
+                      <label>Dob</label>
+                      <input type="date" class="form-control" value={dob} onChange={(e) => setDob(e.target.value)} required="" />
+                    </div>
+                    <div class="form-group">
+                      <label>Doj</label>
+                      <input type="date" class="form-control" value={doj} onChange={(e) => setDoj(e.target.value)} required="" />
+                    </div>
+                    <div class="form-group">
+                      <label class="lb">Type</label>
+                      <select class="chosen-select" value={type} onChange={(e) => setType(e.target.value)}>
+                        <option disabled="disabled" selected=""></option>
+                        <option>Employee</option>
+                        <option>Vendor</option>
+                      </select>
+                    </div>
+
+                  </div>
+                  <div class="card-footer text-right">
                     <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                  </form>
-                </div>
-                <div class="card">
-                
-                </div>
+                  </div>
+                </form>
               </div>
-              <div class="col-12 col-md-6 col-lg-6">
-                <div class="card">
-                  
-                </div>
-                <div class="card">
-                  
-                </div>
-              </div>
+              
             </div>
+            
           </div>
-        </section>
-      </div>
-        <Footer></Footer>
-    </>);
+        </div>
+      </section>
+    </div>
+    <Footer></Footer>
+  </>);
 }
 
 export default AddEmployee;

@@ -61,11 +61,7 @@ import { useNavigate } from "react-router-dom";
                                         <div class="form-group">
                                             <div class="d-block">
                                             <label for="email">Password</label>
-                                                <div class="float-right">
-                                                    <a href="auth-forgot-password.html" class="text-small">
-                                                        Forgot Password?
-                                                    </a>
-                                                </div>
+                                                
                                             </div>
                                             <input id="password" type="password" class="form-control" value={password} onChange={(e) => setPassword(e.target.value)} required />
                                             <div class="invalid-feedback">
